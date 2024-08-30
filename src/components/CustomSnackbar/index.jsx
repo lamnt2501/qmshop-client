@@ -13,7 +13,10 @@ const CustomSnackbar = (prop) => {
       open={openSnackbar}
       autoHideDuration={duration}
       onClose={handleCloseSnackbar}
-      anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      sx={{
+        "&.MuiSnackbar-root": { top: "100px", right:"20px"},
+      }}
     >
       <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity}>
         {children}

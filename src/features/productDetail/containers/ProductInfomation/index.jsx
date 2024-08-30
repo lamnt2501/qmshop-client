@@ -152,6 +152,21 @@ const ProductInfomation = ({ data }) => {
 
   return (
     <div className="my-4">
+      <CustomSnackbar
+        openSnackbar={cartsStatus === FETCH_SUCCEEDED}
+        handleCloseSnackbar={() => dispatch(resetCartStatus())}
+        snackbarSeverity={ALERT_SUCCESS}
+      >
+        Thêm sản phẩm vào giỏ hàng thành công
+      </CustomSnackbar>
+      <CustomSnackbar
+        openSnackbar={cartsStatus === FETCH_FAILED}
+        handleCloseSnackbar={() => dispatch(resetCartStatus())}
+        snackbarSeverity={ALERT_ERROR}
+      >
+        Thêm sản phẩm vào giỏ hàng không thành công
+      </CustomSnackbar>
+
       <div className="mb-5 ">
         <h2 className="font-normal text-3xl">{name}</h2>
       </div>
@@ -234,20 +249,6 @@ const ProductInfomation = ({ data }) => {
       <div className="mb-5">
         <ListPolicy />
       </div>
-      <CustomSnackbar
-        openSnackbar={cartsStatus === FETCH_SUCCEEDED}
-        handleCloseSnackbar={() => dispatch(resetCartStatus())}
-        snackbarSeverity={ALERT_SUCCESS}
-      >
-        Thêm sản phẩm vào giỏ hàng thành công
-      </CustomSnackbar>
-      <CustomSnackbar
-        openSnackbar={cartsStatus === FETCH_FAILED}
-        handleCloseSnackbar={() => dispatch(resetCartStatus())}
-        snackbarSeverity={ALERT_ERROR}
-      >
-        Thêm sản phẩm vào giỏ hàng không thành công
-      </CustomSnackbar>
     </div>
   );
 };
