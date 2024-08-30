@@ -1,8 +1,8 @@
-import React, { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectAuthToken,
-  selectCartsError,
+  // selectCartsError,
   selectCartsItem,
   selectCartsStatus,
   updateCartItems,
@@ -16,7 +16,7 @@ const ListCartItem = () => {
   const token = useSelector(selectAuthToken);
   const carts = useSelector(selectCartsItem);
   const cartsStatus = useSelector(selectCartsStatus);
-  const cartsError = useSelector(selectCartsError);
+  // const cartsError = useSelector(selectCartsError);
 
   const [async1, setAsync] = useState(true);
 

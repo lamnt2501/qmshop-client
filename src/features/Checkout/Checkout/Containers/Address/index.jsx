@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import NewAddress from "../NewAddress";
 import ChoiceAddress from "../../Components/ChoiceAddress";
 import OldAddress from "../OldAddress";
@@ -20,7 +20,7 @@ const Address = () => {
           Sử dụng địa chỉ mới
         </ChoiceAddress>
       </div>
-      {newAddress ? <NewAddress /> : <OldAddress/>}
+      {newAddress ? <NewAddress /> : <OldAddress />}
     </>
   );
 };

@@ -1,11 +1,10 @@
-import React from "react";
 import clsx from "clsx";
 import { Image, CustomLink, Title } from "../../../../components";
 import "./BannerWrap.css";
 
 const BannerWrap = (prop) => {
   const { top, bottom } = prop;
-  const { image, name, title, description, url } = prop.data;
+  const { image, name, title, description } = prop.data;
 
   const childrenClass = clsx("text-white text-left place-self-center", {
     "md:justify-self-start md:self-start": top,
@@ -21,7 +20,7 @@ const BannerWrap = (prop) => {
         }
       >
         <div className={childrenClass}>
-          <Title className={'mb-3'}>{title}</Title>
+          <Title className={"mb-3"}>{title}</Title>
           {description ? (
             <p className="description mb-5">{description}</p>
           ) : undefined}

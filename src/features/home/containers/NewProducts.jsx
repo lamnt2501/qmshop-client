@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchNewProducts,
   selectNewProductsItem,
-  selectNewProductsStatus,
+  // selectNewProductsStatus,
 } from "../../../app/reducers";
-import { ProductCard, Sliders,Container } from "../../../components";
+import { ProductCard, Sliders, Container } from "../../../components";
 import { newPeoductsSlideSettings } from "../../../config";
 
 const NewProducts = () => {
   const dispatch = useDispatch();
   const newProducts = useSelector(selectNewProductsItem);
-  const state = useSelector(selectNewProductsStatus);
+  // const state = useSelector(selectNewProductsStatus);
 
   useEffect(() => {
     const params = { sort: "created_at", order: "ASC" };

@@ -1,4 +1,3 @@
-import React from "react";
 import { Sliders, StyleImageCard } from "../../../../components";
 import { StylesSlideSettings } from "../../../../config";
 import { styles } from "../../../../config";

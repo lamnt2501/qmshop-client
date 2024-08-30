@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./Overlay.css";
+import PropTypes from "prop-types";
 
 const Overlay = ({ isOverlay, onClick, children }) => {
   useEffect(() => {
@@ -31,4 +32,9 @@ const Overlay = ({ isOverlay, onClick, children }) => {
   );
 };
 
+Overlay.propTypes = {
+  isOverlay: PropTypes.bool,
+  onClick: PropTypes.func,
+  children: PropTypes.any,
+};
 export default Overlay;

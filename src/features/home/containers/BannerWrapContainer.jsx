@@ -1,4 +1,3 @@
-import React from "react";
 import BannerWrap from "../components/BannerWrap";
 import { bannerWrap } from "../../../config";
 import { Container } from "../../../components";
@@ -17,7 +16,6 @@ const BannerWrapContainer = () => {
           <BannerWrap data={bannerWrap[2]} bottom />
         </div>
       </div>
-
     </Container>
   );
 };

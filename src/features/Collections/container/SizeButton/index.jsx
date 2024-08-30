@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { IoIosResize } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import {

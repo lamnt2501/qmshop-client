@@ -1,7 +1,7 @@
-import React from "react";
 import { selectorColor } from "../../../../app/reducers";
 import { useSelector } from "react-redux";
 import { Image } from "../../../../components";
+import PropTypes from "prop-types";
 import "./ProductSlideImage.css";
 const ProductSlideImage = ({ images }) => {
   const newImages = Object.groupBy(images, ({ color }) => color);
@@ -14,13 +14,19 @@ const ProductSlideImage = ({ images }) => {
           newImages[selectColor].map((image, index) => {
             if (index === 0)
               return (
-                <div key={index} className="col-span-2 aspect-square rounded-md overflow-hidden">
+                <div
+                  key={index}
+                  className="col-span-2 aspect-square rounded-md overflow-hidden"
+                >
                   <Image data={{ image: image.url, name: image.color }} />
                 </div>
               );
             else
               return (
-                <div key={index} className="aspect-square rounded-md overflow-hidden">
+                <div
+                  key={index}
+                  className="aspect-square rounded-md overflow-hidden"
+                >
                   <Image data={{ image: image.url, name: image.color }} />
                 </div>
               );
@@ -39,5 +45,7 @@ const ProductSlideImage = ({ images }) => {
     </div>
   );
 };
-
+ProductSlideImage.propTypes = {
+  images: PropTypes.any,
+};
 export default ProductSlideImage;

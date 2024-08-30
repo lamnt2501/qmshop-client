@@ -1,6 +1,4 @@
-import React from "react";
 import { ColorButton, SizeButton, PriceButton } from "../";
-import { Container } from "../../../../components";
 import "./Filters.css";
 
 const Filters = () => {

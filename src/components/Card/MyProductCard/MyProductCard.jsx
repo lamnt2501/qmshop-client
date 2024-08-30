@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import styles from "./index.module.css";
 import clsx from "clsx";
 import { IoCartOutline } from "react-icons/io5";
 import { FiHeart, FiShuffle } from "react-icons/fi";
 import { LuEye } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const MyProductCard = ({ data }) => {
   const navigate = useNavigate();
@@ -91,4 +92,7 @@ const MyProductCard = ({ data }) => {
   );
 };
 
+MyProductCard.propTypes = {
+  data: PropTypes.object,
+};
 export default MyProductCard;

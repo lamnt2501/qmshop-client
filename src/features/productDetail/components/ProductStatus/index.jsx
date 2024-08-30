@@ -1,5 +1,4 @@
-import React from "react";
-
+import PropTypes from "prop-types";
 const ProductStatus = ({ selectColor, selectSize, quantity }) => {
   return (
     <>
@@ -16,5 +15,9 @@ const ProductStatus = ({ selectColor, selectSize, quantity }) => {
     </>
   );
 };
-
+ProductStatus.propTypes = {
+  selectColor: PropTypes.string,
+  selectSize: PropTypes.string,
+  quantity: PropTypes.number,
+};
 export default ProductStatus;

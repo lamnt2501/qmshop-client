@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import CheckoutInfomations from "./Containers/CheckoutInfomations";
 import CheckoutBillPreview from "./Containers/CheckoutBillPreview";
 import { Container } from "@mui/material";
@@ -15,7 +15,7 @@ const Checkout = () => {
     };
   }, [dispatch]);
 
-  useTitle('Thanh toán')
+  useTitle("Thanh toán");
 
   return (
     <div className="my-8">

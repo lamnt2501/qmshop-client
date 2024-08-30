@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Overlay } from "../../../../components";
 import clsx from "clsx";
 import { IoFilter } from "react-icons/io5";
 import { TfiClose } from "react-icons/tfi";
 import FiltersList from "../../components/FiltersList";
-
+import PropTypes from "prop-types";
 const FilterContainer = ({ isOpenFilter, onClick }) => {
   const className = clsx(
     "fixed z-40 top-0 w-full h-full top-0 bottom-0 left-0 right-0",
@@ -75,4 +75,8 @@ const FilterContainer = ({ isOpenFilter, onClick }) => {
   );
 };
 
+FilterContainer.propTypes = {
+  isOpenFilter: PropTypes.bool,
+  onClick: PropTypes.func,
+};
 export default FilterContainer;

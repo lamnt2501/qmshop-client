@@ -1,7 +1,7 @@
-import React from "react";
 import { Image } from "../../../../components";
 import clsx from "clsx";
 import "./ImageItem.css";
+import PropTypes from "prop-types";
 
 const ImageItem = ({ image, isSelector, isValid, onClick }) => {
   const { color, url } = image;
@@ -15,10 +15,7 @@ const ImageItem = ({ image, isSelector, isValid, onClick }) => {
     }
   );
   return (
-    <div
-      className={imageBoxClassName}
-      onClick={onClick}
-    >
+    <div className={imageBoxClassName} onClick={onClick}>
       <div className="w-full h-[70px] rounded-md overflow-hidden">
         <Image data={{ name: color, image: url }} />
       </div>
@@ -27,4 +24,10 @@ const ImageItem = ({ image, isSelector, isValid, onClick }) => {
   );
 };
 
+ImageItem.propTypes = {
+  image: PropTypes.object,
+  isSelector: PropTypes.bool,
+  isValid: PropTypes.bool,
+  onClick: PropTypes.func,
+};
 export default ImageItem;

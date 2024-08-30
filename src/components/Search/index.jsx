@@ -1,5 +1,3 @@
-import React from "react";
-import { FaSearchDollar } from "react-icons/fa";
 import "./Search.css";
 
 const Search = () => {
@@ -18,9 +16,9 @@ const Search = () => {
           <path
             d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
             stroke="currentColor"
-            stroke-width="1.333"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></path>
         </svg>
       </button>
@@ -42,8 +40,8 @@ const Search = () => {
           stroke="currentColor"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M6 18L18 6M6 6l12 12"
           ></path>
         </svg>

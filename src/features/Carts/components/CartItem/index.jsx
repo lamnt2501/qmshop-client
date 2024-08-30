@@ -1,10 +1,9 @@
-import React, { memo } from "react";
 import { Link } from "react-router-dom";
-import { Checked, Image, InputQuantity } from "../../../../components";
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
+import { Image, InputQuantity } from "../../../../components";
 import {
   handleMutateCheckoutItems,
-  removeItemToCart,
   selectAuthToken,
   selectCheckoutItems,
   setCheckoutQuantity,
@@ -110,6 +109,10 @@ const CartItem = ({ cartItem }) => {
       </div>
     </div>
   );
+};
+
+CartItem.propTypes = {
+  cartItem: PropTypes.object,
 };
 
 export default CartItem;

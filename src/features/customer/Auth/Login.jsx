@@ -1,13 +1,10 @@
-import { React, useCallback, useEffect, useState } from "react";
-import {
-  Button,
-  CustomSnackbar,
-  Input,
-} from "../../../components";
+import { useCallback, useEffect, useState } from "react";
+import { Button, CustomSnackbar, Input } from "../../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import {
-  selectAuthError,
+  // selectAuthError,
   selectAuthStatus,
   selectAuthToken,
   login,
@@ -34,7 +31,7 @@ const Login = ({ page = "/" }) => {
     };
   }, []);
 
-  useTitle('Đăng nhập')
+  useTitle("Đăng nhập");
 
   useAuthRedirect(token, status, navigate, page);
 
@@ -49,7 +46,9 @@ const Login = ({ page = "/" }) => {
     <div className="form rounded-md shadow-md transition-transform duration-200 w-[500px] text-center m-auto my-10">
       <div className="formValue">
         <form className="grid justify-items-center px-4" id="loginForm">
-          <h1 className="text-black pt-6 text-center uppercase text-4xl">ĐĂNG NHẬP</h1>
+          <h1 className="text-black pt-6 text-center uppercase text-4xl">
+            ĐĂNG NHẬP
+          </h1>
           <Input
             id="email"
             type="email"
@@ -95,7 +94,7 @@ const Login = ({ page = "/" }) => {
         </div>
       </div>
 
-      <CustomSnackbar 
+      <CustomSnackbar
         openSnackbar={status === FETCH_FAILED}
         handleCloseSnackbar={() => dispatch(resetAuthStatus())}
         snackbarSeverity={ALERT_ERROR}
@@ -106,4 +105,7 @@ const Login = ({ page = "/" }) => {
   );
 };
 
+Login.propTypes = {
+  page: PropTypes.string,
+};
 export default Login;

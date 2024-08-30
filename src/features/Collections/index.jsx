@@ -1,24 +1,17 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { CustomBreadcrumbs, BannerHeadPage, Container } from "../../components";
 import { SortButton, ProductsList, Filters } from "./container";
 
-import {
-  fetchCategory,
-  resetParams,
-  selectCategoriesStatus,
-  selectCategory,
-} from "../../app/reducers";
+import { fetchCategory, resetParams, selectCategory } from "../../app/reducers";
 import { useParams } from "react-router";
 import useTitle from "../../hooks/useTitle";
-import { FETCH_SUCCEEDED } from "../../config";
 
 const Collections = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const category = useSelector(selectCategory);
-  const status = useSelector(selectCategoriesStatus);
 
   useEffect(() => {
     if (params.category) {

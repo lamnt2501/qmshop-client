@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Title } from "../../../../components";
 import clsx from "clsx";
 import Rating from "../Ratings";
-import { fetchRatings, selectRatings, selectRatingsStatus } from "../../../../app/reducers";
+import {
+  fetchRatings,
+  selectRatings,
+  // selectRatingsStatus,
+} from "../../../../app/reducers";
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 const ProductDescription = ({ data }) => {
-  const { id, name, description, brand, categories, options, slug } = data;
+  const { id, name, description, brand, categories, options } = data;
 
   const dispatch = useDispatch();
   const ratings = useSelector(selectRatings);
-  const ratingStatus = useSelector(selectRatingsStatus);
+  // const ratingStatus = useSelector(selectRatingsStatus);
 
   useEffect(() => {
     if (id) {
@@ -52,7 +57,9 @@ const ProductDescription = ({ data }) => {
       <div>
         <Title>Mô tả sản phẩm</Title>
       </div>
-      <div>{description}</div>
+      <div
+        dangerouslySetInnerHTML={{ __html: description.replace(/<script/, "") }}
+      ></div>
 
       <Title>đánh giá sản phẩm</Title>
       <Rating ratings={ratings} />
@@ -60,4 +67,7 @@ const ProductDescription = ({ data }) => {
   );
 };
 
+ProductDescription.propTypes = {
+  data: PropTypes.object,
+};
 export default ProductDescription;

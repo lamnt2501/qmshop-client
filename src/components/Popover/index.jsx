@@ -1,20 +1,24 @@
-import React, { useEffect, useRef, useState, value } from "react";
+import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { FaAngleDown } from "react-icons/fa";
+import PropTypes from "prop-types";
 
-const Popover = (props) => {
+const Popover = ({ children, Icon, value }) => {
   // children sẽ chứa các dữ liệu khi được popover được mở
-  const { children, Icon, value } = props;
+
   const [showPopover, setShowPopover] = useState(false);
 
   const ref = useRef();
 
-  const className = clsx("transition-all h-[44px] border z-10 relative overflow-hidden rounded-md", {
-    // fix cứng kích thước khi không có icon (chỉ sử dụng cho sortButton)
-    "w-[190px]": !Icon,
-    "border-line-border hover:border-black": !showPopover,
-    "border-black overflow-visible": showPopover,
-  });
+  const className = clsx(
+    "transition-all h-[44px] border z-10 relative overflow-hidden rounded-md",
+    {
+      // fix cứng kích thước khi không có icon (chỉ sử dụng cho sortButton)
+      "w-[190px]": !Icon,
+      "border-line-border hover:border-black": !showPopover,
+      "border-black overflow-visible": showPopover,
+    }
+  );
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -63,4 +67,9 @@ const Popover = (props) => {
   );
 };
 
+Popover.propTypes = {
+  children: PropTypes.any,
+  Icon: PropTypes.any,
+  value: PropTypes.any,
+};
 export default Popover;

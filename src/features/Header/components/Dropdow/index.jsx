@@ -1,5 +1,4 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Dropdow.css";
 import clsx from "clsx";
 const Dropdow = (prop) => {

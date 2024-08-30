@@ -1,5 +1,3 @@
-import React, { memo } from "react";
-
 const Options = (prop) => {
   const { options, name, id, value, setValue, children } = prop;
 

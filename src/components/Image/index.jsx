@@ -1,4 +1,3 @@
-import React from "react";
 import "./Image.css";
 import clsx from "clsx";
 

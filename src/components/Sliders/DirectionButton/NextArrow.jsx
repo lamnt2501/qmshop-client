@@ -1,14 +1,15 @@
-import React from "react";
 import "./DirectionButton.css";
 import { GrNext } from "react-icons/gr";
-
-const NextArrow = (props) => {
-  const { style, onClick } = props;
+import PropTypes from "prop-types";
+const NextArrow = ({ style, onClick }) => {
   return (
     <div className={"nextBtn"} style={{ ...style }} onClick={onClick}>
       <GrNext />
     </div>
   );
 };
-
+NextArrow.propTypes = {
+  style: PropTypes.object,
+  onClick: PropTypes.func,
+};
 export default NextArrow;

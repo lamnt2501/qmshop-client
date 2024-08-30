@@ -1,4 +1,3 @@
-import React from "react";
 import { BannerHeadPage } from "../../../components";
 import { logoApp } from "../../../config";
 import { FaCameraRetro } from "react-icons/fa";

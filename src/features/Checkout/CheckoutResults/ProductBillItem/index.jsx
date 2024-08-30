@@ -1,4 +1,4 @@
-import * as React from "react";
+import PropTypes from "prop-types";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -73,4 +73,7 @@ const ProductBillItem = ({ products }) => {
   );
 };
 
+ProductBillItem.propTypes = {
+  products: PropTypes.array,
+};
 export default ProductBillItem;

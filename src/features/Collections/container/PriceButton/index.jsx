@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaMoneyBill } from "react-icons/fa";
 import { Range, getTrackBackground } from "react-range";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,13 +32,13 @@ const PriceButton = () => {
             min={MIN}
             max={MAX}
             onChange={(values) => setValues(values)}
-            renderTrack={({ props, children }) => (
+            renderTrack={({ props: c, children }) => (
               <div
-                key={props.someKey}
-                onMouseDown={props.onMouseDown}
-                onTouchStart={props.onTouchStart}
+                key={c.someKey}
+                onMouseDown={c.onMouseDown}
+                onTouchStart={c.onTouchStart}
                 style={{
-                  ...props.style,
+                  ...c.style,
                   paddingLeft: "12px",
                   paddingRight: "12px",
                   height: "36px",
@@ -47,7 +47,7 @@ const PriceButton = () => {
                 }}
               >
                 <div
-                  ref={props.ref}
+                  ref={c.ref}
                   style={{
                     height: "8px",
                     width: "100%",
@@ -65,12 +65,12 @@ const PriceButton = () => {
                 </div>
               </div>
             )}
-            renderThumb={({ props, isDragged }) => (
+            renderThumb={({ props: c, isDragged }) => (
               <div
-                key={props.someKey}
-                {...props}
+                key={c.someKey}
+                {...c}
                 style={{
-                  ...props.style,
+                  ...c.style,
 
                   height: "12px",
                   width: "12px",

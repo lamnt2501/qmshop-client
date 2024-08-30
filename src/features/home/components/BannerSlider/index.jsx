@@ -1,9 +1,8 @@
-import React from "react";
 import Image from "../../../../components/Image";
 import Button from "../../../../components/Button";
 import { NavLink } from "react-router-dom";
 import "./BannerSlider.css";
-
+import PropTypes from "prop-types";
 const BannerSlider = ({ data }) => {
   const { image, name, title, titleTrending } = data;
 
@@ -32,5 +31,7 @@ const BannerSlider = ({ data }) => {
     </div>
   );
 };
-
+BannerSlider.propTypes = {
+  data: PropTypes.object,
+};
 export default BannerSlider;

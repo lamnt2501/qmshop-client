@@ -1,4 +1,3 @@
-import React from "react";
 import { CustomLink, Image, Container, Title } from "../../../components";
 import { frame } from "../../../config";
 

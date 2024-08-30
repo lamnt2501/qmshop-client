@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 const ScrollToTopBtn = ({ className }) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -52,4 +52,7 @@ const ScrollToTopBtn = ({ className }) => {
   );
 };
 
+ScrollToTopBtn.propTypes = {
+  className: PropTypes.string,
+};
 export default ScrollToTopBtn;

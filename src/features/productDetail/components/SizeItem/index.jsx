@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import clsx from "clsx";
-import React from "react";
+import PropTypes from "prop-types";
 
 const SizeItem = ({ size, isValid, isSelector, onClick }) => {
   const sizeItemClassName = clsx(
@@ -22,4 +22,10 @@ const SizeItem = ({ size, isValid, isSelector, onClick }) => {
   );
 };
 
+SizeItem.propTypes = {
+  size: PropTypes.string,
+  isValid: PropTypes.bool,
+  isSelector: PropTypes.bool,
+  onClick: PropTypes.func,
+};
 export default SizeItem;

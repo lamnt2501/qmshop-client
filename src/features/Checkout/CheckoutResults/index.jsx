@@ -1,18 +1,19 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router";
-import { FaCheck } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
+import {
+  useLocation,
+  //  useNavigate
+} from "react-router";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CancelIcon from "@mui/icons-material/Cancel";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
-import WarningIcon from "@mui/icons-material/Warning";
-import { BannerHeadPage, Button } from "../../../components";
+import {
+  BannerHeadPage,
+  //  Button
+} from "../../../components";
 import BillDetail from "./BillDetail";
 import useTitle from "../../../hooks/useTitle";
 const CheckoutResults = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useTitle('Thanh toán - kết quả')
+  useTitle("Thanh toán - kết quả");
 
   // Lấy location hiện tại từ react-router
   const location = useLocation();
@@ -47,16 +48,14 @@ const CheckoutResults = () => {
   // OrderId COD
   const { orderid } = location.state ?? 0;
 
-  const handleClick = () => {
-    navigate("/");
-  };
-  const button = (
-    <Button black afterAnimation isFull onClick={handleClick}>
-      Quay lại trang chủ
-    </Button>
-  );
-
-
+  // const handleClick = () => {
+  //   navigate("/");
+  // };
+  // const button = (
+  //   <Button black afterAnimation isFull onClick={handleClick}>
+  //     Quay lại trang chủ
+  //   </Button>
+  // );
 
   return (
     <div className="">

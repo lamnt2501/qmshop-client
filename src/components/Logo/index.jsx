@@ -1,5 +1,3 @@
-import React from "react";
-import { Image } from "..";
 import { logoApp } from "../../config";
 import { Link } from "react-router-dom";
 const Logo = () => {

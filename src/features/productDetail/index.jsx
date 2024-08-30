@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomBreadcrumbs, Container, Loading } from "../../components";
@@ -35,7 +35,7 @@ const ProductDetail = () => {
     };
   }, [dispatch, slug]);
 
-  useTitle(product.name ?? "Sản phẩm")
+  useTitle(product.name ?? "Sản phẩm");
 
   if (status === FETCH_LOADING) return <Loading />;
   else if (status === FETCH_FAILED) return <div>{error}</div>;

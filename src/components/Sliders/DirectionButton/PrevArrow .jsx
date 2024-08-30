@@ -1,4 +1,3 @@
-import React from "react";
 import "./DirectionButton.css";
 import { GrPrevious } from "react-icons/gr";
 

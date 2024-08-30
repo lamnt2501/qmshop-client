@@ -1,12 +1,11 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { HiOutlineExternalLink } from "react-icons/hi";
+// import { HiOutlineExternalLink } from "react-icons/hi";
 import {
   FaFacebookF,
   FaInstagram,
   FaTiktok,
   FaPinterest,
-  FaChevronDown,
+  // FaChevronDown,
   FaMapMarkerAlt,
   FaEnvelope,
   FaPhone,

@@ -1,4 +1,3 @@
-import React from "react";
 import { GiCardExchange } from "react-icons/gi";
 import { PiTruckDuotone } from "react-icons/pi";
 import { MdCreditScore } from "react-icons/md";

@@ -1,6 +1,6 @@
-import React from "react";
 import { Image, Title } from "..";
 import { collectionImage } from "../../config";
+import PropTypes from "prop-types";
 
 const BannerHeadPage = ({ title, description, children }) => {
   return (
@@ -16,4 +16,9 @@ const BannerHeadPage = ({ title, description, children }) => {
   );
 };
 
+BannerHeadPage.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  children: PropTypes.any,
+};
 export default BannerHeadPage;

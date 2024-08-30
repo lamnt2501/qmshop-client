@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Image } from "../../../components";
 import { frame } from "../../../config";
 

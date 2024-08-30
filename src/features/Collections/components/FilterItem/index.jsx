@@ -1,4 +1,3 @@
-import React from "react";
 import "./FilterItem.css";
 import clsx from "clsx";
 

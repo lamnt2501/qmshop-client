@@ -1,9 +1,7 @@
-import { React } from "react";
 import { memo } from "react";
 import "./Input.css";
 
 const Input = (prop) => {
-
   const {
     children,
     required = true,

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchOrderById,
@@ -68,7 +69,7 @@ const BillDetail = ({ orderId }) => {
             </div>
             <div className="basis-2/5">
               {infos.map(({ name, info, url }) => (
-                <div className="flex gap-1">
+                <div className="flex gap-1" key={name}>
                   <span>{name}:</span>
                   {url ? (
                     <CustomLink className={"text-blue-500 font-medium"}>
@@ -147,4 +148,7 @@ const BillDetail = ({ orderId }) => {
   );
 };
 
+BillDetail.propTypes = {
+  orderId: PropTypes.number,
+};
 export default BillDetail;

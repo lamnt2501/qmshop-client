@@ -1,5 +1,5 @@
-import React from "react";
 import { Image } from "../../../../components";
+import PropTypes from "prop-types";
 
 const Policy = ({ image, name, children }) => {
   return (
@@ -14,4 +14,9 @@ const Policy = ({ image, name, children }) => {
   );
 };
 
+Policy.propTypes = {
+  image: PropTypes.string,
+  name: PropTypes.string,
+  children: PropTypes.any,
+};
 export default Policy;

@@ -1,4 +1,3 @@
-import React from "react";
 import { Policy } from "../";
 import { policyImage } from "../../../../config/image";
 

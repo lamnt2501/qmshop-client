@@ -1,5 +1,4 @@
-import React from "react";
-import {BannerHeadPage} from "../../../components";
+import { BannerHeadPage } from "../../../components";
 
 const PrivacyPolicy = () => {
   return (

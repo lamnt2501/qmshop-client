@@ -1,14 +1,4 @@
-import React, { useEffect } from "react";
-import FilterItem from "../FilterItem";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectFiltersList,
-  selectFiltersItems,
-  selectFiltersStatus,
-  selectFiltersError,
-  setItem,
-  resetItem,
-} from "../../../../app/reducers";
+import { useEffect } from "react";
 const FiltersList = () => {
   useEffect(() => {}, []);
 

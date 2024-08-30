@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { BannerHeadPage, Container } from "../../components";
 
 import CartPayment from "./container/CartPayment";
@@ -6,8 +6,7 @@ import ListCartItem from "./container/ListCartItem";
 import useTitle from "../../hooks/useTitle";
 
 const Carts = () => {
-
-  useTitle("Giỏ hàng")
+  useTitle("Giỏ hàng");
 
   return (
     <div className="min-h-page">

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuthToken, logout } from "../../app/reducers";
 
@@ -16,7 +15,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
   const [overlay, setOverlay] = useState(false);
-  
+
   const handleLogout = () => {
     dispatch(logout());
     setOverlay(false);
@@ -58,7 +57,7 @@ const Header = () => {
       >
         <div className={"flex items-center space-x-2 justify-between max-h-14"}>
           <div className="flex self-center max-h-14">
-            <div className="basis-52 self-center" >
+            <div className="basis-52 self-center">
               <Logo />
             </div>
 

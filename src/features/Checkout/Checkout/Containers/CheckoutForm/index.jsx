@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Input } from "../../../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -31,7 +31,7 @@ const CheckoutForm = () => {
       dispatch(setPhoneNumber(customerPhone));
       dispatch(setFullName(customerName));
     }
-  }, [customerStatus]);
+  }, [customerStatus, customerName, customerPhone]);
 
   return (
     <div>

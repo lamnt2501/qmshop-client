@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCity,
@@ -9,7 +9,7 @@ import {
   selectAddressDistrict,
   selectAddressListCity,
   selectAddressListDistrict,
-  selectAddressListStatus,
+  // selectAddressListStatus,
   selectAddressListWard,
   selectAddressWard,
   setCheckoutCity,
@@ -35,7 +35,7 @@ const NewAddress = () => {
   const selectDistrict = useSelector(selectAddressDistrict);
   const selectWard = useSelector(selectAddressWard);
 
-  const fetchStatus = useSelector(selectAddressListStatus);
+  // const fetchStatus = useSelector(selectAddressListStatus);
 
   const orderAddress = useSelector(selectCheckoutAddress);
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Address from "../Address";
 import CheckoutForm from "../CheckoutForm";
 import PaymentMethod from "../PaymentMethod";
@@ -41,7 +41,7 @@ const CheckoutInfomations = () => {
       navigate(`/checkout/results`, {
         state: { orderid: vnPayResult.OrderId },
       });
-    } 
+    }
     // else {
     //   // Hiển thị thông báo lỗi
     //   setSnackbarMessage("Có lỗi xẩy ra!");

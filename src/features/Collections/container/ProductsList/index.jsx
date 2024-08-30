@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProducts,
@@ -8,7 +8,6 @@ import {
   selectFiltersSizes,
   selectFiltersPrice,
   presentValue,
-  selectCategory,
   selectLimitDefoult,
   selectPage,
   addProducts,
@@ -19,6 +18,7 @@ import {
 } from "../../../../app/reducers";
 import { Loading, ProductCard } from "../../../../components";
 import { FETCH_LOADING, FETCH_SUCCEEDED } from "../../../../config";
+import PropTypes from "prop-types";
 
 const ProductsList = ({ categoryId }) => {
   const dispatch = useDispatch();
@@ -109,4 +109,7 @@ const ProductsList = ({ categoryId }) => {
   );
 };
 
+ProductsList.propTypes = {
+  categoryId: PropTypes.number,
+};
 export default ProductsList;

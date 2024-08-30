@@ -1,8 +1,9 @@
-import { React, useState, memo } from "react";
+import { useState, memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { setParamsCategory } from "../../../app/reducers";
+import PropTypes from "prop-types";
 
 import "./CategoryCard.css";
 
@@ -43,4 +44,7 @@ const CategoryCard = ({ data }) => {
   );
 };
 
+CategoryCard.propTypes = {
+  data: PropTypes.object,
+};
 export default memo(CategoryCard);

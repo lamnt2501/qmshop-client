@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSelectorColor,
@@ -11,9 +11,10 @@ import {
   addItemToCart,
   updateCartItems,
   selectCartsStatus,
-  selectCartsItem,
+  // selectCartsItem,
   resetCartStatus,
 } from "../../../../app/reducers";
+import PropTypes from "prop-types";
 import {
   ImageItem,
   SizeItem,
@@ -21,13 +22,23 @@ import {
   ProductStatus,
   ProductColorName,
 } from "../../components";
-import { AlertMessage, Button, CustomSnackbar, InputQuantity } from "../../../../components";
+import {
+  // AlertMessage,
+  Button,
+  CustomSnackbar,
+  InputQuantity,
+} from "../../../../components";
 import { FaRegHeart } from "react-icons/fa";
-import { ALERT_ERROR, ALERT_SUCCESS, FETCH_FAILED, FETCH_SUCCEEDED } from "../../../../config";
+import {
+  ALERT_ERROR,
+  ALERT_SUCCESS,
+  FETCH_FAILED,
+  FETCH_SUCCEEDED,
+} from "../../../../config";
 import { priceConvert } from "../../../../utils/priceConvert";
 
 const ProductInfomation = ({ data }) => {
-  const { name, description, brand, categories, options, images, slug } = data;
+  const { name, options, images, slug } = data;
 
   const [quantity, setQuantity] = useState(1);
 
@@ -239,6 +250,10 @@ const ProductInfomation = ({ data }) => {
       </CustomSnackbar>
     </div>
   );
+};
+
+ProductInfomation.propTypes = {
+  data: PropTypes.object,
 };
 
 export default ProductInfomation;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { bannerWrap, FETCH_LOADING } from "../../../config";
 import { ProductCard, Loading, Container } from "../../../components";
 import BannerWrap from "../components/BannerWrap";
@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectProductsItem,
   selectProductsStatus,
-  selectProductsError,
+  // selectProductsError,
   fetchProducts,
 } from "../../../app/reducers";
 
@@ -14,7 +14,7 @@ const OutstandingContainer = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectProductsItem);
   const status = useSelector(selectProductsStatus);
-  const error = useSelector(selectProductsError);
+  // const error = useSelector(selectProductsError);
 
   const params = { limit: 4 };
   // const params = { size: 4 };

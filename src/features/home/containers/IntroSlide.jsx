@@ -1,4 +1,3 @@
-import React from "react";
 import { bannerSliderSettings, sliderImage } from "../../../config";
 import { Sliders } from "../../../components";
 import BannerSlider from "../components/BannerSlider";

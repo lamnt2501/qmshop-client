@@ -1,6 +1,5 @@
-import React from "react";
-
-const ProductColorName = ({color}) => {
+import PropTypes from "prop-types";
+const ProductColorName = ({ color }) => {
   return (
     <>
       <span>Màu sắc: </span>
@@ -8,5 +7,7 @@ const ProductColorName = ({color}) => {
     </>
   );
 };
-
+ProductColorName.propTypes = {
+  color: PropTypes.string,
+};
 export default ProductColorName;

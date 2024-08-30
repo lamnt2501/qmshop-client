@@ -18,7 +18,7 @@ const useSticky = () => {
 
     return () => {
       if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+        observer.unobserve(elementRef);
       }
     };
   }, []);

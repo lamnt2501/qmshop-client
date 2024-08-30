@@ -1,4 +1,3 @@
-import React from "react";
 import { BannerHeadPage } from "../../../components";
 
 const PaymentPolicy = () => {
@@ -60,9 +59,9 @@ const PaymentPolicy = () => {
 
           <ul className="mt-4 space-y-0">
             <li>
-              Khi đặt hàng thành công, quý khách sẽ nhìn thấy thông báo "Đặt
-              hàng thành công" và nhận được Mã số đơn hàng. Nếu quý khách vẫn
-              chưa nhận
+              Khi đặt hàng thành công, quý khách sẽ nhìn thấy thông báo
+              &quot;Đặt hàng thành công&quot; và nhận được Mã số đơn hàng. Nếu
+              quý khách vẫn chưa nhận
             </li>
             <li>
               được vui lòng đặt hàng lại lần nữa hoặc liên hệ với bộ phận Chăm

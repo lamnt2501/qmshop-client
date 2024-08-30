@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Sliders.css";
+import PropTypes from "prop-types";
 
 const Sliders = ({ datas, children, settings }) => {
   return (
@@ -20,4 +21,9 @@ const Sliders = ({ datas, children, settings }) => {
   );
 };
 
+Sliders.propTypes = {
+  datas: PropTypes.array,
+  children: PropTypes.any,
+  settings: PropTypes.object,
+};
 export default React.memo(Sliders);

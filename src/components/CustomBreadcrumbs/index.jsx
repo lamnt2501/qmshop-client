@@ -1,7 +1,7 @@
-import React from "react";
 import { Breadcrumbs } from "@mui/material";
 import CustomLink from "../CustomLink";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import PropTypes from "prop-types";
 
 const CustomBreadcrumbs = ({ breadcrumbs }) => {
   return (
@@ -35,4 +35,7 @@ const CustomBreadcrumbs = ({ breadcrumbs }) => {
   );
 };
 
+CustomBreadcrumbs.propTypes = {
+  breadcrumbs: PropTypes.array,
+};
 export default CustomBreadcrumbs;

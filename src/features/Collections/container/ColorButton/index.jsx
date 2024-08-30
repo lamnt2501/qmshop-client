@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { BiSolidColor } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { Popover } from "../../../../components";
 import { FilterItem } from "../../components";
 import {
   selectColorsItem,
-  selectColorsStatus,
-  selectColorsError,
   fetchColors,
   handleFilterColors,
   selectFiltersColors,
@@ -15,8 +13,6 @@ import {
 const ColorButton = () => {
   const dispatch = useDispatch();
   const colors = useSelector(selectColorsItem);
-  const status = useSelector(selectColorsStatus);
-  const error = useSelector(selectColorsError);
   const filtersColors = useSelector(selectFiltersColors);
 
   useEffect(() => {

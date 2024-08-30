@@ -1,6 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-
+import PropTypes from "prop-types";
 const HeaderIcons = ({ children, url, isLink = true }) => {
   return (
     <>
@@ -19,5 +18,9 @@ const HeaderIcons = ({ children, url, isLink = true }) => {
     </>
   );
 };
-
+HeaderIcons.propTypes = {
+  children: PropTypes.any,
+  url: PropTypes.string,
+  isLink: PropTypes.bool,
+};
 export default HeaderIcons;

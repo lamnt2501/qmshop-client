@@ -1,7 +1,8 @@
-import { React, useEffect } from "react";
+import { useEffect } from "react";
 import { Input, Button, CustomSnackbar } from "../../../components";
 import validator from "./Validate";
 import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectAuthRegister,
@@ -11,7 +12,7 @@ import {
   setPassword,
   setPasswordComfirmation,
   register,
-  selectAuthError,
+  // selectAuthError,
   selectAuthToken,
   selectAuthStatus,
   resetAuthState,
@@ -35,7 +36,7 @@ const Register = ({ page = "/" }) => {
     };
   }, []);
 
-  useTitle('Đăng ký')
+  useTitle("Đăng ký");
 
   useAuthRedirect(token, status, navigate, page);
 
@@ -211,4 +212,7 @@ const Register = ({ page = "/" }) => {
   );
 };
 
+Register.propTypes = {
+  page: PropTypes.string,
+};
 export default Register;

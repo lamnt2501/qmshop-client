@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const LinkInSlide = (prop) => {
-  const { children, url, onMouseOver, onMouseOut, className } = prop
-  
+  const { children, url, onMouseOver, onMouseOut, className } = prop;
+
   const clickTime = 100;
 
   const navigate = useNavigate();

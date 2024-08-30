@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Dropdow from "../../components/Dropdow";
 import "./Navbar.css";
 import clsx from "clsx";
@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchBrands,
   fetchCategories,
-  selectBrandsError,
+  // selectBrandsError,
   selectBrandsItem,
   selectBrandsStatus,
-  selectCategoriesError,
+  // selectCategoriesError,
   selectCategoriesItem,
   selectCategoriesStatus,
   setParamsCategory,
@@ -24,11 +24,11 @@ const Navbar = () => {
   // categories
   const categories = useSelector(selectCategoriesItem);
   const categoriesStatus = useSelector(selectCategoriesStatus);
-  const categoriesError = useSelector(selectCategoriesError);
+  // const categoriesError = useSelector(selectCategoriesError);
 
   const brands = useSelector(selectBrandsItem);
   const brandsStatus = useSelector(selectBrandsStatus);
-  const brandsError = useSelector(selectBrandsError);
+  // const brandsError = useSelector(selectBrandsError);
 
   const [listBrands, setListBrands] = useState([]);
   const [listCategories, setListCategories] = useState([]);
@@ -46,7 +46,10 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (brandsStatus === FETCH_SUCCEEDED && categoriesStatus === FETCH_SUCCEEDED) {
+    if (
+      brandsStatus === FETCH_SUCCEEDED &&
+      categoriesStatus === FETCH_SUCCEEDED
+    ) {
       // console.log(111111);
       const newListBrands = brands.reduce((acc, brand) => {
         const categoryBrand = categories.find(
@@ -90,14 +93,14 @@ const Navbar = () => {
     }
   }, [brandsStatus, categoriesStatus]);
 
-  const listPage = [
-    { pageName: "Home", url: "/" },
-    { pageName: "Đăng nhập", url: "/login" },
-    { pageName: "Đăng ký", url: "/register" },
-    { pageName: "Bộ sưu tập", url: "/collections" },
-    { pageName: "Giỏ hàng", url: "/carts" },
-    { pageName: "Thanh toán", url: "/checkout" },
-  ];
+  // const listPage = [
+  //   { pageName: "Home", url: "/" },
+  //   { pageName: "Đăng nhập", url: "/login" },
+  //   { pageName: "Đăng ký", url: "/register" },
+  //   { pageName: "Bộ sưu tập", url: "/collections" },
+  //   { pageName: "Giỏ hàng", url: "/carts" },
+  //   { pageName: "Thanh toán", url: "/checkout" },
+  // ];
 
   const navItem = clsx(
     "navItem rounded-lg px-4 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900 z-10 cursor-pointer"

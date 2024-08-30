@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Popover } from "../../../../components";
 import { FilterItem } from "../../components";

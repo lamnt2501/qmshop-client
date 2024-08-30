@@ -1,7 +1,8 @@
-import { React, memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Button, Image, LinkInSlide, Swatchs } from "../../";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { priceConvert } from "../../../utils/priceConvert";
+import PropTypes from "prop-types";
 
 import { MdAddShoppingCart } from "react-icons/md";
 import { FaHeartCirclePlus } from "react-icons/fa6";
@@ -28,7 +29,7 @@ const ProductCard = ({ data, padding }) => {
   }, {});
 
   // Lấy phần tử đầu tiên của mỗi nhóm
-  const firstItems = Object.entries(groupedItems).map(([color, url]) => url[0]);
+  const firstItems = Object.entries(groupedItems).map(([, url]) => url[0]);
 
   // Tổng số màu và số Size trong sản phẩm
   const totalColors = Object.keys(
@@ -58,7 +59,12 @@ const ProductCard = ({ data, padding }) => {
   };
 
   return (
-    <div className={clsx("card border border-slate-200 rounded-md shadow-md bg-white", { "px-4": padding })}>
+    <div
+      className={clsx(
+        "card border border-slate-200 rounded-md shadow-md bg-white",
+        { "px-4": padding }
+      )}
+    >
       <div className="cardImage block relative z-1 w-full aspect-square cardShadow rounded-md overflow-hidden">
         {discount ?? (
           <div className="absolute top-1 right-1 bg-red-600 text-white">
@@ -136,4 +142,8 @@ const ProductCard = ({ data, padding }) => {
   );
 };
 
+ProductCard.propTypes = {
+  data: PropTypes.object,
+  padding: PropTypes.bool,
+};
 export default memo(ProductCard);

@@ -1,4 +1,3 @@
-import React from "react";
 import { paymentMethods } from "../../../../../config";
 import { Image } from "../../../../../components";
 import { useDispatch, useSelector } from "react-redux";

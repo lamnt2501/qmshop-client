@@ -1,11 +1,3 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchRatings,
-  selectRatings,
-  selectRatingsStatus,
-} from "../../../../app/reducers";
-import { FETCH_SUCCEEDED } from "../../../../config";
 import {
   Avatar,
   Card,
@@ -14,14 +6,14 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
-import { grey } from '@mui/material/colors';
-
+import { grey } from "@mui/material/colors";
+import PropTypes from "prop-types";
 const Ratings = ({ ratings }) => {
   return (
     <div>
       {ratings &&
-        ratings.map((rating) => (
-          <Card sx={{ mb: 2 }}>
+        ratings.map((rating, i) => (
+          <Card sx={{ mb: 2 }} key={i}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: grey[500] }} aria-label="user">
@@ -42,4 +34,7 @@ const Ratings = ({ ratings }) => {
   );
 };
 
+Ratings.propTypes = {
+  ratings: PropTypes.array,
+};
 export default Ratings;

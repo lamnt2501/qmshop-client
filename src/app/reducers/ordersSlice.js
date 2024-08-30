@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { ordersApi } from "../../Api";
 import {
-  COD,
   FETCH_FAILED,
   FETCH_IDLE,
   FETCH_LOADING,

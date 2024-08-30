@@ -1,4 +1,3 @@
-import React from "react";
 import { newsletterSignupForm } from "../../../config";
 import { Button, Image, Input, Title } from "../../../components";
 const NewsletterSignupForm = () => {
