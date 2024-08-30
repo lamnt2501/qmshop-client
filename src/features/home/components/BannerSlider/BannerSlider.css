@@ -1,0 +1,41 @@
+/* Ban đầu ẩn các phần tử */
+.slick-active .slideTitle,
+.slick-active .slideTitleTrending,
+.slick-active .slideButton {
+  opacity: 0;
+  transform: translateY(250px);
+}
+
+/* Thêm animation */
+.slick-active .slideTitle,
+.slick-active .slideTitleTrending,
+.slick-active .slideButton {
+  animation-name: loading;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards; /* Giữ trạng thái sau khi animation kết thúc */
+}
+
+/* Đặt delay cho từng phần tử */
+.slick-active .slideTitle {
+  animation-delay: 0.2s;
+}
+
+.slick-active .slideTitleTrending {
+  animation-delay: 0.6s;
+}
+
+.slick-active .slideButton {
+  animation-delay: 0.8s;
+}
+
+@keyframes loading {
+  from {
+    opacity: 0;
+    transform: translateY(250px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

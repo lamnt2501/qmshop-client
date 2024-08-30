@@ -1,0 +1,53 @@
+.imageAnimation {
+  position: relative;
+  overflow: hidden;
+}
+
+.imageAnimation::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgb(var(--color-overlay));
+  transition: 0.25s;
+  z-index: 3;
+  opacity: 0.1;
+}
+
+.imageAnimation::after {
+  content: "";
+  position: absolute;
+  bottom: -100%;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: rgb(var(--color-overlay));
+  transition: 0.25s;
+  z-index: 3;
+  opacity: 0.1;
+}
+
+.imageAnimation:hover::before {
+  top: 0%;
+}
+
+.imageAnimation:hover::after {
+  bottom: 0%;
+  transition-delay: 0.25s;
+}
+
+.imgLoading {
+  animation: Loading 0.2s;
+  transition: all 1s;
+}
+
+@keyframes Loading {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}

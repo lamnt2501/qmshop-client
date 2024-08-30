@@ -1,0 +1,32 @@
+.bottomLine::after {
+  transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+}
+
+.bottomLine::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+}
+
+.dark {
+  color: black;
+}
+
+.dark::after {
+  background-color: black;
+}
+
+.light {
+  color: white;
+}
+
+.light::after {
+  background-color: white;
+}
+
+.bottomLine:hover::after {
+  background-color: rgb(219 18 21);
+}

@@ -1,0 +1,22 @@
+.imageItemSelector::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: currentColor;
+  animation: isActive 0.5s;
+}
+
+@keyframes isActive {
+  from {
+    transform: scaleX(0);
+    /* transform-origin: left; */
+  }
+
+  to {
+    transform: scaleX(1);
+    /* transform-origin: right; */
+  }
+}

@@ -1,0 +1,30 @@
+.filterItem,
+.filterItemActive {
+  transition: background-color 0.2s, border 0.2s;
+  font-size: 14px;
+  display: flex;
+  text-align: left;
+  font-weight: 500;
+  line-height: 30px;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  position: relative;
+  background-color: white;
+}
+
+.filterItemActive,
+.filterItem:hover {
+  background-color: rgb(var(--bg-color-filter-item-active));
+}
+
+.filterItemActive::before {
+  left: 0;
+  width: 3px;
+  height: 100%;
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  background-color: black;
+}

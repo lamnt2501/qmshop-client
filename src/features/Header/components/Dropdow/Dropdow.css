@@ -1,0 +1,17 @@
+.dropdowItem {
+  position: absolute;
+  background-color: var(--color-background);
+  min-width: 208px;
+  white-space: nowrap;
+  z-index: 3;
+  opacity: 0;
+  visibility: hidden;
+  text-align: left;
+  top: 120%;
+  transition: opacity .3s, visibility .3s;
+}
+
+.dropdown:hover .dropdowItem {
+  opacity: 1;
+  visibility: visible;
+}

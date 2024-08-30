@@ -1,0 +1,67 @@
+:root {
+  --color-line-border: rgb(235 235 235);
+  --color-foreground: rgb(84 84 84);
+  --light-font-color: black;
+  --dark-font-color: white;
+  --light-color-background: rgb(255 255 255);
+  --dark-color-background: rgb(0, 0, 0);
+  --color-border-item: #000;
+  --color-button-text: 255 255 255;
+  --light_skew-color: rgb(var(--color-button-text) / 0.25);
+  --color-overlay: 0 0 0;
+  --color-overlay: 0 0 0;
+  --bg-color-filter-item-active: 242 242 242;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  /* font-family: "Inter", sans-serif; */
+  text-decoration: none;
+}
+
+/* body {
+  background-image:
+    linear-gradient(0, rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)),
+    url('../images/background_Page.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+} */
+
+.title {
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* input:focus {
+  border: 0;
+  outline: none;
+} */
+
+#mainContent {
+  min-height: 1000px;
+}
+
+header h1 {
+  font-size: 3rem;
+}
+
+.box_shadow {
+  box-shadow: -6px 4px 19px 3px rgba(77, 77, 77, 0.3);
+}
+
+.roboto-thin {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+/* .logoImage {
+  background-image: url(../images/logo/message.png);
+  background-repeat: no-repeat;
+  background-size: 100px;
+} */

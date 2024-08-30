@@ -1,0 +1,19 @@
+.nextBtn,
+.prevBtn {
+  position: absolute;
+  font-size: 40px;
+  top: 50%;
+  width: auto;
+  height: auto;
+  padding: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: black;
+}
+
+.nextBtn {
+  right: -40px;
+}
+.prevBtn {
+  left: -40px;
+}

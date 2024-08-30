@@ -1,0 +1,23 @@
+.afterAnimation::after {
+  position: absolute;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    var(--light_skew-color, transparent),
+    transparent
+  );
+  content: "";
+  left: 150%;
+  top: 0;
+  bottom: 0;
+  transform: skew(-20deg);
+  width: 200%;
+}
+.afterAnimation:hover::after {
+  animation: shine 0.75s cubic-bezier(0.01, 0.56, 1, 1);
+}
+@keyframes shine {
+  100% {
+    left: -200%;
+  }
+}

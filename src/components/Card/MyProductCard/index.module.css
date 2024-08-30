@@ -1,0 +1,7 @@
+.thumbnailWrap {
+  @apply w-[26px] h-[26px] border border-solid border-[#ececec] relative transition-all cursor-pointer;
+
+  &.active {
+    @apply border-black;
+  }
+}

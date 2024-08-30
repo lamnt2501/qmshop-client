@@ -1,0 +1,25 @@
+.categoryDetail {
+  background-color: var(--light-color-background);
+  color: var(--light-font-color);
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.2s;
+}
+
+.categoryDetail:hover {
+  background-color: var(--dark-color-background);
+  color: var(--dark-font-color);
+}
+.categoryDetail .arrow {
+  opacity: 0;
+  width: 0;
+  font-size: 0;
+  transform: translateX(-100%);
+  transition: all 0.4s;
+}
+.categoryDetail:hover .arrow {
+  opacity: 1;
+  font-size: 16px;
+  width: auto;
+  transform: translateX(0);
+}
