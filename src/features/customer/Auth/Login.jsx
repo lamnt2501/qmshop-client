@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { Button, CustomSnackbar, Input } from "../../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import PropTypes from "prop-types";
 import {
   // selectAuthError,
   selectAuthStatus,
