@@ -1,6 +1,10 @@
 import { BannerHeadPage } from "../../../components";
 
 const PaymentPolicy = () => {
+  // set path
+  const { pathname: next_Path_After_Auth } = useLocation();
+  localStorage.setItem("path", next_Path_After_Auth);
+
   return (
     <>
       <div>

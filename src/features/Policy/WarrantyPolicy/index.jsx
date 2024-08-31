@@ -7,6 +7,10 @@ import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 // import "./styles.css";
 
 const WarrantyPolicy = () => {
+  // set path
+  const { pathname: next_Path_After_Auth } = useLocation();
+  localStorage.setItem("path", next_Path_After_Auth);
+
   return (
     <>
       <div>
