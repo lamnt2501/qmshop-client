@@ -1,3 +1,4 @@
+import { useLocation } from "react-router";
 import { BannerHeadPage } from "../../../components";
 
 const PaymentPolicy = () => {

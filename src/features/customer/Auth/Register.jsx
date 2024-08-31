@@ -34,7 +34,7 @@ const Register = () => {
     return () => {
       dispatch(resetAuthState());
     };
-  }, []);
+  }, [dispatch]);
 
   useTitle("Đăng ký");
 

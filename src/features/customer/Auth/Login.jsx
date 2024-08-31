@@ -30,7 +30,7 @@ const Login = () => {
     return () => {
       dispatch(resetAuthState());
     };
-  }, []);
+  }, [dispatch]);
 
   useAuthRedirect(token, status, navigate, nextPath);
 
