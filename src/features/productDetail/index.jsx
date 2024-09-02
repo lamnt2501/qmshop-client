@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomBreadcrumbs, Container, Loading } from "../../components";
 import {
@@ -20,6 +20,10 @@ import {
 import { FETCH_FAILED, FETCH_LOADING, FETCH_SUCCEEDED } from "../../config";
 import useTitle from "../../hooks/useTitle";
 const ProductDetail = () => {
+  // set path
+  const { pathname: next_Path_After_Auth } = useLocation();
+  localStorage.setItem("path", next_Path_After_Auth);
+  
   const { slug } = useParams();
 
   const dispatch = useDispatch();

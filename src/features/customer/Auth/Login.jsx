@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { Button, CustomSnackbar, Input } from "../../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import PropTypes from "prop-types";
 import {
   // selectAuthError,
   selectAuthStatus,
@@ -15,7 +14,9 @@ import useAuthRedirect from "../../../hooks/useAuthRedirect";
 import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
 import useTitle from "../../../hooks/useTitle";
 
-const Login = ({ page = "/" }) => {
+const Login = () => {
+  useTitle("Đăng nhập");
+  const nextPath = localStorage.getItem('path') ?? '/'
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -29,11 +30,9 @@ const Login = ({ page = "/" }) => {
     return () => {
       dispatch(resetAuthState());
     };
-  }, []);
+  }, [dispatch]);
 
-  useTitle("Đăng nhập");
-
-  useAuthRedirect(token, status, navigate, page);
+  useAuthRedirect(token, status, navigate, nextPath);
 
   const handleSubmit = useCallback(
     (e) => {
@@ -105,7 +104,4 @@ const Login = ({ page = "/" }) => {
   );
 };
 
-Login.propTypes = {
-  page: PropTypes.string,
-};
 export default Login;

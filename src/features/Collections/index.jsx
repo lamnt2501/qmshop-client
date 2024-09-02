@@ -5,10 +5,14 @@ import { CustomBreadcrumbs, BannerHeadPage, Container } from "../../components";
 import { SortButton, ProductsList, Filters } from "./container";
 
 import { fetchCategory, resetParams, selectCategory } from "../../app/reducers";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import useTitle from "../../hooks/useTitle";
 
 const Collections = () => {
+  // set path
+  const { pathname: next_Path_After_Auth } = useLocation();
+  localStorage.setItem("path", next_Path_After_Auth);
+
   const dispatch = useDispatch();
   const params = useParams();
   const category = useSelector(selectCategory);
@@ -21,7 +25,7 @@ const Collections = () => {
     return () => {
       dispatch(resetParams());
     };
-  }, [params]);
+  }, [dispatch, params]);
 
   useTitle(category.name ?? "Bộ sưu tập");
 

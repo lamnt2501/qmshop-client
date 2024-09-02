@@ -53,20 +53,29 @@ const ProductsList = ({ categoryId }) => {
       ? (params.size = filterSizes.join(","))
       : (params.size = null);
     dispatch(fetchProducts(params));
-  }, [filterColors, filterSizes, filterPrice, sortType, categoryId, page]);
+  }, [
+    dispatch,
+    filterColors,
+    filterSizes,
+    limit,
+    filterPrice,
+    sortType,
+    categoryId,
+    page,
+  ]);
 
   // thêm các sản phẩm mới featch vào danh sách được in ra
   useEffect(() => {
     if (status === FETCH_SUCCEEDED) {
       dispatch(addProducts(products));
     }
-  }, [products]);
+  }, [dispatch, products, status]);
 
   // reset danh sách sản phẩm khi các phần tử của bộ lọc thay đổi
   useEffect(() => {
     dispatch(resetAllProducts());
     dispatch(resetParamsPage());
-  }, [filterColors, filterSizes, filterPrice, sortType, categoryId]);
+  }, [dispatch, filterColors, filterSizes, filterPrice, sortType, categoryId]);
 
   useEffect(() => {
     // Thêm sự kiện cuộn
@@ -95,7 +104,7 @@ const ProductsList = ({ categoryId }) => {
 
     // cleanup function
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [status]);
+  }, [dispatch, status, products.length]);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

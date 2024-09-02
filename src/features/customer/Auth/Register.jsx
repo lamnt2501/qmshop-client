@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Input, Button, CustomSnackbar } from "../../../components";
 import validator from "./Validate";
 import { Link, useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectAuthRegister,
@@ -22,7 +21,8 @@ import useAuthRedirect from "../../../hooks/useAuthRedirect";
 import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
 import useTitle from "../../../hooks/useTitle";
 
-const Register = ({ page = "/" }) => {
+const Register = () => {
+  const nextPath = localStorage.getItem('path') ?? '/'
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,11 +34,11 @@ const Register = ({ page = "/" }) => {
     return () => {
       dispatch(resetAuthState());
     };
-  }, []);
+  }, [dispatch]);
 
   useTitle("Đăng ký");
 
-  useAuthRedirect(token, status, navigate, page);
+  useAuthRedirect(token, status, navigate, nextPath);
 
   const baseOptions = {
     form: "#registerForm",
@@ -212,7 +212,4 @@ const Register = ({ page = "/" }) => {
   );
 };
 
-Register.propTypes = {
-  page: PropTypes.string,
-};
 export default Register;

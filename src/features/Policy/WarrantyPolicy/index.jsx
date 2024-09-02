@@ -4,9 +4,14 @@ import { FaCameraRetro } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { GiSonicShoes } from "react-icons/gi";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { useLocation } from "react-router";
 // import "./styles.css";
 
 const WarrantyPolicy = () => {
+  // set path
+  const { pathname: next_Path_After_Auth } = useLocation();
+  localStorage.setItem("path", next_Path_After_Auth);
+
   return (
     <>
       <div>
