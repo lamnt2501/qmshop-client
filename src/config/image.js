@@ -33,7 +33,7 @@ import CODLogo from "../assets/images/paymentMethod/cod.png";
 import avata from "../assets/images/avata/avata.png";
 
 import logo from "../assets/images/logo/message.png";
-import { COD, VN_PAY } from "./consts";
+import { COD, OFLINE, ONLINE, VN_PAY } from "./consts";
 
 export const avataImage = { name: "avata", url: avata };
 
@@ -114,9 +114,15 @@ export const styles = [
 
 export const paymentMethods = [
   {
-    name: COD,
+    name: OFLINE,
+    provider: COD,
     description: "Thanh toán khi nhận hàng (COD)",
     imageUrl: CODLogo,
   },
-  { name: VN_PAY, description: "Thanh toán qua VN Pay", imageUrl: vnPayLogo },
+  {
+    name: ONLINE,
+    provider: VN_PAY,
+    description: "Thanh toán qua VN Pay",
+    imageUrl: vnPayLogo,
+  },
 ];

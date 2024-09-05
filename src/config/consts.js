@@ -10,7 +10,11 @@ export const ALERT_INFO = "info";
 export const ALERT_WARNING = "warning";
 export const ALERT_ERROR = "error";
 
-// Payment Methods
+// Payment Method
+export const OFLINE = "COD"
+export const ONLINE = "Online"
+
+// Payment Provider
 export const VN_PAY = "VN Pay";
 export const COD = "COD";
 

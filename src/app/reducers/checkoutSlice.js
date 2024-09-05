@@ -51,7 +51,7 @@ export const checkoutSlice = createSlice({
 
     paymentMethod: {
       name: COD,
-      provider: null,
+      provider: COD,
     },
     phoneNumber: "",
     fullName: "",
@@ -88,8 +88,8 @@ export const checkoutSlice = createSlice({
     setCheckoutAddress: (state, action) => {
       state.address = action.payload;
     },
-    setPaymentMethodName: (state, action) => {
-      state.paymentMethod.name = action.payload;
+    setPaymentMethod: (state, action) => {
+      state.paymentMethod = action.payload;
     },
     setPhoneNumber: (state, action) => {
       state.phoneNumber = action.payload;
@@ -168,7 +168,7 @@ export const checkoutSlice = createSlice({
       };
       state.paymentMethod = {
         name: COD,
-        provider: null,
+        provider: COD,
       };
 
       state.addressId = 0;
@@ -208,7 +208,7 @@ export const {
   setCheckoutItems,
   setAddressId,
   setCheckoutAddress,
-  setPaymentMethodName,
+  setPaymentMethod,
   handleMutateCheckoutItems,
   setCheckoutQuantity,
   removeCheckoutItem,
