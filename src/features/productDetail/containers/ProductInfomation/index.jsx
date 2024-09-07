@@ -55,6 +55,12 @@ const ProductInfomation = ({ data }) => {
   const optionsByColor = Object.groupBy(options, ({ color }) => color);
   const optionsBySize = Object.groupBy(options, ({ size }) => size);
 
+  useEffect(() => {
+    return () => {
+      dispatch(resetCartStatus())
+    }
+  }, [dispatch])
+
   // xử lý lần đầu re-render
   useEffect(() => {
     // chọn vào phần tử option đầu tiên

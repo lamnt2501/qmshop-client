@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Input, Button, CustomSnackbar } from "../../../components";
-import validator from "./Validate";
+import validator from "../../../utils/Validate";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -133,7 +133,7 @@ const Register = () => {
               type="text"
               value={infomation.name}
               onChange={(e) => dispatch(setName(e.target.value))}
-              Validator={handleNameValidator}
+              Validator={() => handleNameValidator()}
             >
               Nhập họ và tên
             </Input>
@@ -143,7 +143,7 @@ const Register = () => {
               type="email"
               value={infomation.email}
               onChange={(e) => dispatch(setEmail(e.target.value))}
-              Validator={handleEmailValidator}
+              Validator={() => handleEmailValidator()}
             >
               Nhập email
             </Input>
@@ -153,7 +153,7 @@ const Register = () => {
               type="text"
               value={infomation.phoneNumber}
               onChange={(e) => dispatch(setPhone(e.target.value))}
-              Validator={handlePhoneValidator}
+              Validator={() => handlePhoneValidator()}
             >
               Nhập số điện thoại
             </Input>
@@ -163,7 +163,7 @@ const Register = () => {
               type="password"
               value={infomation.password}
               onChange={(e) => dispatch(setPassword(e.target.value))}
-              Validator={handlePasswordValidator}
+              Validator={() => handlePasswordValidator()}
             >
               Nhập mật khẩu
             </Input>
@@ -175,7 +175,7 @@ const Register = () => {
               onChange={(e) =>
                 dispatch(setPasswordComfirmation(e.target.value))
               }
-              Validator={handlePasswordComfirmationValidator}
+              Validator={() => handlePasswordComfirmationValidator()}
             >
               Nhập lại mật khẩu
             </Input>

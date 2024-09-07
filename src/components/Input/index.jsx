@@ -11,6 +11,8 @@ const Input = (prop) => {
     id,
     checked,
     Validator,
+    onClick,
+    onBlur
   } = prop;
 
   return (
@@ -23,10 +25,11 @@ const Input = (prop) => {
         type={type}
         value={value}
         onChange={onChange}
+        onClick={onClick}
         placeholder={children}
         checked={checked}
         required={required}
-        onBlur={Validator ? () => Validator() : undefined}
+        onBlur={Validator ?? onBlur ?? undefined}
       />
       <label className="form__label" htmlFor={id}>
         {children}

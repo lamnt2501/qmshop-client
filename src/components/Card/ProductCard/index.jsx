@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { Button, Image, LinkInSlide, Swatchs } from "../../";
+import { Button, CustomBox, Image, LinkInSlide, Swatchs } from "../../";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { priceConvert } from "../../../utils/priceConvert";
 import PropTypes from "prop-types";
@@ -59,12 +59,7 @@ const ProductCard = ({ data, padding }) => {
   };
 
   return (
-    <div
-      className={clsx(
-        "card border border-slate-200 rounded-md shadow-md bg-white",
-        { "px-4": padding }
-      )}
-    >
+    <CustomBox className={clsx("card", { "px-4": padding })}>
       <div className="cardImage block relative z-1 w-full aspect-square cardShadow rounded-md overflow-hidden">
         {discount ?? (
           <div className="absolute top-1 right-1 bg-red-600 text-white">
@@ -138,7 +133,7 @@ const ProductCard = ({ data, padding }) => {
           isLimit={false}
         />
       </div>
-    </div>
+    </CustomBox>
   );
 };
 
