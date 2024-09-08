@@ -18,7 +18,7 @@ const CustomLink = (prop) => {
       to={url ?? undefined}
       className={clsx(
         className,
-        "hover:text-red-600 truncate transition duration-300",
+        "hover:text-red-600  transition duration-300",
         {
           "bottomLine relative pb-1 inline-flex items-center": bottomLine,
           dark: textDark,
