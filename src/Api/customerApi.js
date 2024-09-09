@@ -17,9 +17,9 @@ const customerApi = {
       confirmPassword,
     });
   },
-  updateInfomations(phoneNumber, name) {
+  updateInfomations(newData) {
     const url = baseUrl;
-    return axiosClient.put(url, { phoneNumber, name });
+    return axiosClient.put(url, newData);
   },
 
   getAddresses() {

@@ -1,5 +1,6 @@
 import { memo } from "react";
 import "./Input.css";
+import clsx from "clsx";
 
 const Input = (prop) => {
   const {
@@ -12,24 +13,30 @@ const Input = (prop) => {
     checked,
     Validator,
     onClick,
-    onBlur
+    onBlur,
+    disabled,
+    className,
   } = prop;
 
   return (
-    <div className={`formGroup py-5 relative w-full`}>
+    <div className={clsx(`formGroup py-5 relative w-full`)}>
       <input
-        className="form__field "
+        className={clsx("form__field", className, {
+          capitalize: id === "name",
+        })}
         id={id}
         name={id}
         autoComplete={id}
         type={type}
         value={value}
-        onChange={onChange}
-        onClick={onClick}
+        onChange={!disabled ? onChange : undefined}
+        onClick={!disabled ? onClick : undefined}
         placeholder={children}
         checked={checked}
         required={required}
-        onBlur={Validator ?? onBlur ?? undefined}
+        disabled={disabled}
+        onBlur={!disabled ? Validator ?? onBlur ?? undefined : undefined}
+        // onBlur={Validator || onBlur || undefined}
       />
       <label className="form__label" htmlFor={id}>
         {children}

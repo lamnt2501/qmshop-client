@@ -1,6 +1,6 @@
 import { Avatar } from "@mui/material";
-import { Container, CustomBox } from "../../../components";
-import { avataImage } from "../../../config";
+import { Container, CustomBox, CustomSnackbar } from "../../../components";
+import { ALERT_SUCCESS, avataImage, FETCH_SUCCEEDED } from "../../../config";
 import { useDispatch, useSelector } from "react-redux";
 import GradingIcon from "@mui/icons-material/Grading";
 import HomeIcon from "@mui/icons-material/Home";
@@ -15,6 +15,7 @@ import {
   selectCustomerEmail,
   fetchCustomerAddresses,
   fetchOrders,
+  selectCustomerUpdateStatus,
 } from "../../../app/reducers";
 import { useEffect, useState } from "react";
 import ChangeInfomations from "./container/ChangeInfomations";
@@ -32,12 +33,13 @@ const Profile = () => {
 
   const token = useSelector(selectAuthToken);
 
+  const customerUpdateStatus = useSelector(selectCustomerUpdateStatus);
   const customerName = useSelector(selectCustomerName);
   const customerPhone = useSelector(selectCustomerPhone);
   const customerEmail = useSelector(selectCustomerEmail);
 
-  // const listAddress = useSelector(selectCustomerAddresses);
-  // const listOrder = useSelector(selectListOrder);
+  const listAddress = useSelector(selectCustomerAddresses);
+  const listOrder = useSelector(selectListOrder);
 
   useEffect(() => {
     if (token) {
@@ -45,7 +47,7 @@ const Profile = () => {
       dispatch(fetchCustomerAddresses());
       dispatch(fetchOrders());
     }
-  }, [dispatch, token]);
+  }, [dispatch, token, customerUpdateStatus]);
 
   return (
     <Container>
@@ -91,9 +93,9 @@ const Profile = () => {
                   customerEmail={customerEmail}
                 />
               )}
-              {selectedMenu === 1 && <div></div>}
-              {selectedMenu === 2 && <div></div>}
             </CustomBox>
+            {selectedMenu === 1 && <div></div>}
+            {selectedMenu === 2 && <div></div>}
           </div>
         </div>
       )}

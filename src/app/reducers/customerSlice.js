@@ -27,6 +27,14 @@ export const fetchCustomerAddresses = createAsyncThunk(
   }
 );
 
+export const updateInfomations = createAsyncThunk(
+  `${baseName}/updateInfomations`,
+  async (newData) => {
+    const response = await customerApi.updateInfomations(newData);
+    return response;
+  }
+);
+
 export const customerSlice = createSlice({
   name: baseName,
 
@@ -37,11 +45,20 @@ export const customerSlice = createSlice({
     phone: "",
     addresses: [],
 
+    updateResult: {},
+
     addressStatus: FETCH_IDLE,
     status: FETCH_IDLE,
+    updateStatus: FETCH_IDLE,
+
     error: null,
   },
-  reducers: {},
+  reducers: {
+    resetUpdateStatus: (state) => {
+      state.updateResult = {};
+      state.updateStatus = FETCH_IDLE;
+    },
+  },
 
   // xử lý các action được tạo bởi createAsyncThunk
   // hoặc các action khác không được định nghĩa trong phần reducers của slice.
@@ -70,9 +87,24 @@ export const customerSlice = createSlice({
       .addCase(fetchCustomerAddresses.rejected, (state, action) => {
         state.addressStatus = FETCH_FAILED;
         state.error = action.error.message;
+      })
+      .addCase(updateInfomations.pending, (state) => {
+        state.updateStatus = FETCH_LOADING;
+      })
+      .addCase(updateInfomations.fulfilled, (state, action) => {
+        state.updateStatus = FETCH_SUCCEEDED;
+        console.log( action.payload);
+        
+        state.updateResult = action.payload;
+      })
+      .addCase(updateInfomations.rejected, (state, action) => {
+        state.updateStatus = FETCH_FAILED;
+        state.error = action.error.message;
       });
   },
 });
+
+export const { resetUpdateStatus } = customerSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectCustomerName = (state) => state.customer.name;
@@ -81,7 +113,13 @@ export const selectCustomerEmail = (state) => state.customer.email;
 export const selectCustomerAddresses = (state) => state.customer.addresses;
 
 export const selectCustomerStatus = (state) => state.customer.status;
-export const selectCustomerAddressStatus = (state) => state.customer.addressStatus;
+export const selectCustomerAddressStatus = (state) =>
+  state.customer.addressStatus;
 export const selectCustomerError = (state) => state.customer.error;
+
+export const selectCustomerUpdateStatus = (state) =>
+  state.customer.updateStatus;
+export const selectCustomerUpdateResult = (state) =>
+  state.customer.updateResult;
 
 export default customerSlice.reducer;

@@ -1,29 +1,98 @@
 import { useEffect, useState } from "react";
-import { selectCustomerStatus } from "../../../../../app/reducers";
-import { useSelector } from "react-redux";
+import {
+  resetUpdateStatus,
+  selectCustomerStatus,
+  selectCustomerUpdateResult,
+  selectCustomerUpdateStatus,
+  updateInfomations,
+} from "../../../../../app/reducers";
+import { useDispatch, useSelector } from "react-redux";
 import InputValue from "../../components/InputValue";
-import { FETCH_SUCCEEDED } from "../../../../../config";
+import { ALERT_SUCCESS, FETCH_SUCCEEDED } from "../../../../../config";
 import PropTypes from "prop-types";
-import { CustomLink } from "../../../../../components";
+import { CustomLink, CustomSnackbar } from "../../../../../components";
+import { Button } from "@mui/material";
+import validator from "../../../../../utils/Validate";
 
 const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
+  const dispatch = useDispatch();
+
   const customerStatus = useSelector(selectCustomerStatus);
+
+  const customerUpdateStatus = useSelector(selectCustomerUpdateStatus);
+  const customerUpdateResult = useSelector(selectCustomerUpdateResult);
 
   const [customerNewName, setCustomerNewName] = useState("");
   const [customerNewPhone, setCustomerNewPhone] = useState("");
-  const [customerNewEmail, setCustomerNewEmail] = useState("");
 
   useEffect(() => {
     if (customerStatus === FETCH_SUCCEEDED) {
       setCustomerNewName(customerName);
       setCustomerNewPhone(customerPhone);
-      setCustomerNewEmail(customerEmail);
     }
   }, [customerStatus, customerName, customerPhone, customerEmail]);
 
+  const getIsActiveSaveButton = () => {
+    return (
+      (customerNewName !== "" && customerNewName !== customerName) ||
+      (customerNewPhone !== "" && customerNewPhone !== customerPhone)
+    );
+  };
+
+  const baseOptions = {
+    form: "#changeCustomerInfomation",
+    formGroupSelector: ".formGroup",
+    errorSelector: ".formMessage",
+  };
+
+  const handleNameValidator = () => {
+    return handleValidator({
+      ...baseOptions,
+      rules: [
+        validator.isRequired(`#name`, customerNewName),
+        validator.isName("#name", customerNewName),
+      ],
+    });
+  };
+
+  const handlePhoneValidator = () => {
+    return handleValidator({
+      ...baseOptions,
+      rules: [
+        validator.isRequired("#phone", customerNewPhone),
+        validator.isPhone("#phone", customerNewPhone),
+      ],
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const isName = handleNameValidator();
+    const isPhone = handlePhoneValidator();
+
+    // console.log(customerNewPhone, customerNewName);
+
+    if (isName && isPhone) {
+      // console.log({
+      //   phoneNumber: customerNewPhone,
+      //   name: customerNewName,
+      // });
+
+      dispatch(
+        updateInfomations({
+          phoneNumber: customerNewPhone,
+          name: customerNewName,
+        })
+      );
+    }
+  };
+
+  const handleValidator = (options) => validator(options);
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3">
-      <div className="col-span-2 md:col-span-1 bg-gray-200 p-8">
+    <div className="grid grid-cols-5 md:grid-cols-12">
+      <div className="col-span-5 bg-gray-200 p-8">
         <h1 className="text-3xl font-normal ">Thông tin cá nhân</h1>
         <p>
           Đây là thông tin riêng tư và sẽ không được chia sẻ với người khác. Hãy
@@ -34,36 +103,64 @@ const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
           bất cứ khi nào bạn muốn!
         </p>
       </div>
-      <div className="col-span-2">
-        <div className="flex my-10">
-          <div className="flex flex-col px-10 gap-4">
+      <div className="col-span-5 md:col-span-7">
+        <div className=" my-10">
+          <form
+            id="changeCustomerInfomation"
+            className="flex flex-col px-10 md:px-32 gap-4"
+          >
             <InputValue
+              disabled
+              id={"email"}
+              value={customerEmail}
+              newValue={customerEmail}
+            >
+              Email
+            </InputValue>
+
+            <InputValue
+              id={"name"}
               newValue={customerNewName}
               value={customerName}
               setNewValue={setCustomerNewName}
+              Validator={() => handleNameValidator()}
             >
               Họ và tên
             </InputValue>
 
             <InputValue
+              id={"phone"}
               newValue={customerNewPhone}
               value={customerPhone}
               setNewValue={setCustomerNewPhone}
+              Validator={() => handlePhoneValidator()}
             >
               Số điện thoại
             </InputValue>
 
-            <InputValue
-              type={"text"}
-              newValue={customerNewEmail}
-              value={customerEmail}
-              setNewValue={setCustomerNewEmail}
-            >
-              Email
-            </InputValue>
-          </div>
+            <div className="flex justify-end">
+              <Button
+                onClick={(e) => handleSubmit(e)}
+                variant="outlined"
+                color="inherit"
+                disabled={!getIsActiveSaveButton()}
+              >
+                Lưu thông tin
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
+      <CustomSnackbar
+        openSnackbar={
+          customerUpdateStatus === FETCH_SUCCEEDED &&
+          customerUpdateResult.StatusCode === "200"
+        }
+        handleCloseSnackbar={() => dispatch(resetUpdateStatus())}
+        snackbarSeverity={ALERT_SUCCESS}
+      >
+        Thông tin của bạn đã được thay đổi
+      </CustomSnackbar>
     </div>
   );
 };
