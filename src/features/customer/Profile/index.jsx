@@ -20,6 +20,7 @@ import {
 import { useEffect, useState } from "react";
 import ChangeInfomations from "./container/ChangeInfomations";
 import MenuItem from "./components/MenuItem";
+import ChangePassword from "./container/ChangePassword";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -85,15 +86,20 @@ const Profile = () => {
                 </li>
               ))}
             </div>
-            <CustomBox className="basis-5/6">
-              {selectedMenu === 0 && (
-                <ChangeInfomations
-                  customerName={customerName}
-                  customerPhone={customerPhone}
-                  customerEmail={customerEmail}
-                />
-              )}
-            </CustomBox>
+            {selectedMenu === 0 && (
+              <div className="basis-5/6">
+                <CustomBox className={"mb-10"}>
+                  <ChangeInfomations
+                    customerName={customerName}
+                    customerPhone={customerPhone}
+                    customerEmail={customerEmail}
+                  />
+                </CustomBox>
+                <CustomBox>
+                  <ChangePassword />
+                </CustomBox>
+              </div>
+            )}
             {selectedMenu === 1 && <div></div>}
             {selectedMenu === 2 && <div></div>}
           </div>

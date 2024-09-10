@@ -35,6 +35,14 @@ export const updateInfomations = createAsyncThunk(
   }
 );
 
+export const changePassword = createAsyncThunk(
+  `${baseName}/changePassword`,
+  async (newPassword) => {
+    const response = await customerApi.changePassword(newPassword);
+    return response;
+  }
+);
+
 export const customerSlice = createSlice({
   name: baseName,
 
@@ -46,10 +54,12 @@ export const customerSlice = createSlice({
     addresses: [],
 
     updateResult: {},
+    changePasswordResult: {},
 
     addressStatus: FETCH_IDLE,
     status: FETCH_IDLE,
     updateStatus: FETCH_IDLE,
+    changePasswordStatus: FETCH_IDLE,
 
     error: null,
   },
@@ -57,6 +67,10 @@ export const customerSlice = createSlice({
     resetUpdateStatus: (state) => {
       state.updateResult = {};
       state.updateStatus = FETCH_IDLE;
+    },
+    resetChangePasswordStatus: (state) => {
+      state.changePasswordResult = {};
+      state.changePasswordStatus = FETCH_IDLE;
     },
   },
 
@@ -93,18 +107,28 @@ export const customerSlice = createSlice({
       })
       .addCase(updateInfomations.fulfilled, (state, action) => {
         state.updateStatus = FETCH_SUCCEEDED;
-        console.log( action.payload);
-        
         state.updateResult = action.payload;
       })
       .addCase(updateInfomations.rejected, (state, action) => {
         state.updateStatus = FETCH_FAILED;
         state.error = action.error.message;
+      })
+      .addCase(changePassword.pending, (state) => {
+        state.changePasswordStatus = FETCH_LOADING;
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.changePasswordStatus = FETCH_SUCCEEDED;
+        state.changePasswordResult = action.payload;
+      })
+      .addCase(changePassword.rejected, (state, action) => {
+        state.changePasswordStatus = FETCH_FAILED;
+        state.error = action.error;
       });
   },
 });
 
-export const { resetUpdateStatus } = customerSlice.actions;
+export const { resetUpdateStatus, resetChangePasswordStatus } =
+  customerSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectCustomerName = (state) => state.customer.name;
@@ -121,5 +145,10 @@ export const selectCustomerUpdateStatus = (state) =>
   state.customer.updateStatus;
 export const selectCustomerUpdateResult = (state) =>
   state.customer.updateResult;
+
+export const selectCustomerChangePasswordStatus = (state) =>
+  state.customer.changePasswordStatus;
+export const selectCustomerChangePasswordResult = (state) =>
+  state.customer.changePasswordResult;
 
 export default customerSlice.reducer;

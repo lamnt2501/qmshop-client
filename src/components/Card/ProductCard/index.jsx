@@ -72,7 +72,7 @@ const ProductCard = ({ data, padding }) => {
           onMouseOver={() => handleOnMouseOver()}
           onMouseOut={() => handleOnMouseOut()}
         >
-          <TransitionGroup>
+          <TransitionGroup className={"w-full h-full"}>
             <CSSTransition
               key={imageSelector.url}
               timeout={300}

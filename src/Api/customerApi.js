@@ -9,13 +9,9 @@ const customerApi = {
     const url = `${baseUrl}/me`;
     return axiosClient.get(url);
   },
-  changePassword(currentPassword, newPassword, confirmPassword) {
+  changePassword(newPassword) {
     const url = `${baseUrl}/changePassword`;
-    return axiosClient.post(url, {
-      currentPassword,
-      newPassword,
-      confirmPassword,
-    });
+    return axiosClient.post(url, newPassword);
   },
   updateInfomations(newData) {
     const url = baseUrl;

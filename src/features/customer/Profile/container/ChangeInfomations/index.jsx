@@ -71,14 +71,7 @@ const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
     const isName = handleNameValidator();
     const isPhone = handlePhoneValidator();
 
-    // console.log(customerNewPhone, customerNewName);
-
     if (isName && isPhone) {
-      // console.log({
-      //   phoneNumber: customerNewPhone,
-      //   name: customerNewName,
-      // });
-
       dispatch(
         updateInfomations({
           phoneNumber: customerNewPhone,
@@ -93,7 +86,7 @@ const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
   return (
     <div className="grid grid-cols-5 md:grid-cols-12">
       <div className="col-span-5 bg-gray-200 p-8">
-        <h1 className="text-3xl font-normal ">Thông tin cá nhân</h1>
+        <h1 className="text-3xl font-normal mb-4">Thông tin cá nhân</h1>
         <p>
           Đây là thông tin riêng tư và sẽ không được chia sẻ với người khác. Hãy
           đọc{" "}
