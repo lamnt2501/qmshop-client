@@ -12,7 +12,7 @@ import { ALERT_SUCCESS, FETCH_SUCCEEDED } from "../../../../../config";
 import PropTypes from "prop-types";
 import { CustomLink, CustomSnackbar } from "../../../../../components";
 import { Button } from "@mui/material";
-import validator from "../../../../../utils/Validate";
+import { validator } from "../../../../../utils";
 
 const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
   const dispatch = useDispatch();

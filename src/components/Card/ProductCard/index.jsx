@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import { Button, CustomBox, Image, LinkInSlide, Swatchs } from "../../";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { priceConvert } from "../../../utils/priceConvert";
+import { priceConvert } from "../../../utils";
 import PropTypes from "prop-types";
 
 import { MdAddShoppingCart } from "react-icons/md";

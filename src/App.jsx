@@ -18,7 +18,7 @@ import {
 } from "./features";
 import "./assets/styles/App.css";
 import { ScrollToTopBtn } from "./components";
-import ScrollToTop from "./utils/ScrollToTop";
+import { ScrollToTop } from "./utils";
 function App() {
   return (
     <div className={"App bg-gray-50"}>

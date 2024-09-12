@@ -35,7 +35,7 @@ import {
   FETCH_FAILED,
   FETCH_SUCCEEDED,
 } from "../../../../config";
-import { priceConvert } from "../../../../utils/priceConvert";
+import { priceConvert } from "../../../../utils";
 
 const ProductInfomation = ({ data }) => {
   const { name, options, images, slug } = data;
@@ -57,9 +57,9 @@ const ProductInfomation = ({ data }) => {
 
   useEffect(() => {
     return () => {
-      dispatch(resetCartStatus())
-    }
-  }, [dispatch])
+      dispatch(resetCartStatus());
+    };
+  }, [dispatch]);
 
   // xử lý lần đầu re-render
   useEffect(() => {

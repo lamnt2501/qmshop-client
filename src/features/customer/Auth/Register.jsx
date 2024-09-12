@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Input, Button, CustomSnackbar } from "../../../components";
-import validator from "../../../utils/Validate";
+import { validator, isValidDate } from "../../../utils";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,19 +16,23 @@ import {
   selectAuthStatus,
   resetAuthState,
   resetAuthStatus,
+  setGender,
+  setBirthDay,
 } from "../../../app/reducers/";
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
-import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
+import {
+  ALERT_ERROR,
+  FETCH_FAILED,
+  GENDERS,
+  VN_GENDERS,
+} from "../../../config";
 import useTitle from "../../../hooks/useTitle";
 import DateTime from "../../../components/DateTime";
-import dayjs from "dayjs";
+import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/joy";
 
-// Import ngôn ngữ tiếng Việt cho dayjs
-import "dayjs/locale/vi";
+import dayjs from "../../../config/dayjsConfig";
 
 const Register = () => {
-  // Đặt locale (ngôn ngữ) của dayjs sang tiếng Việt
-  dayjs.locale("vi");
   const nextPath = localStorage.getItem("path") ?? "/";
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,10 +41,7 @@ const Register = () => {
   const token = useSelector(selectAuthToken);
   const status = useSelector(selectAuthStatus);
 
-  const [birthDay, setBirthDay] = useState(dayjs());
-
-  console.log( birthDay.format());
-  
+  const [birth, setBirth] = useState(dayjs());
 
   useEffect(() => {
     return () => {
@@ -66,8 +67,16 @@ const Register = () => {
     const isPhone = handlePhoneValidator();
     const isPassword = handlePasswordValidator();
     const isPasswordComfirmation = handlePasswordComfirmationValidator();
+    const isDate = isValidDate(birth.format());
 
-    if (isName && isEmail && isPhone && isPassword && isPasswordComfirmation) {
+    if (
+      isName &&
+      isEmail &&
+      isPhone &&
+      isPassword &&
+      isPasswordComfirmation &&
+      isDate
+    ) {
       dispatch(register(infomation));
     }
   };
@@ -107,7 +116,7 @@ const Register = () => {
       ...baseOptions,
       rules: [
         validator.isRequired("#password", infomation.password),
-        // validator.isPassword("#password", infomation.password),
+        validator.isPassword("#password", infomation.password),
       ],
     });
   };
@@ -130,6 +139,19 @@ const Register = () => {
   };
 
   const handleValidator = (options) => validator(options);
+
+  const handleSetGender = (genderIndex) => {
+    dispatch(setGender(GENDERS[genderIndex]));
+  };
+
+  const handleSetBirthDay = (newValue) => {
+    setBirth(newValue);
+
+    if (newValue && newValue.format() && newValue.format() !== "Invalid Date") {
+      const dateString = newValue.utc().format();
+      dispatch(setBirthDay(dateString));
+    }
+  };
 
   return (
     <>
@@ -170,7 +192,29 @@ const Register = () => {
               Nhập số điện thoại
             </Input>
             <div className="mt-6 w-full">
-              <DateTime value={birthDay} setValue={setBirthDay} />
+              <DateTime value={birth} setValue={handleSetBirthDay} />
+            </div>
+            <div className="w-full mt-6">
+              <FormControl>
+                <FormLabel>Giới tính</FormLabel>
+                <RadioGroup
+                  orientation="horizontal"
+                  aria-label="Alignment"
+                  defaultValue={0}
+                  name="radio-buttons-group"
+                  onChange={(e) => handleSetGender(parseInt(e.target.value))}
+                >
+                  {VN_GENDERS.map((g, i) => (
+                    <Radio
+                      color="neutral"
+                      variant="soft"
+                      key={i}
+                      value={i}
+                      label={g}
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
             </div>
 
             <Input
@@ -194,6 +238,7 @@ const Register = () => {
             >
               Nhập lại mật khẩu
             </Input>
+
             <div className="w-3/4 mb-5 mt-1">
               <Button
                 isFull

@@ -41,7 +41,7 @@
 
 .form__field:focus {
   padding-bottom: 6px;
-  font-weight: 700;
+  font-weight: 400;
   border-width: 2px;
   border-color: #1976d2;
   /* border-image: linear-gradient(to right, #116399, #38caef); */

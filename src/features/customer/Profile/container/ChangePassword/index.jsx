@@ -17,7 +17,7 @@ import {
 } from "../../../../../config";
 import { CustomSnackbar, Input } from "../../../../../components";
 import { Button } from "@mui/material";
-import validator from "../../../../../utils/Validate";
+import { validator } from "../../../../../utils";
 
 const ChangePassword = () => {
   const dispatch = useDispatch();

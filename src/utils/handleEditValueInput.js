@@ -1,4 +1,4 @@
-export const handleEditValueInput = (
+const handleEditValueInput = (
   oldValue,
   comparativeValue,
   NewValue,
@@ -6,3 +6,5 @@ export const handleEditValueInput = (
 ) => {
   if (oldValue === comparativeValue) changeFunction(NewValue);
 };
+
+export default handleEditValueInput

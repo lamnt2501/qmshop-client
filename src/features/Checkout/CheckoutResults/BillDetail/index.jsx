@@ -20,9 +20,11 @@ import {
   SHOP_PHONE,
   SHOP_WEBSITE,
 } from "../../../../config";
-import { splitDateTime } from "../../../../utils/splitDateTime";
-import { paymentStatusTranslations } from "../../../../utils/statusTranslations";
-import { priceConvert } from "../../../../utils/priceConvert";
+import {
+  splitDateTime,
+  paymentStatusTranslations,
+  priceConvert,
+} from "../../../../utils";
 import ProductBillItem from "../ProductBillItem";
 
 const BillDetail = ({ orderId }) => {

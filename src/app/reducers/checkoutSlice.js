@@ -7,7 +7,7 @@ import {
   FETCH_LOADING,
   FETCH_SUCCEEDED,
 } from "../../config";
-import { productNameConnection } from "../../utils/productNameConnection";
+import { productNameConnection } from "../../utils";
 
 // tên reducers
 const baseName = "checkout";

@@ -20,6 +20,7 @@ const Input = (prop) => {
 
   return (
     <div className={clsx(`formGroup pt-6 relative w-full`)}>
+      {/* <h3 className="text-left font-medium">{title}</h3> */}
       <input
         className={clsx("form__field", className, {
           capitalize: id === "name",
@@ -29,8 +30,8 @@ const Input = (prop) => {
         autoComplete={id}
         type={type}
         value={value}
-        onChange={!disabled ? onChange : undefined}
-        onClick={!disabled ? onClick : undefined}
+        onChange={onChange}
+        onClick={onClick}
         placeholder={children}
         checked={checked}
         required={required}
@@ -41,7 +42,7 @@ const Input = (prop) => {
       <label className="form__label" htmlFor={id}>
         {children}
       </label>
-      <div className="formMessage "> error </div>
+      <div className="formMessage ">  </div>
     </div>
   );
 };

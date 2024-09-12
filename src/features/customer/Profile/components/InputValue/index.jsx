@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Input } from "../../../../../components";
-import { handleEditValueInput } from "../../../../../utils/handleEditValueInput";
+import { handleEditValueInput } from "../../../../../utils";
 
 const InputValue = ({
   newValue,
