@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Input, Button, CustomSnackbar } from "../../../components";
 import validator from "../../../utils/Validate";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,15 +20,27 @@ import {
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
 import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
 import useTitle from "../../../hooks/useTitle";
+import DateTime from "../../../components/DateTime";
+import dayjs from "dayjs";
+
+// Import ngôn ngữ tiếng Việt cho dayjs
+import "dayjs/locale/vi";
 
 const Register = () => {
-  const nextPath = localStorage.getItem('path') ?? '/'
+  // Đặt locale (ngôn ngữ) của dayjs sang tiếng Việt
+  dayjs.locale("vi");
+  const nextPath = localStorage.getItem("path") ?? "/";
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const infomation = useSelector(selectAuthRegister);
   const token = useSelector(selectAuthToken);
   const status = useSelector(selectAuthStatus);
+
+  const [birthDay, setBirthDay] = useState(dayjs());
+
+  console.log( birthDay.format());
+  
 
   useEffect(() => {
     return () => {
@@ -157,6 +169,9 @@ const Register = () => {
             >
               Nhập số điện thoại
             </Input>
+            <div className="mt-6 w-full">
+              <DateTime value={birthDay} setValue={setBirthDay} />
+            </div>
 
             <Input
               id="password"

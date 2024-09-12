@@ -19,7 +19,7 @@ const Input = (prop) => {
   } = prop;
 
   return (
-    <div className={clsx(`formGroup py-5 relative w-full`)}>
+    <div className={clsx(`formGroup pt-6 relative w-full`)}>
       <input
         className={clsx("form__field", className, {
           capitalize: id === "name",
@@ -41,7 +41,7 @@ const Input = (prop) => {
       <label className="form__label" htmlFor={id}>
         {children}
       </label>
-      <div className="formMessage"></div>
+      <div className="formMessage "> error </div>
     </div>
   );
 };
