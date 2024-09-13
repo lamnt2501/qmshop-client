@@ -61,7 +61,7 @@ export const customerSlice = createSlice({
     changePasswordResult: {},
 
     addressStatus: FETCH_IDLE,
-    status: FETCH_IDLE,
+    infoStatus: FETCH_IDLE,
     updateStatus: FETCH_IDLE,
     changePasswordStatus: FETCH_IDLE,
 
@@ -83,10 +83,10 @@ export const customerSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCustomerInfomations.pending, (state) => {
-        state.status = FETCH_LOADING;
+        state.infoStatus = FETCH_LOADING;
       })
       .addCase(fetchCustomerInfomations.fulfilled, (state, action) => {
-        state.status = FETCH_SUCCEEDED;
+        state.infoStatus = FETCH_SUCCEEDED;
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.phone = action.payload.phone;
@@ -95,7 +95,7 @@ export const customerSlice = createSlice({
         state.gender = action.payload.gender
       })
       .addCase(fetchCustomerInfomations.rejected, (state, action) => {
-        state.status = FETCH_FAILED;
+        state.infoStatus = FETCH_FAILED;
         state.error = action.error.message;
       })
       .addCase(fetchCustomerAddresses.pending, (state) => {
@@ -148,7 +148,7 @@ export const selectCustomerAvata = (state) => state.customer.avtUrl;
 
 export const selectCustomerAddresses = (state) => state.customer.addresses;
 
-export const selectCustomerStatus = (state) => state.customer.status;
+export const selectCustomerStatus = (state) => state.customer.infoStatus;
 export const selectCustomerAddressStatus = (state) =>
   state.customer.addressStatus;
 export const selectCustomerError = (state) => state.customer.error;

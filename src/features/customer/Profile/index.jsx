@@ -37,6 +37,7 @@ const Profile = () => {
 
   const token = useSelector(selectAuthToken);
 
+
   const customerUpdateStatus = useSelector(selectCustomerUpdateStatus);
   const customerName = useSelector(selectCustomerName);
   const customerPhone = useSelector(selectCustomerPhone);
@@ -80,9 +81,9 @@ const Profile = () => {
           </div>
 
           <div className="my-3 flex flex-col md:flex-row gap-4">
-            <div className=" md:basis-1/6">
+            <div className="flex flex-row gap-2 md:flex-col md:basis-1/6">
               {menu.map((item, index) => (
-                <li key={index} className="list-none">
+                <li key={index} className="list-none basis-1/3 md:basis-0">
                   <MenuItem
                     item={item}
                     onClick={setSelectedMenu}
@@ -92,13 +93,15 @@ const Profile = () => {
                 </li>
               ))}
             </div>
-            {selectedMenu === 0 && (
+            {selectedMenu === 0 &&  (
               <div className="basis-5/6">
                 <CustomBox className={"mb-10"}>
                   <ChangeInfomations
                     customerName={customerName}
                     customerPhone={customerPhone}
                     customerEmail={customerEmail}
+                    customerGender={customerGender}
+                    customerBirthDay={customerBirthday}
                   />
                 </CustomBox>
                 <CustomBox>

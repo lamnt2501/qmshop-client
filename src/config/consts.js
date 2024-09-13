@@ -50,5 +50,7 @@ export const SHOP_PHONE = "0912345678";
 export const SHOP_WEBSITE = "www.qmstore.com.vn";
 
 // Giới tính
-export const VN_GENDERS = ["Nam", "Nữ", "Khác"];
-export const GENDERS = ["MALE", "FEMALE", "OTHER"];
+// export const VN_GENDERS = ["Nam", "Nữ", "Khác"];
+export const VN_GENDERS = ["Nam", "Nữ"];
+// export const GENDERS = ["MALE", "FEMALE", "OTHER"];
+export const GENDERS = ["MALE", "FEMALE"];
