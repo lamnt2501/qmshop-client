@@ -13,6 +13,9 @@ import {
   selectCustomerName,
   selectCustomerPhone,
   selectCustomerEmail,
+  selectCustomerAvata,
+  selectCustomerBirthday,
+  selectCustomerGender,
   fetchCustomerAddresses,
   fetchOrders,
   selectCustomerUpdateStatus,
@@ -38,6 +41,9 @@ const Profile = () => {
   const customerName = useSelector(selectCustomerName);
   const customerPhone = useSelector(selectCustomerPhone);
   const customerEmail = useSelector(selectCustomerEmail);
+  const customerAvata = useSelector(selectCustomerAvata);
+  const customerBirthday = useSelector(selectCustomerBirthday);
+  const customerGender = useSelector(selectCustomerGender);
 
   const listAddress = useSelector(selectCustomerAddresses);
   const listOrder = useSelector(selectListOrder);
@@ -59,8 +65,8 @@ const Profile = () => {
               <div className="w-20 h-20">
                 <Avatar
                   sx={{ width: "100%", height: "100%" }}
-                  alt={avataImage.name}
-                  src={avataImage.url}
+                  alt={"avata"}
+                  src={customerAvata ?? avataImage.url}
                 />
               </div>
 

@@ -51,6 +51,10 @@ export const customerSlice = createSlice({
     name: "",
     email: "",
     phone: "",
+    avtUrl: "",
+    gender: "",
+    birthday: "",
+
     addresses: [],
 
     updateResult: {},
@@ -86,6 +90,9 @@ export const customerSlice = createSlice({
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.phone = action.payload.phone;
+        state.birthday = action.payload.birthday
+        state.avtUrl = action.payload.avtUrl
+        state.gender = action.payload.gender
       })
       .addCase(fetchCustomerInfomations.rejected, (state, action) => {
         state.status = FETCH_FAILED;
@@ -134,6 +141,11 @@ export const { resetUpdateStatus, resetChangePasswordStatus } =
 export const selectCustomerName = (state) => state.customer.name;
 export const selectCustomerPhone = (state) => state.customer.phone;
 export const selectCustomerEmail = (state) => state.customer.email;
+export const selectCustomerGender = (state) => state.customer.gender;
+export const selectCustomerBirthday = (state) => state.customer.birthday;
+export const selectCustomerAvata = (state) => state.customer.avtUrl;
+
+
 export const selectCustomerAddresses = (state) => state.customer.addresses;
 
 export const selectCustomerStatus = (state) => state.customer.status;
