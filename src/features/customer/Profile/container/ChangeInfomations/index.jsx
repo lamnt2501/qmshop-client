@@ -17,7 +17,11 @@ import {
 import PropTypes from "prop-types";
 import { CustomLink, CustomSnackbar } from "../../../../../components";
 import { Button } from "@mui/material";
-import { isValidDate, validator } from "../../../../../utils";
+import {
+  isValidDate,
+  translateLanguage,
+  validator,
+} from "../../../../../utils";
 import dayjs from "../../../../../config/dayjsConfig";
 import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/joy";
 import DateTime from "../../../../../components/DateTime";
@@ -47,7 +51,9 @@ const ChangeInfomations = ({
     if (customerStatus === FETCH_SUCCEEDED) {
       setCustomerNewName(customerName);
       setCustomerNewPhone(customerPhone);
-      setCustomerNewGender(VN_GENDERS[GENDERS.indexOf(customerGender)]);
+      setCustomerNewGender(
+        translateLanguage(VN_GENDERS, GENDERS, customerGender)
+      );
       setCustomerNewBirthDay(dayjs(customerBirthDay));
       setCustomerNewBirthDayString(customerBirthDay);
     }
@@ -63,7 +69,8 @@ const ChangeInfomations = ({
     return (
       (customerNewName !== "" && customerNewName !== customerName) ||
       (customerNewPhone !== "" && customerNewPhone !== customerPhone) ||
-      GENDERS[VN_GENDERS.indexOf(customerNewGender)] !== customerGender ||
+      translateLanguage(VN_GENDERS, GENDERS, customerNewGender) !==
+        customerGender ||
       customerNewBirthDayString !== customerBirthDay
     );
   };
@@ -108,7 +115,7 @@ const ChangeInfomations = ({
         updateInfomations({
           phoneNumber: customerNewPhone,
           name: customerNewName,
-          gender: GENDERS[VN_GENDERS.indexOf(customerNewGender)],
+          gender: translateLanguage(VN_GENDERS, GENDERS, customerNewGender),
           birthday: customerNewBirthDayString,
         })
       );
@@ -194,7 +201,8 @@ const ChangeInfomations = ({
                   {VN_GENDERS.map((g, i) => (
                     <Radio
                       color={
-                        GENDERS[VN_GENDERS.indexOf(g)] === customerGender
+                        translateLanguage(VN_GENDERS, GENDERS, g) ===
+                        customerGender
                           ? "success"
                           : "neutral"
                       }

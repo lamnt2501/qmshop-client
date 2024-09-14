@@ -16,14 +16,16 @@ import {
   FETCH_LOADING,
   FETCH_SUCCEEDED,
   LEGAL_REGISTRATION_NO,
+  PAYMENT_STATUS,
   SHOP_EMAIL,
   SHOP_PHONE,
   SHOP_WEBSITE,
+  VN_PAYMENT_STATUS,
 } from "../../../../config";
 import {
   splitDateTime,
-  paymentStatusTranslations,
   priceConvert,
+  translateLanguage,
 } from "../../../../utils";
 import ProductBillItem from "../ProductBillItem";
 
@@ -96,7 +98,11 @@ const BillDetail = ({ orderId }) => {
             <div className="col-span-2 flex flex-col gap-2">
               <h5 className="uppercase">trạng thái thanh toán</h5>
               <p className="font-normal lowercase">
-                {paymentStatusTranslations(order.paymentStatus)}
+                {translateLanguage(
+                  VN_PAYMENT_STATUS,
+                  PAYMENT_STATUS,
+                  order.paymentStatus
+                )}
               </p>
             </div>
           </div>
@@ -162,6 +168,6 @@ const BillDetail = ({ orderId }) => {
 };
 
 BillDetail.propTypes = {
-  orderId: PropTypes.number,
+  orderId: PropTypes.any,
 };
 export default BillDetail;

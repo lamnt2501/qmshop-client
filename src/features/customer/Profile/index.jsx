@@ -1,6 +1,6 @@
 import { Avatar } from "@mui/material";
-import { Container, CustomBox, CustomSnackbar } from "../../../components";
-import { ALERT_SUCCESS, avataImage, FETCH_SUCCEEDED } from "../../../config";
+import { Container, CustomBox } from "../../../components";
+import { avataImage } from "../../../config";
 import { useDispatch, useSelector } from "react-redux";
 import GradingIcon from "@mui/icons-material/Grading";
 import HomeIcon from "@mui/icons-material/Home";
@@ -36,7 +36,6 @@ const Profile = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
 
   const token = useSelector(selectAuthToken);
-
 
   const customerUpdateStatus = useSelector(selectCustomerUpdateStatus);
   const customerName = useSelector(selectCustomerName);
@@ -93,7 +92,7 @@ const Profile = () => {
                 </li>
               ))}
             </div>
-            {selectedMenu === 0 &&  (
+            {selectedMenu === 0 && (
               <div className="basis-5/6">
                 <CustomBox className={"mb-10"}>
                   <ChangeInfomations
