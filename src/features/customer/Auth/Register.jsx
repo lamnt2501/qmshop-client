@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Input, Button, CustomSnackbar } from "../../../components";
-import validator from "./Validate";
+import { validator, isValidDate } from "../../../utils";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,19 +16,32 @@ import {
   selectAuthStatus,
   resetAuthState,
   resetAuthStatus,
+  setGender,
+  setBirthDay,
 } from "../../../app/reducers/";
 import useAuthRedirect from "../../../hooks/useAuthRedirect";
-import { ALERT_ERROR, FETCH_FAILED } from "../../../config";
+import {
+  ALERT_ERROR,
+  FETCH_FAILED,
+  GENDERS,
+  VN_GENDERS,
+} from "../../../config";
 import useTitle from "../../../hooks/useTitle";
+import DateTime from "../../../components/DateTime";
+import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/joy";
+
+import dayjs from "../../../config/dayjsConfig";
 
 const Register = () => {
-  const nextPath = localStorage.getItem('path') ?? '/'
+  const nextPath = localStorage.getItem("path") ?? "/";
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const infomation = useSelector(selectAuthRegister);
   const token = useSelector(selectAuthToken);
   const status = useSelector(selectAuthStatus);
+
+  const [birth, setBirth] = useState(dayjs());
 
   useEffect(() => {
     return () => {
@@ -54,8 +67,16 @@ const Register = () => {
     const isPhone = handlePhoneValidator();
     const isPassword = handlePasswordValidator();
     const isPasswordComfirmation = handlePasswordComfirmationValidator();
+    const isDate = isValidDate(birth.format());
 
-    if (isName && isEmail && isPhone && isPassword && isPasswordComfirmation) {
+    if (
+      isName &&
+      isEmail &&
+      isPhone &&
+      isPassword &&
+      isPasswordComfirmation &&
+      isDate
+    ) {
       dispatch(register(infomation));
     }
   };
@@ -95,7 +116,7 @@ const Register = () => {
       ...baseOptions,
       rules: [
         validator.isRequired("#password", infomation.password),
-        // validator.isPassword("#password", infomation.password),
+        validator.isPassword("#password", infomation.password),
       ],
     });
   };
@@ -119,6 +140,19 @@ const Register = () => {
 
   const handleValidator = (options) => validator(options);
 
+  const handleSetGender = (genderIndex) => {
+    dispatch(setGender(GENDERS[genderIndex]));
+  };
+
+  const handleSetBirthDay = (newValue) => {
+    setBirth(newValue);
+
+    if (newValue && newValue.format() && newValue.format() !== "Invalid Date") {
+      const dateString = newValue.utc().format();
+      dispatch(setBirthDay(dateString));
+    }
+  };
+
   return (
     <>
       {/* <BannerHeadPage title={"Đăng ký"} /> */}
@@ -133,7 +167,7 @@ const Register = () => {
               type="text"
               value={infomation.name}
               onChange={(e) => dispatch(setName(e.target.value))}
-              Validator={handleNameValidator}
+              Validator={() => handleNameValidator()}
             >
               Nhập họ và tên
             </Input>
@@ -143,7 +177,7 @@ const Register = () => {
               type="email"
               value={infomation.email}
               onChange={(e) => dispatch(setEmail(e.target.value))}
-              Validator={handleEmailValidator}
+              Validator={() => handleEmailValidator()}
             >
               Nhập email
             </Input>
@@ -153,17 +187,42 @@ const Register = () => {
               type="text"
               value={infomation.phoneNumber}
               onChange={(e) => dispatch(setPhone(e.target.value))}
-              Validator={handlePhoneValidator}
+              Validator={() => handlePhoneValidator()}
             >
               Nhập số điện thoại
             </Input>
+            <div className="mt-6 w-full">
+              <DateTime value={birth} setValue={handleSetBirthDay} />
+            </div>
+            <div className="w-full mt-6">
+              <FormControl>
+                <FormLabel>Giới tính</FormLabel>
+                <RadioGroup
+                  orientation="horizontal"
+                  aria-label="Alignment"
+                  defaultValue={0}
+                  name="radio-buttons-group"
+                  onChange={(e) => handleSetGender(parseInt(e.target.value))}
+                >
+                  {VN_GENDERS.map((g, i) => (
+                    <Radio
+                      color="neutral"
+                      variant="soft"
+                      key={i}
+                      value={i}
+                      label={g}
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
+            </div>
 
             <Input
               id="password"
               type="password"
               value={infomation.password}
               onChange={(e) => dispatch(setPassword(e.target.value))}
-              Validator={handlePasswordValidator}
+              Validator={() => handlePasswordValidator()}
             >
               Nhập mật khẩu
             </Input>
@@ -175,10 +234,11 @@ const Register = () => {
               onChange={(e) =>
                 dispatch(setPasswordComfirmation(e.target.value))
               }
-              Validator={handlePasswordComfirmationValidator}
+              Validator={() => handlePasswordComfirmationValidator()}
             >
               Nhập lại mật khẩu
             </Input>
+
             <div className="w-3/4 mb-5 mt-1">
               <Button
                 isFull

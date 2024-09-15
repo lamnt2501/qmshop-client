@@ -6,8 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { priceConvert } from "../../../../utils/priceConvert";
-import { totalPrice } from "../../../../utils/totalPrice";
+import { priceConvert, totalPrice } from "../../../../utils";
 
 const ProductBillItem = ({ products }) => {
   const shippingPrice = 0;

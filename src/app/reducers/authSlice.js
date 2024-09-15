@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { authApi } from "../../Api";
 import Cookies from "js-cookie";
-import { getTimeByToken } from "../../utils/getTimeByToken";
+import { getTimeByToken } from "../../utils";
 import {
   FETCH_IDLE,
   FETCH_LOADING,
   FETCH_FAILED,
   FETCH_SUCCEEDED,
+  GENDERS,
 } from "../../config";
 
 // tên reducers
@@ -45,9 +46,12 @@ const authSlice = createSlice({
       name: "",
       email: "",
       phoneNumber: "",
+      gender: GENDERS[0],
+      birthday: "",
       password: "",
       passwordComfirmation: "",
     },
+
     status: FETCH_IDLE,
     error: null,
   },
@@ -57,6 +61,8 @@ const authSlice = createSlice({
         name: "",
         email: "",
         phoneNumber: "",
+        gender: GENDERS[0],
+        birthday: "",
         password: "",
         passwordComfirmation: "",
       };
@@ -75,6 +81,12 @@ const authSlice = createSlice({
     },
     setName: (state, action) => {
       state.register.name = action.payload;
+    },
+    setBirthDay: (state, action) => {
+      state.register.birthday = action.payload;
+    },
+    setGender: (state, action) => {
+      state.register.gender = action.payload;
     },
     setEmail: (state, action) => {
       state.register.email = action.payload;
@@ -134,6 +146,8 @@ export const {
   setName,
   setEmail,
   setPhone,
+  setBirthDay,
+  setGender,
   setPassword,
   resetAuthStatus,
   setPasswordComfirmation,

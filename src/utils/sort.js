@@ -1,4 +1,4 @@
-export const sort = (initialData, sort) => {
+ const sort = (initialData, sort) => {
   // console.log(initialData);
   let newData = [...initialData];
   switch (sort.key) {
@@ -33,3 +33,5 @@ export const sort = (initialData, sort) => {
   }
   return newData;
 };
+
+export default sort

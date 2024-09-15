@@ -35,7 +35,7 @@ import {
   FETCH_FAILED,
   FETCH_SUCCEEDED,
 } from "../../../../config";
-import { priceConvert } from "../../../../utils/priceConvert";
+import { priceConvert } from "../../../../utils";
 
 const ProductInfomation = ({ data }) => {
   const { name, options, images, slug } = data;
@@ -54,6 +54,12 @@ const ProductInfomation = ({ data }) => {
   const newImages = Object.groupBy(images, ({ color }) => color);
   const optionsByColor = Object.groupBy(options, ({ color }) => color);
   const optionsBySize = Object.groupBy(options, ({ size }) => size);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCartStatus());
+    };
+  }, [dispatch]);
 
   // xử lý lần đầu re-render
   useEffect(() => {

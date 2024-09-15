@@ -35,7 +35,7 @@ const CheckoutInfomations = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState(ALERT_SUCCESS);
 
   useEffect(() => {
-    if (orderPaymentMethod.name === VN_PAY && vnPayResult.PaymentUrl) {
+    if (orderPaymentMethod.provider === VN_PAY && vnPayResult.PaymentUrl) {
       window.location.href = vnPayResult.PaymentUrl;
     } else if (orderPaymentMethod.name === COD && vnPayResult.OrderId) {
       navigate(`/checkout/results`, {

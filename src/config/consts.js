@@ -10,7 +10,11 @@ export const ALERT_INFO = "info";
 export const ALERT_WARNING = "warning";
 export const ALERT_ERROR = "error";
 
-// Payment Methods
+// Payment Method
+export const OFLINE = "COD";
+export const ONLINE = "Online";
+
+// Payment Provider
 export const VN_PAY = "VN Pay";
 export const COD = "COD";
 
@@ -39,8 +43,12 @@ export const VN_PAYMENT_STATUS_PROCESSING = "ĐANG XỬ LÝ";
 export const VN_PAYMENT_STATUS_CANCEL = "HỦY BỎ";
 
 // mã số thuế
-export const LEGAL_REGISTRATION_NO = "987654"
+export const LEGAL_REGISTRATION_NO = "987654";
 
-export const SHOP_EMAIL = "qmstore@gmail.com"
-export const SHOP_PHONE = "0912345678"
-export const SHOP_WEBSITE = "www.qmstore.com.vn"
+export const SHOP_EMAIL = "qmstore@gmail.com";
+export const SHOP_PHONE = "0912345678";
+export const SHOP_WEBSITE = "www.qmstore.com.vn";
+
+// Giới tính
+export const VN_GENDERS = ["Nam", "Nữ", "Khác"];
+export const GENDERS = ["MALE", "FEMALE", "OTHER"];

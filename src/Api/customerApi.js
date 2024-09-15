@@ -9,17 +9,13 @@ const customerApi = {
     const url = `${baseUrl}/me`;
     return axiosClient.get(url);
   },
-  changePassword(currentPassword, newPassword, confirmPassword) {
+  changePassword(newPassword) {
     const url = `${baseUrl}/changePassword`;
-    return axiosClient.post(url, {
-      currentPassword,
-      newPassword,
-      confirmPassword,
-    });
+    return axiosClient.post(url, newPassword);
   },
-  updateInfomations(phoneNumber, name) {
+  updateInfomations(newData) {
     const url = baseUrl;
-    return axiosClient.put(url, { phoneNumber, name });
+    return axiosClient.put(url, newData);
   },
 
   getAddresses() {

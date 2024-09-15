@@ -27,6 +27,22 @@ export const fetchCustomerAddresses = createAsyncThunk(
   }
 );
 
+export const updateInfomations = createAsyncThunk(
+  `${baseName}/updateInfomations`,
+  async (newData) => {
+    const response = await customerApi.updateInfomations(newData);
+    return response;
+  }
+);
+
+export const changePassword = createAsyncThunk(
+  `${baseName}/changePassword`,
+  async (newPassword) => {
+    const response = await customerApi.changePassword(newPassword);
+    return response;
+  }
+);
+
 export const customerSlice = createSlice({
   name: baseName,
 
@@ -37,11 +53,26 @@ export const customerSlice = createSlice({
     phone: "",
     addresses: [],
 
+    updateResult: {},
+    changePasswordResult: {},
+
     addressStatus: FETCH_IDLE,
     status: FETCH_IDLE,
+    updateStatus: FETCH_IDLE,
+    changePasswordStatus: FETCH_IDLE,
+
     error: null,
   },
-  reducers: {},
+  reducers: {
+    resetUpdateStatus: (state) => {
+      state.updateResult = {};
+      state.updateStatus = FETCH_IDLE;
+    },
+    resetChangePasswordStatus: (state) => {
+      state.changePasswordResult = {};
+      state.changePasswordStatus = FETCH_IDLE;
+    },
+  },
 
   // xử lý các action được tạo bởi createAsyncThunk
   // hoặc các action khác không được định nghĩa trong phần reducers của slice.
@@ -70,9 +101,34 @@ export const customerSlice = createSlice({
       .addCase(fetchCustomerAddresses.rejected, (state, action) => {
         state.addressStatus = FETCH_FAILED;
         state.error = action.error.message;
+      })
+      .addCase(updateInfomations.pending, (state) => {
+        state.updateStatus = FETCH_LOADING;
+      })
+      .addCase(updateInfomations.fulfilled, (state, action) => {
+        state.updateStatus = FETCH_SUCCEEDED;
+        state.updateResult = action.payload;
+      })
+      .addCase(updateInfomations.rejected, (state, action) => {
+        state.updateStatus = FETCH_FAILED;
+        state.error = action.error.message;
+      })
+      .addCase(changePassword.pending, (state) => {
+        state.changePasswordStatus = FETCH_LOADING;
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.changePasswordStatus = FETCH_SUCCEEDED;
+        state.changePasswordResult = action.payload;
+      })
+      .addCase(changePassword.rejected, (state, action) => {
+        state.changePasswordStatus = FETCH_FAILED;
+        state.error = action.error;
       });
   },
 });
+
+export const { resetUpdateStatus, resetChangePasswordStatus } =
+  customerSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectCustomerName = (state) => state.customer.name;
@@ -81,7 +137,18 @@ export const selectCustomerEmail = (state) => state.customer.email;
 export const selectCustomerAddresses = (state) => state.customer.addresses;
 
 export const selectCustomerStatus = (state) => state.customer.status;
-export const selectCustomerAddressStatus = (state) => state.customer.addressStatus;
+export const selectCustomerAddressStatus = (state) =>
+  state.customer.addressStatus;
 export const selectCustomerError = (state) => state.customer.error;
+
+export const selectCustomerUpdateStatus = (state) =>
+  state.customer.updateStatus;
+export const selectCustomerUpdateResult = (state) =>
+  state.customer.updateResult;
+
+export const selectCustomerChangePasswordStatus = (state) =>
+  state.customer.changePasswordStatus;
+export const selectCustomerChangePasswordResult = (state) =>
+  state.customer.changePasswordResult;
 
 export default customerSlice.reducer;

@@ -12,8 +12,7 @@ import {
 } from "../../../../app/reducers";
 import { TfiClose } from "react-icons/tfi";
 import { Checkbox } from "@mui/material";
-import { productNameConnection } from "../../../../utils/productNameConnection";
-import { priceConvert } from "../../../../utils/priceConvert";
+import { productNameConnection, priceConvert } from "../../../../utils";
 
 const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();

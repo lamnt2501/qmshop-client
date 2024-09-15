@@ -14,10 +14,11 @@ import {
   PrivacyPolicy,
   PaymentPolicy,
   DeliveryPolicy,
+  Profile,
 } from "./features";
 import "./assets/styles/App.css";
 import { ScrollToTopBtn } from "./components";
-import ScrollToTop from "./utils/ScrollToTop";
+import { ScrollToTop } from "./utils";
 function App() {
   return (
     <div className={"App bg-gray-50"}>
@@ -36,7 +37,7 @@ function App() {
             <Route path="/carts" element={<Carts />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/checkout/results" element={<CheckoutResults />} />
-            <Route path="/profile" element={<div />} />
+            <Route path="/profile" element={<Profile />} />
 
             <Route path="/warranty-policy" element={<WarrantyPolicy />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

@@ -10,14 +10,13 @@ import {
   setCheckoutItems,
   updateCartItems,
 } from "../../../../app/reducers";
-import { priceConvert } from "../../../../utils/priceConvert";
+import { priceConvert, totalPrice } from "../../../../utils";
 import {
   Button as CustomButton,
   Overlay,
   PopupMessage,
 } from "../../../../components";
 import useSticky from "../../../../hooks/useSticky";
-import { totalPrice } from "../../../../utils/totalPrice";
 import { Button } from "@mui/material";
 
 const CartPayment = () => {

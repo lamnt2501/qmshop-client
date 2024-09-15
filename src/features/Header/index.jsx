@@ -10,6 +10,8 @@ import { FiUser } from "react-icons/fi";
 import HeaderIcons from "./components/HeaderIcons";
 import clsx from "clsx";
 import useScrollDirection from "../../hooks/useScrollDirection";
+import { Avatar } from "@mui/material";
+import { avataImage } from "../../config";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -30,7 +32,7 @@ const Header = () => {
     { pageName: "Đăng ký", url: "/register" },
   ];
   const authenLisPageIsLogin = [
-    { pageName: "Quản lý tài khoản", url: "/" },
+    { pageName: "Quản lý tài khoản", url: "/profile" },
     { pageName: "Đăng xuất", onClick: () => setOverlay(true) },
   ];
 
@@ -86,7 +88,8 @@ const Header = () => {
                 </Dropdow>
               ) : (
                 <Dropdow listPage={authenLisPageIsLogin} itemRight>
-                  <FiUser />
+                  <Avatar alt={avataImage.name} src={avataImage.url}/>
+                  {/* <FiUser /> */}
                 </Dropdow>
               )}
             </HeaderIcons>

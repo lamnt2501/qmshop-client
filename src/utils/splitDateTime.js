@@ -1,4 +1,4 @@
-export const splitDateTime = (datetimeString) => {
+const splitDateTime = (datetimeString) => {
   if (typeof datetimeString !== "string") {
     return;
   }
@@ -24,3 +24,5 @@ export const splitDateTime = (datetimeString) => {
 
   return `${day} tháng ${month} năm ${year} lúc ${hour}:${minute}:${second} ${period}`;
 };
+
+export default splitDateTime

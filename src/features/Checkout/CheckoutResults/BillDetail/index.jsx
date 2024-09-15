@@ -20,9 +20,11 @@ import {
   SHOP_PHONE,
   SHOP_WEBSITE,
 } from "../../../../config";
-import { splitDateTime } from "../../../../utils/splitDateTime";
-import { paymentStatusTranslations } from "../../../../utils/statusTranslations";
-import { priceConvert } from "../../../../utils/priceConvert";
+import {
+  splitDateTime,
+  paymentStatusTranslations,
+  priceConvert,
+} from "../../../../utils";
 import ProductBillItem from "../ProductBillItem";
 
 const BillDetail = ({ orderId }) => {
@@ -46,7 +48,7 @@ const BillDetail = ({ orderId }) => {
     if (orderId) {
       dispatch(fetchOrderById(orderId));
     }
-  }, []);
+  }, [dispatch, orderId]);
 
   return (
     <Container>
@@ -83,15 +85,15 @@ const BillDetail = ({ orderId }) => {
             </div>
           </div>
           <div className="grid grid-cols-4 md:grid-cols-8 gap-2 my-8">
-            <div className="col-span-2 flex flex-col gap-1">
-              <h5 className="uppercase">số hóa đơn</h5>
+            <div className="col-span-2 flex flex-col gap-2">
+              <h5 className="uppercase">Mã số hóa đơn</h5>
               <p className="font-normal"># QMS{order.orderId}</p>
             </div>
-            <div className="col-span-2 flex flex-col gap-1">
-              <h5 className="uppercase">ngày</h5>
+            <div className="col-span-2 flex flex-col gap-2">
+              <h5 className="uppercase">Ngày tạo</h5>
               <p className="font-normal">{splitDateTime(order.createdAt)}</p>
             </div>
-            <div className="col-span-2 flex flex-col gap-1">
+            <div className="col-span-2 flex flex-col gap-2">
               <h5 className="uppercase">trạng thái thanh toán</h5>
               <p className="font-normal lowercase">
                 {paymentStatusTranslations(order.paymentStatus)}
@@ -100,26 +102,28 @@ const BillDetail = ({ orderId }) => {
           </div>
 
           <div className="grid grid-cols-4 md:grid-cols-8 gap-2 my-8">
-            <div className="col-span-2 flex flex-col gap-1">
+            <div className="col-span-2 flex flex-col gap-2">
               <h5 className="uppercase">địa chỉ giao hàng</h5>
-              <span className="flex gap-1">
-                <p>Thành phố:</p>
-                <p className="font-normal">{order.address.city}</p>
-              </span>
-              <span className="flex gap-1">
-                <p>Quận:</p>
-                <p className="font-normal">{order.address.district}</p>
-              </span>
-              <span className="flex gap-1">
-                <p>Phường:</p>
-                <p className="font-normal">{order.address.ward}</p>
-              </span>
-              <span className="flex gap-1">
-                <p>chi tiết địa chỉ:</p>
-                <p className="font-normal">{order.address.specificAddress}</p>
-              </span>
+              <div>
+                <span className="flex gap-1">
+                  <p>Thành phố:</p>
+                  <p className="font-normal">{order.address.city}</p>
+                </span>
+                <span className="flex gap-1">
+                  <p>Quận:</p>
+                  <p className="font-normal">{order.address.district}</p>
+                </span>
+                <span className="flex gap-1">
+                  <p>Phường:</p>
+                  <p className="font-normal">{order.address.ward}</p>
+                </span>
+                <span className="flex gap-1">
+                  <p>chi tiết:</p>
+                  <p className="font-normal">{order.address.specificAddress}</p>
+                </span>
+              </div>
             </div>
-            <div className="col-span-2 flex flex-col gap-1">
+            <div className="col-span-2 flex flex-col gap-2">
               <h5 className="uppercase">thông tin người nhận</h5>
               <div className="">
                 <p className="normal-case">
@@ -130,11 +134,20 @@ const BillDetail = ({ orderId }) => {
                 </p>
               </div>
             </div>
-            <div className="col-span-2 flex flex-col gap-1">
-              <h5 className="uppercase">hình thức thanh toán</h5>
-              <p className="font-normal">{order.paymentMethod.name}</p>
+            <div className="col-span-2 flex flex-col gap-2">
+              <h5 className="uppercase">thanh toán</h5>
+              <div>
+                <div className="flex gap-1">
+                  <p>Hình thức:</p>
+                  <p className="font-normal">{order.paymentMethod.name}</p>
+                </div>
+                <div className="flex gap-1">
+                  <p>Nhà cung cấp:</p>
+                  <p className="font-normal">{order.paymentMethod.provider}</p>
+                </div>
+              </div>
             </div>
-            <div className="col-span-2 flex flex-col gap-1">
+            <div className="col-span-2 flex flex-col gap-2">
               <h5 className="uppercase">tổng số tiền</h5>
               <p className="font-normal">{priceConvert(order.total)}</p>
             </div>

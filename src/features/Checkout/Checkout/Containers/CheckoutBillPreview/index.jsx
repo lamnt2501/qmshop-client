@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCheckoutItems } from "../../../../../app/reducers";
-import { priceConvert } from "../../../../../utils/priceConvert";
+import { priceConvert, totalPrice } from "../../../../../utils";
 import { Image } from "../../../../../components";
-import { totalPrice } from "../../../../../utils/totalPrice";
 
 const CheckoutBillPreview = () => {
   const listOrderItem = useSelector(selectCheckoutItems);
