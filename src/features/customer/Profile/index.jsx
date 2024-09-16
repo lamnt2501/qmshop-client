@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 import ChangeInfomations from "./container/ChangeInfomations";
 import MenuItem from "./components/MenuItem";
 import ChangePassword from "./container/ChangePassword";
+import ListOrder from "./container/listOrder";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -109,7 +110,11 @@ const Profile = () => {
               </div>
             )}
             {selectedMenu === 1 && <div></div>}
-            {selectedMenu === 2 && <div></div>}
+            {selectedMenu === 2 && (
+              <div className="basis-5/6">
+                <ListOrder listOrder={listOrder} />
+              </div>
+            )}
           </div>
         </div>
       )}

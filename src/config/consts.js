@@ -27,7 +27,7 @@ export const ORDER_STATUS = [
   "CANCEL",
 ];
 export const VN_ORDER_STATUS = [
-  "ĐANG CHỜ",
+  "ĐANG DUYỆT",
   "ĐÃ DUYỆT",
   "ĐANG VẬN CHUYỂN",
   "ĐÃ GIAO",
