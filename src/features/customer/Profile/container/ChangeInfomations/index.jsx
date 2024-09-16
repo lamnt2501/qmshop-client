@@ -14,7 +14,7 @@ import {
   GENDERS,
   VN_GENDERS,
 } from "../../../../../config";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { CustomLink, CustomSnackbar } from "../../../../../components";
 import { Button } from "@mui/material";
 import {
@@ -25,14 +25,17 @@ import {
 import dayjs from "../../../../../config/dayjsConfig";
 import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/joy";
 import DateTime from "../../../../../components/DateTime";
+import { useOutletContext } from "react-router";
 
-const ChangeInfomations = ({
-  customerName,
-  customerPhone,
-  customerEmail,
-  customerGender,
-  customerBirthDay,
-}) => {
+const ChangeInfomations = () => {
+  const {
+    customerName,
+    customerPhone,
+    customerEmail,
+    customerGender,
+    customerBirthday,
+  } = useOutletContext();
+
   const dispatch = useDispatch();
 
   const customerStatus = useSelector(selectCustomerStatus);
@@ -54,15 +57,15 @@ const ChangeInfomations = ({
       setCustomerNewGender(
         translateLanguage(VN_GENDERS, GENDERS, customerGender)
       );
-      setCustomerNewBirthDay(dayjs(customerBirthDay));
-      setCustomerNewBirthDayString(customerBirthDay);
+      setCustomerNewBirthDay(dayjs(customerBirthday));
+      setCustomerNewBirthDayString(customerBirthday);
     }
   }, [
     customerStatus,
     customerName,
     customerPhone,
     customerGender,
-    customerBirthDay,
+    customerBirthday,
   ]);
 
   const getIsActiveSaveButton = () => {
@@ -71,7 +74,7 @@ const ChangeInfomations = ({
       (customerNewPhone !== "" && customerNewPhone !== customerPhone) ||
       translateLanguage(VN_GENDERS, GENDERS, customerNewGender) !==
         customerGender ||
-      customerNewBirthDayString !== customerBirthDay
+      customerNewBirthDayString !== customerBirthday
     );
   };
 
@@ -243,12 +246,12 @@ const ChangeInfomations = ({
   );
 };
 
-ChangeInfomations.propTypes = {
-  customerName: PropTypes.string,
-  customerPhone: PropTypes.string,
-  customerEmail: PropTypes.string,
-  customerGender: PropTypes.string,
-  customerBirthDay: PropTypes.string,
-};
+// ChangeInfomations.propTypes = {
+//   customerName: PropTypes.string,
+//   customerPhone: PropTypes.string,
+//   customerEmail: PropTypes.string,
+//   customerGender: PropTypes.string,
+//   customerBirthday: PropTypes.string,
+// };
 
 export default ChangeInfomations;

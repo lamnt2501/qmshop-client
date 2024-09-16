@@ -1,7 +1,9 @@
-import PropTypes from "prop-types";
+import { useOutletContext } from "react-router";
 import OrderItem from "../../components/OrderItem";
 
-const ListOrder = ({ listOrder }) => {
+const CustomerOrders = () => {
+  const { listOrder } = useOutletContext();
+
   return (
     <div className="flex flex-col gap-4">
       {listOrder.map((order, index) => (
@@ -13,8 +15,4 @@ const ListOrder = ({ listOrder }) => {
   );
 };
 
-ListOrder.propTypes = {
-  listOrder: PropTypes.array,
-};
-
-export default ListOrder;
+export default CustomerOrders;

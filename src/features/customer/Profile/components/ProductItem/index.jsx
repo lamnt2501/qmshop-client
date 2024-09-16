@@ -10,7 +10,7 @@ const ProductItem = ({ product }) => {
       <div className="col-span-1">
         <Image data={{ name: product.name, image: product.imgUrl }} />
       </div>
-      <div className="col-span-6 flex flex-col gap-2">
+      <div className="col-span-7 flex flex-col gap-2">
         <div>{product.name}</div>
         <div>
           <span>màu sắc: </span>
@@ -21,9 +21,8 @@ const ProductItem = ({ product }) => {
           <span>{product.size} </span>
         </div>
       </div>
-      <div className="col-span-1  justify-self-center self-center">x{product.quantity}</div>
       <div className="col-span-4 justify-self-end self-center">
-        {priceConvert(product.price)}
+        {priceConvert(product.price)} x {product.quantity}
       </div>
     </div>
   );

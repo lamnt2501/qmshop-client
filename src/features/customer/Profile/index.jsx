@@ -1,5 +1,5 @@
 import { Avatar } from "@mui/material";
-import { Container, CustomBox } from "../../../components";
+import { Container } from "../../../components";
 import { avataImage } from "../../../config";
 import { useDispatch, useSelector } from "react-redux";
 import GradingIcon from "@mui/icons-material/Grading";
@@ -21,18 +21,19 @@ import {
   selectCustomerUpdateStatus,
 } from "../../../app/reducers";
 import { useEffect, useState } from "react";
-import ChangeInfomations from "./container/ChangeInfomations";
 import MenuItem from "./components/MenuItem";
-import ChangePassword from "./container/ChangePassword";
-import ListOrder from "./container/listOrder";
+// import ChangeInfomations from "./container/ChangeInfomations";
+// import ChangePassword from "./container/ChangePassword";
+// import ListOrder from "./container/listOrder";
+import { Outlet } from "react-router";
 
 const Profile = () => {
   const dispatch = useDispatch();
 
   const menu = [
-    { icon: <AccountBoxIcon />, name: "Hồ sơ" },
-    { icon: <HomeIcon />, name: "Địa chỉ" },
-    { icon: <GradingIcon />, name: "đơn hàng" },
+    { icon: <AccountBoxIcon />, name: "Hồ sơ", path:'infomations' },
+    { icon: <HomeIcon />, name: "Địa chỉ", path:'address' },
+    { icon: <GradingIcon />, name: "đơn hàng", path:'orders'  },
   ];
   const [selectedMenu, setSelectedMenu] = useState(0);
 
@@ -85,6 +86,7 @@ const Profile = () => {
               {menu.map((item, index) => (
                 <li key={index} className="list-none basis-1/3 md:basis-0">
                   <MenuItem
+                    path={item.path}
                     item={item}
                     onClick={setSelectedMenu}
                     isActive={index === selectedMenu}
@@ -93,7 +95,20 @@ const Profile = () => {
                 </li>
               ))}
             </div>
-            {selectedMenu === 0 && (
+            <div className="basis-5/6">
+              <Outlet
+                context={{
+                  customerName,
+                  customerPhone,
+                  customerEmail,
+                  customerGender,
+                  customerBirthday,
+                  listAddress,
+                  listOrder,
+                }}
+              />
+            </div>
+            {/* {selectedMenu === 0 && (
               <div className="basis-5/6">
                 <CustomBox className={"mb-10"}>
                   <ChangeInfomations
@@ -114,7 +129,7 @@ const Profile = () => {
               <div className="basis-5/6">
                 <ListOrder listOrder={listOrder} />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       )}

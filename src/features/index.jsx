@@ -13,8 +13,12 @@ export { default as Carts } from "./Carts";
 export { default as Checkout } from "./Checkout/Checkout";
 export { default as CheckoutResults } from "./Checkout/CheckoutResults";
 export { default as Profile } from "./customer/Profile";
+export { default as Infomation } from "./customer/Profile/Page/Infomation";
+export { default as CustomerAddress } from "./customer/Profile/Page/CustomerAddress";
+export { default as CustomerOrders } from "./customer/Profile/Page/CustomerOrders";
+export { default as NotFound } from "./NotFound";
 
-// footer
+// Privacy
 export { default as PrivacyPolicy } from "./Policy/PrivacyPolicy";
 export { default as WarrantyPolicy } from "./Policy/WarrantyPolicy";
 export { default as PaymentPolicy } from "./Policy/PaymentPolicy";
