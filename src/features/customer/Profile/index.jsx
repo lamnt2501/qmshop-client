@@ -20,25 +20,26 @@ import {
   fetchOrders,
   selectCustomerUpdateStatus,
 } from "../../../app/reducers";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import MenuItem from "./components/MenuItem";
-// import ChangeInfomations from "./container/ChangeInfomations";
-// import ChangePassword from "./container/ChangePassword";
-// import ListOrder from "./container/listOrder";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
 const Profile = () => {
   const dispatch = useDispatch();
 
+  // get path
+  const { pathname } = useLocation();
+  const pathParts = pathname.split("/").filter(Boolean);
+
   const menu = [
-    { icon: <AccountBoxIcon />, name: "Hồ sơ", path:'infomations' },
-    { icon: <HomeIcon />, name: "Địa chỉ", path:'address' },
-    { icon: <GradingIcon />, name: "đơn hàng", path:'orders'  },
+    { icon: <AccountBoxIcon />, name: "Hồ sơ", path: "infomations" },
+    { icon: <HomeIcon />, name: "Địa chỉ", path: "address" },
+    { icon: <GradingIcon />, name: "đơn hàng", path: "orders" },
   ];
-  const [selectedMenu, setSelectedMenu] = useState(0);
 
   const token = useSelector(selectAuthToken);
 
+  // data
   const customerUpdateStatus = useSelector(selectCustomerUpdateStatus);
   const customerName = useSelector(selectCustomerName);
   const customerPhone = useSelector(selectCustomerPhone);
@@ -50,6 +51,7 @@ const Profile = () => {
   const listAddress = useSelector(selectCustomerAddresses);
   const listOrder = useSelector(selectListOrder);
 
+  // fetch
   useEffect(() => {
     if (token) {
       dispatch(fetchCustomerInfomations());
@@ -88,8 +90,7 @@ const Profile = () => {
                   <MenuItem
                     path={item.path}
                     item={item}
-                    onClick={setSelectedMenu}
-                    isActive={index === selectedMenu}
+                    isActive={item.path === pathParts[1]}
                     index={index}
                   />
                 </li>
@@ -108,28 +109,6 @@ const Profile = () => {
                 }}
               />
             </div>
-            {/* {selectedMenu === 0 && (
-              <div className="basis-5/6">
-                <CustomBox className={"mb-10"}>
-                  <ChangeInfomations
-                    customerName={customerName}
-                    customerPhone={customerPhone}
-                    customerEmail={customerEmail}
-                    customerGender={customerGender}
-                    customerBirthDay={customerBirthday}
-                  />
-                </CustomBox>
-                <CustomBox>
-                  <ChangePassword />
-                </CustomBox>
-              </div>
-            )}
-            {selectedMenu === 1 && <div></div>}
-            {selectedMenu === 2 && (
-              <div className="basis-5/6">
-                <ListOrder listOrder={listOrder} />
-              </div>
-            )} */}
           </div>
         </div>
       )}

@@ -5,13 +5,9 @@ import {
   fetchOrderById,
   selectOrderItem,
   selectOrderStatus,
-} from "../../../../app/reducers";
-import {
-  Container,
-  Loading,
-  CustomBreadcrumbs,
-  CustomLink,
-} from "../../../../components";
+  setOrder,
+} from "../../app/reducers";
+import { Container, Loading, CustomLink } from "..";
 import {
   FETCH_LOADING,
   FETCH_SUCCEEDED,
@@ -21,19 +17,21 @@ import {
   SHOP_PHONE,
   SHOP_WEBSITE,
   VN_PAYMENT_STATUS,
-} from "../../../../config";
+} from "../../config";
 import {
   splitDateTime,
   priceConvert,
   translateLanguage,
-} from "../../../../utils";
+  getColorByStatus,
+} from "../../utils";
 import ProductBillItem from "../ProductBillItem";
 
-const BillDetail = ({ orderId }) => {
-  const breadcrumbList = [
-    { url: "carts", name: "Giỏ hàng" },
-    { name: "Thanh toán" },
-  ];
+const BillDetail = ({ orderId, orderItem }) => {
+
+  // const breadcrumbList = [
+  //   { url: "carts", name: "Giỏ hàng" },
+  //   { name: "Thanh toán" },
+  // ];
 
   const infos = [
     { name: "Mã số doanh nghiệp", info: LEGAL_REGISTRATION_NO },
@@ -46,22 +44,26 @@ const BillDetail = ({ orderId }) => {
   const order = useSelector(selectOrderItem);
   const orderStatus = useSelector(selectOrderStatus);
 
+  const statusColor = getColorByStatus("payment", order.paymentStatus);
+
   useEffect(() => {
     if (orderId) {
       dispatch(fetchOrderById(orderId));
+    } else if (orderItem) {
+      dispatch(setOrder(orderItem));
     }
-  }, [dispatch, orderId]);
+  }, [dispatch, orderId, orderItem]);
 
   return (
     <Container>
-      <CustomBreadcrumbs breadcrumbs={breadcrumbList}></CustomBreadcrumbs>
+      {/* <CustomBreadcrumbs breadcrumbs={breadcrumbList}></CustomBreadcrumbs> */}
       {orderStatus === FETCH_LOADING && <Loading />}
       {orderStatus === FETCH_SUCCEEDED && (
         <div className="w-full p-4 bg-white border border-gray-400 shadow-md">
           <div className="flex">
             <div className="basis-3/5">
               <h1 className="text-3xl font-normal italic uppercase ">
-                QM Store
+                QM Shop
               </h1>
               <div className="pt-10 flex flex-col gap-1">
                 <h3 className="uppercase">địa chỉ</h3>
@@ -97,13 +99,17 @@ const BillDetail = ({ orderId }) => {
             </div>
             <div className="col-span-2 flex flex-col gap-2">
               <h5 className="uppercase">trạng thái thanh toán</h5>
-              <p className="font-normal lowercase">
-                {translateLanguage(
-                  VN_PAYMENT_STATUS,
-                  PAYMENT_STATUS,
-                  order.paymentStatus
-                )}
-              </p>
+              <div className={`font-normal flex `}>
+                <p
+                  className={`capitalize px-2 py-1 rounded-md border border-gray-400 ${statusColor}`}
+                >
+                  {translateLanguage(
+                    VN_PAYMENT_STATUS,
+                    PAYMENT_STATUS,
+                    order.paymentStatus
+                  )}
+                </p>
+              </div>
             </div>
           </div>
 
@@ -169,5 +175,6 @@ const BillDetail = ({ orderId }) => {
 
 BillDetail.propTypes = {
   orderId: PropTypes.any,
+  orderItem: PropTypes.object,
 };
 export default BillDetail;

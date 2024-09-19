@@ -50,7 +50,6 @@ const Navbar = () => {
       brandsStatus === FETCH_SUCCEEDED &&
       categoriesStatus === FETCH_SUCCEEDED
     ) {
-      // console.log(111111);
       const newListBrands = brands.reduce((acc, brand) => {
         const categoryBrand = categories.find(
           (category) => category.name === brand.name

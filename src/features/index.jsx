@@ -16,6 +16,7 @@ export { default as Profile } from "./customer/Profile";
 export { default as Infomation } from "./customer/Profile/Page/Infomation";
 export { default as CustomerAddress } from "./customer/Profile/Page/CustomerAddress";
 export { default as CustomerOrders } from "./customer/Profile/Page/CustomerOrders";
+export { default as OrderDetail } from "./customer/Profile/Page/OrderDetail";
 export { default as NotFound } from "./NotFound";
 
 // Privacy

@@ -7,8 +7,8 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import {
   BannerHeadPage,
   //  Button
+  BillDetail
 } from "../../../components";
-import BillDetail from "./BillDetail";
 import useTitle from "../../../hooks/useTitle";
 const CheckoutResults = () => {
   // const navigate = useNavigate();

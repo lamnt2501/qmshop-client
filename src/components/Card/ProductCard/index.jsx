@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import {  CustomBox, Image, LinkInSlide, Swatchs } from "../../";
+import { CustomBox, Image, LinkInSlide, Swatchs } from "../../";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { priceConvert } from "../../../utils";
 import PropTypes from "prop-types";
@@ -12,10 +12,6 @@ import "./ProductCard.css";
 import clsx from "clsx";
 
 const ProductCard = ({ data, padding }) => {
-
-console.log(data);
-  
-
   const { name, images, slug, options, discount } = data;
 
   const [imageSelector, setImageSelector] = useState({});
@@ -125,8 +121,21 @@ console.log(data);
             {name}
           </LinkInSlide>
         </div>
-        <div className="flex gap-1 items-center text-red-600 text-xl">
-          <span>{priceConvert(options[0].price)}</span>
+        <div className="flex gap-1 items-center">
+          {discount ? (
+            <>
+              <span className="text-gray-500 line-through">{priceConvert(options[0].price)}</span>
+              <span className="text-red-600 text-xl">
+                {priceConvert(
+                  options[0].price - (options[0].price * discount.value) / 100
+                )}
+              </span>
+            </>
+          ) : (
+            <span className="text-red-600 text-xl">
+              {priceConvert(options[0].price)}
+            </span>
+          )}
         </div>
       </div>
       <div className="my-5">

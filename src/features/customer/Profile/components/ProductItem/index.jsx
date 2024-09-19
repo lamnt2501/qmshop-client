@@ -3,7 +3,6 @@ import { Image } from "../../../../../components";
 import { priceConvert } from "../../../../../utils";
 
 const ProductItem = ({ product }) => {
-  console.log(product);
 
   return (
     <div className="grid grid-cols-12 px-4 py-2 gap-2">

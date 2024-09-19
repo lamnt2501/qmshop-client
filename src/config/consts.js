@@ -1,3 +1,9 @@
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import CreditScoreIcon from "@mui/icons-material/CreditScore";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import DoDisturbAltIcon from "@mui/icons-material/DoDisturbAlt";
+
 // fetch status
 export const FETCH_IDLE = "idle";
 export const FETCH_LOADING = "loading";
@@ -26,44 +32,46 @@ export const ORDER_STATUS = [
   "SUCCEEDED",
   "CANCEL",
 ];
+
 export const VN_ORDER_STATUS = [
-  "ĐANG DUYỆT",
-  "ĐÃ DUYỆT",
-  "ĐANG VẬN CHUYỂN",
-  "ĐÃ GIAO",
-  "ĐÃ HỦY",
+  "chờ duyệt",
+  "đã duyệt",
+  "đang vận chuyển",
+  "đã giao",
+  "đã hủy",
 ];
 
-// export const ORDER_STATUS_WAITING = "WAITING";
-// export const ORDER_STATUS_APPROVED = "APPROVED";
-// export const ORDER_STATUS_SHIPPING = "SHIPPING";
-// export const ORDER_STATUS_SUCCEEDED = "SUCCEEDED";
-// export const ORDER_STATUS_CANCEL = "CANCEL";
+export const STYLE_ORDER_STATUS = [
+  { color: "bg-yellow-100", Icon: AccessTimeFilledIcon },
+  { color: "bg-teal-100", Icon: CreditScoreIcon },
+  { color: "bg-cyan-100", Icon: LocalShippingIcon },
+  { color: "bg-green-100", Icon: CheckCircleOutlineIcon },
+  { color: "bg-rose-100", Icon: DoDisturbAltIcon },
+];
 
-// export const VN_ORDER_STATUS_WAITING = "ĐANG CHỜ";
-// export const VN_ORDER_STATUS_APPROVED = "ĐÃ DUYỆT";
-// export const VN_ORDER_STATUS_SHIPPING = "ĐANG VẬN CHUYỂN";
-// export const VN_ORDER_STATUS_SUCCEEDED = "ĐÃ GIAO";
-// export const VN_ORDER_STATUS_CANCEL = "ĐÃ HỦY";
+// export const COLOR_ORDER_STATUS = [
+//   "bg-yellow-100",
+//   "bg-teal-100",
+//   "bg-cyan-100",
+//   "bg-green-100",
+//   "bg-rose-100",
+// ];
 
 // Payment Status
 export const PAYMENT_STATUS = ["PAID", "UNPAID", "PROCESSING", "CANCEL"];
 export const VN_PAYMENT_STATUS = [
-  "ĐÃ THANH TOÁN",
-  "CHƯA THANH TOÁN",
-  "ĐANG XỬ LÝ",
-  "HỦY BỎ",
+  "đã thanh toán",
+  "chưa thanh toán",
+  "đang xử lý",
+  "hủy bỏ",
 ];
 
-// export const PAYMENT_STATUS_PAID = "PAID";
-// export const PAYMENT_STATUS_UNPAID = "UNPAID";
-// export const PAYMENT_STATUS_PROCESSING = "PROCESSING";
-// export const PAYMENT_STATUS_CANCEL = "CANCEL";
-
-// export const VN_PAYMENT_STATUS_PAID = "ĐÃ THANH TOÁN";
-// export const VN_PAYMENT_STATUS_UNPAID = "CHƯA THANH TOÁN";
-// export const VN_PAYMENT_STATUS_PROCESSING = "ĐANG XỬ LÝ";
-// export const VN_PAYMENT_STATUS_CANCEL = "HỦY BỎ";
+export const COLOR_PAYMENT_STATUS = [
+  "bg-green-200",
+  "bg-yellow-100",
+  "bg-cyan-200",
+  "bg-rose-200",
+];
 
 // mã số thuế
 export const LEGAL_REGISTRATION_NO = "987654";
@@ -73,7 +81,8 @@ export const SHOP_PHONE = "0912345678";
 export const SHOP_WEBSITE = "www.qmstore.com.vn";
 
 // Giới tính
-// export const VN_GENDERS = ["Nam", "Nữ", "Khác"];
 export const VN_GENDERS = ["Nam", "Nữ"];
-// export const GENDERS = ["MALE", "FEMALE", "OTHER"];
 export const GENDERS = ["MALE", "FEMALE"];
+
+// export const VN_GENDERS = ["Nam", "Nữ", "Khác"];
+// export const GENDERS = ["MALE", "FEMALE", "OTHER"];

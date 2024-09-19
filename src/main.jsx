@@ -18,6 +18,7 @@ import {
   Infomation,
   CustomerOrders,
   CustomerAddress,
+  OrderDetail,
 } from "./features";
 import "./index.css";
 import App from "./App";
@@ -53,6 +54,7 @@ root.render(
             <Route index element={<Navigate to="infomations" />} />
             <Route path="infomations" element={<Infomation />} />
             <Route path="orders" element={<CustomerOrders />} />
+            <Route path="orders/:id" element={<OrderDetail />} />
             <Route path="address" element={<CustomerAddress />} />
           </Route>
 

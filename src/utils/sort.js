@@ -1,5 +1,4 @@
- const sort = (initialData, sort) => {
-  // console.log(initialData);
+const sort = (initialData, sort) => {
   let newData = [...initialData];
   switch (sort.key) {
     case "FEATURED":
@@ -34,4 +33,4 @@
   return newData;
 };
 
-export default sort
+export default sort;
