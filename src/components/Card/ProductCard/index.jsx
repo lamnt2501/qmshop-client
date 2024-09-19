@@ -1,24 +1,28 @@
 import { memo, useEffect, useState } from "react";
-import { Button, CustomBox, Image, LinkInSlide, Swatchs } from "../../";
+import {  CustomBox, Image, LinkInSlide, Swatchs } from "../../";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { priceConvert } from "../../../utils";
 import PropTypes from "prop-types";
 
-import { MdAddShoppingCart } from "react-icons/md";
-import { FaHeartCirclePlus } from "react-icons/fa6";
-import { LuEye } from "react-icons/lu";
+// import { MdAddShoppingCart } from "react-icons/md";
+// import { FaHeartCirclePlus } from "react-icons/fa6";
+// import { LuEye } from "react-icons/lu";
 
 import "./ProductCard.css";
 import clsx from "clsx";
 
 const ProductCard = ({ data, padding }) => {
+
+console.log(data);
+  
+
   const { name, images, slug, options, discount } = data;
 
   const [imageSelector, setImageSelector] = useState({});
 
   useEffect(() => {
     if (images[0]) setImageSelector(images[0]);
-  }, []);
+  }, [images]);
 
   // Nhóm các đối tượng theo category
   const groupedItems = images.reduce((group, item) => {
@@ -61,9 +65,9 @@ const ProductCard = ({ data, padding }) => {
   return (
     <CustomBox className={clsx("card", { "px-4": padding })}>
       <div className="cardImage block relative z-1 w-full aspect-square cardShadow rounded-md overflow-hidden">
-        {discount ?? (
+        {discount && (
           <div className="absolute top-1 right-1 bg-red-600 text-white">
-            {/* <span>-30%</span> */}
+            <span>-{discount.value}%</span>
           </div>
         )}
         <LinkInSlide
@@ -84,7 +88,7 @@ const ProductCard = ({ data, padding }) => {
         </LinkInSlide>
         <div className="my-2 absolute bottom-0 w-full">
           <div className="flex justify-center gap-4">
-            <div className="cardIcon cardIcon-1 shadow-md">
+            {/* <div className="cardIcon cardIcon-1 shadow-md">
               <Button white>
                 <MdAddShoppingCart />
               </Button>
@@ -98,7 +102,7 @@ const ProductCard = ({ data, padding }) => {
               <Button white>
                 <LuEye />
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
