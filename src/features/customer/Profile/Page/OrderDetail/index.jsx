@@ -6,23 +6,12 @@ import {
   selectOrderItem,
   selectOrderStatus,
 } from "../../../../../app/reducers";
-import { BillDetail } from "../../../../../components";
+import { BillDetail, Container } from "../../../../../components";
 
-import {
-  Stepper,
-  Typography,
-  Step,
-  StepIndicator,
-  stepClasses,
-  stepIndicatorClasses,
-} from "@mui/joy";
-// import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
-// import CreditScoreIcon from "@mui/icons-material/CreditScore";
-// import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-// import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-// import DoDisturbAltIcon from "@mui/icons-material/DoDisturbAlt";
 import { FETCH_SUCCEEDED } from "../../../../../config";
 import { getColorByStatus } from "../../../../../utils";
+import StepOrder from "../../container/StepOrder";
+import StepOrderDetail from "../../container/StepOrderDetail";
 
 const OrderDetail = () => {
   const dispatch = useDispatch();
@@ -45,74 +34,25 @@ const OrderDetail = () => {
       });
       setTrackings(newTrackings);
     }
-  }, [status]);
+  }, [status, order.tracking]);
 
   return (
     <div>
       {status === FETCH_SUCCEEDED && (
         <>
-          <Stepper
-            size="lg"
-            sx={{
-              width: "100%",
-              "--StepIndicator-size": "3rem",
-              "--Step-connectorInset": "0px",
-              [`& .${stepIndicatorClasses.root}`]: {
-                borderWidth: 4,
-              },
-              [`& .${stepClasses.root}::after`]: {
-                height: 4,
-              },
-              [`& .${stepClasses.completed}`]: {
-                [`& .${stepIndicatorClasses.root}`]: {
-                  borderColor: "primary.300",
-                  color: "primary.300",
-                },
-                "&::after": {
-                  bgcolor: "primary.300",
-                },
-              },
-              [`& .${stepClasses.active}`]: {
-                [`& .${stepIndicatorClasses.root}`]: {
-                  borderColor: "currentColor",
-                },
-              },
-              [`& .${stepClasses.disabled} *`]: {
-                color: "neutral.outlinedDisabledColor",
-              },
-            }}
-          >
-            {order.tracking &&
-              trackings.map(({ message, Icon }, index) => (
-                <Step
-                  key={index}
-                  orientation="vertical"
-                  completed={trackings.length -1 !== index}
-                  active={trackings.length -1 === index}
-                  indicator={
-                    <StepIndicator
-                      variant={
-                        trackings.length -1 !== index ? "outlined" : "solid"
-                      }
-                      color="primary"
-                    >
-                      <Icon />
-                    </StepIndicator>
-                  }
-                >
-                  <Typography
-                    sx={{
-                      textTransform: "uppercase",
-                      fontWeight: "lg",
-                      fontSize: "0.75rem",
-                      letterSpacing: "0.5px",
-                    }}
-                  >
-                    {message}
-                  </Typography>
-                </Step>
-              ))}
-          </Stepper>
+          {order.tracking &&
+          order.tracking[order.tracking.length - 1].status === "CANCEL" ? (
+            <Container>
+              <div className="text-center bg-red-100 flex justify-center items-stretch h-20">
+                <span className="self-center text-2xl font-medium text-red-500">
+                  đơn hàng đã bị hủy
+                </span>
+              </div>
+            </Container>
+          ) : (
+            <StepOrder order={order} trackings={trackings} />
+          )}
+          <StepOrderDetail order={order} trackings={trackings} />
           <BillDetail orderItem={order} />
         </>
       )}
