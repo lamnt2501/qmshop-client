@@ -20,7 +20,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("fredericka.braun@gmail.com");
+  const [email, setEmail] = useState("vuan201@gmail.com");
   const [password, setPassword] = useState("Phagame@123");
 
   const token = useSelector(selectAuthToken);

@@ -10,3 +10,5 @@ export { default as splitDateTime } from "./splitDateTime";
 export * from "./statusTranslations";
 export { default as totalPrice } from "./totalPrice";
 export { default as validator } from "./Validate";
+export { default as translateLanguage } from "./translateLanguage";
+export { default as getColorByStatus } from "./getColorByStatus";

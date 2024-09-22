@@ -1,6 +1,6 @@
 import { Avatar } from "@mui/material";
-import { Container, CustomBox, CustomSnackbar } from "../../../components";
-import { ALERT_SUCCESS, avataImage, FETCH_SUCCEEDED } from "../../../config";
+import { Container } from "../../../components";
+import { avataImage } from "../../../config";
 import { useDispatch, useSelector } from "react-redux";
 import GradingIcon from "@mui/icons-material/Grading";
 import HomeIcon from "@mui/icons-material/Home";
@@ -13,35 +13,45 @@ import {
   selectCustomerName,
   selectCustomerPhone,
   selectCustomerEmail,
+  selectCustomerAvata,
+  selectCustomerBirthday,
+  selectCustomerGender,
   fetchCustomerAddresses,
   fetchOrders,
   selectCustomerUpdateStatus,
 } from "../../../app/reducers";
-import { useEffect, useState } from "react";
-import ChangeInfomations from "./container/ChangeInfomations";
+import { useEffect } from "react";
 import MenuItem from "./components/MenuItem";
-import ChangePassword from "./container/ChangePassword";
+import { Outlet, useLocation } from "react-router";
 
 const Profile = () => {
   const dispatch = useDispatch();
 
+  // get path
+  const { pathname } = useLocation();
+  const pathParts = pathname.split("/").filter(Boolean);
+
   const menu = [
-    { icon: <AccountBoxIcon />, name: "Hồ sơ" },
-    { icon: <HomeIcon />, name: "Địa chỉ" },
-    { icon: <GradingIcon />, name: "đơn hàng" },
+    { icon: <AccountBoxIcon />, name: "Hồ sơ", path: "infomations" },
+    { icon: <HomeIcon />, name: "Địa chỉ", path: "address" },
+    { icon: <GradingIcon />, name: "đơn hàng", path: "orders" },
   ];
-  const [selectedMenu, setSelectedMenu] = useState(0);
 
   const token = useSelector(selectAuthToken);
 
+  // data
   const customerUpdateStatus = useSelector(selectCustomerUpdateStatus);
   const customerName = useSelector(selectCustomerName);
   const customerPhone = useSelector(selectCustomerPhone);
   const customerEmail = useSelector(selectCustomerEmail);
+  const customerAvata = useSelector(selectCustomerAvata);
+  const customerBirthday = useSelector(selectCustomerBirthday);
+  const customerGender = useSelector(selectCustomerGender);
 
   const listAddress = useSelector(selectCustomerAddresses);
   const listOrder = useSelector(selectListOrder);
 
+  // fetch
   useEffect(() => {
     if (token) {
       dispatch(fetchCustomerInfomations());
@@ -59,8 +69,8 @@ const Profile = () => {
               <div className="w-20 h-20">
                 <Avatar
                   sx={{ width: "100%", height: "100%" }}
-                  alt={avataImage.name}
-                  src={avataImage.url}
+                  alt={"avata"}
+                  src={customerAvata ?? avataImage.url}
                 />
               </div>
 
@@ -74,34 +84,31 @@ const Profile = () => {
           </div>
 
           <div className="my-3 flex flex-col md:flex-row gap-4">
-            <div className=" md:basis-1/6">
+            <div className="flex flex-row gap-2 md:flex-col md:basis-1/6">
               {menu.map((item, index) => (
-                <li key={index} className="list-none">
+                <li key={index} className="list-none basis-1/3 md:basis-0">
                   <MenuItem
+                    path={item.path}
                     item={item}
-                    onClick={setSelectedMenu}
-                    isActive={index === selectedMenu}
+                    isActive={item.path === pathParts[1]}
                     index={index}
                   />
                 </li>
               ))}
             </div>
-            {selectedMenu === 0 && (
-              <div className="basis-5/6">
-                <CustomBox className={"mb-10"}>
-                  <ChangeInfomations
-                    customerName={customerName}
-                    customerPhone={customerPhone}
-                    customerEmail={customerEmail}
-                  />
-                </CustomBox>
-                <CustomBox>
-                  <ChangePassword />
-                </CustomBox>
-              </div>
-            )}
-            {selectedMenu === 1 && <div></div>}
-            {selectedMenu === 2 && <div></div>}
+            <div className="basis-5/6">
+              <Outlet
+                context={{
+                  customerName,
+                  customerPhone,
+                  customerEmail,
+                  customerGender,
+                  customerBirthday,
+                  listAddress,
+                  listOrder,
+                }}
+              />
+            </div>
           </div>
         </div>
       )}

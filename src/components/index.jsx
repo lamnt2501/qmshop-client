@@ -21,6 +21,8 @@ export { default as Title } from "./Title";
 export { default as LinkInSlide } from "./LinkInSlide";
 export { default as ScrollToTopBtn } from "./ScrollToTopBtn";
 export { default as CustomBox } from "./CustomBox";
+export { default as BillDetail } from "./BillDetail";
+export { default as ProductBillItem } from "./ProductBillItem";
 
 
 export { default as NextArrow } from "./Sliders/DirectionButton/NextArrow";

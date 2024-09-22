@@ -38,6 +38,9 @@ export const ordersSlice = createSlice({
   },
 
   reducers: {
+    setOrder: (state, action) => {
+      state.order = action.payload;
+    },
     resetOrders: (state) => {
       state.listOrder = [];
 
@@ -75,7 +78,7 @@ export const ordersSlice = createSlice({
   },
 });
 
-export const { resetOrders } = ordersSlice.actions;
+export const { setOrder, resetOrders } = ordersSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectListOrder = (state) => state.orders.listOrder;

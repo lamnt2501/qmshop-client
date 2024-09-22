@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAuthToken, logout } from "../../app/reducers";
+import { selectAuthToken, logout, fetchCustomerInfomations, selectCustomerAvata } from "../../app/reducers";
 
 import { FaSearch, FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import { Overlay, PopupMessage, Logo } from "../../components";
@@ -17,6 +17,14 @@ const Header = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
   const [overlay, setOverlay] = useState(false);
+
+  const customerAvata = useSelector(selectCustomerAvata)
+
+  useEffect(() => {
+    if(token){
+      dispatch(fetchCustomerInfomations())
+    }
+  }, [token,dispatch])
 
   const handleLogout = () => {
     dispatch(logout());
@@ -88,7 +96,7 @@ const Header = () => {
                 </Dropdow>
               ) : (
                 <Dropdow listPage={authenLisPageIsLogin} itemRight>
-                  <Avatar alt={avataImage.name} src={avataImage.url}/>
+                  <Avatar alt={avataImage.name} src={customerAvata ?? avataImage.url}/>
                   {/* <FiUser /> */}
                 </Dropdow>
               )}

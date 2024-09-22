@@ -8,13 +8,34 @@ import {
 } from "../../../../../app/reducers";
 import { useDispatch, useSelector } from "react-redux";
 import InputValue from "../../components/InputValue";
-import { ALERT_SUCCESS, FETCH_SUCCEEDED } from "../../../../../config";
-import PropTypes from "prop-types";
+import {
+  ALERT_SUCCESS,
+  FETCH_SUCCEEDED,
+  GENDERS,
+  VN_GENDERS,
+} from "../../../../../config";
+// import PropTypes from "prop-types";
 import { CustomLink, CustomSnackbar } from "../../../../../components";
 import { Button } from "@mui/material";
-import { validator } from "../../../../../utils";
+import {
+  isValidDate,
+  translateLanguage,
+  validator,
+} from "../../../../../utils";
+import dayjs from "../../../../../config/dayjsConfig";
+import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/joy";
+import DateTime from "../../../../../components/DateTime";
+import { useOutletContext } from "react-router";
 
-const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
+const ChangeInfomations = () => {
+  const {
+    customerName,
+    customerPhone,
+    customerEmail,
+    customerGender,
+    customerBirthday,
+  } = useOutletContext();
+
   const dispatch = useDispatch();
 
   const customerStatus = useSelector(selectCustomerStatus);
@@ -24,21 +45,40 @@ const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
 
   const [customerNewName, setCustomerNewName] = useState("");
   const [customerNewPhone, setCustomerNewPhone] = useState("");
+  const [customerNewGender, setCustomerNewGender] = useState("");
+  const [customerNewBirthDay, setCustomerNewBirthDay] = useState(dayjs());
+  const [customerNewBirthDayString, setCustomerNewBirthDayString] =
+    useState("");
 
   useEffect(() => {
     if (customerStatus === FETCH_SUCCEEDED) {
       setCustomerNewName(customerName);
       setCustomerNewPhone(customerPhone);
+      setCustomerNewGender(
+        translateLanguage(VN_GENDERS, GENDERS, customerGender)
+      );
+      setCustomerNewBirthDay(dayjs(customerBirthday));
+      setCustomerNewBirthDayString(customerBirthday);
     }
-  }, [customerStatus, customerName, customerPhone, customerEmail]);
+  }, [
+    customerStatus,
+    customerName,
+    customerPhone,
+    customerGender,
+    customerBirthday,
+  ]);
 
   const getIsActiveSaveButton = () => {
     return (
       (customerNewName !== "" && customerNewName !== customerName) ||
-      (customerNewPhone !== "" && customerNewPhone !== customerPhone)
+      (customerNewPhone !== "" && customerNewPhone !== customerPhone) ||
+      translateLanguage(VN_GENDERS, GENDERS, customerNewGender) !==
+        customerGender ||
+      customerNewBirthDayString !== customerBirthday
     );
   };
 
+  // validate
   const baseOptions = {
     form: "#changeCustomerInfomation",
     formGroupSelector: ".formGroup",
@@ -65,23 +105,36 @@ const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
     });
   };
 
+  // handle
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const isName = handleNameValidator();
     const isPhone = handlePhoneValidator();
+    const isDate = isValidDate(customerNewBirthDayString);
 
-    if (isName && isPhone) {
+    if (isName && isPhone && isDate) {
       dispatch(
         updateInfomations({
           phoneNumber: customerNewPhone,
           name: customerNewName,
+          gender: translateLanguage(VN_GENDERS, GENDERS, customerNewGender),
+          birthday: customerNewBirthDayString,
         })
       );
     }
   };
 
   const handleValidator = (options) => validator(options);
+
+  const handleSetBirthDay = (newValue) => {
+    setCustomerNewBirthDay(newValue);
+
+    if (newValue && newValue.format() && newValue.format() !== "Invalid Date") {
+      const dateString = newValue.utc().format();
+      setCustomerNewBirthDayString(dateString);
+    }
+  };
 
   return (
     <div className="grid grid-cols-5 md:grid-cols-12">
@@ -131,6 +184,41 @@ const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
               Số điện thoại
             </InputValue>
 
+            <div className="mt-6 w-full">
+              <DateTime
+                value={customerNewBirthDay}
+                setValue={handleSetBirthDay}
+              />
+            </div>
+
+            <div className="w-full mt-6">
+              <FormControl>
+                <FormLabel>Giới tính</FormLabel>
+                <RadioGroup
+                  orientation="horizontal"
+                  aria-label="Alignment"
+                  defaultValue={customerNewGender}
+                  value={customerNewGender}
+                  onChange={(e) => setCustomerNewGender(e.target.value)}
+                >
+                  {VN_GENDERS.map((g, i) => (
+                    <Radio
+                      color={
+                        translateLanguage(VN_GENDERS, GENDERS, g) ===
+                        customerGender
+                          ? "success"
+                          : "neutral"
+                      }
+                      variant={"soft"}
+                      key={i}
+                      value={g}
+                      label={g}
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
+            </div>
+
             <div className="flex justify-end">
               <Button
                 onClick={(e) => handleSubmit(e)}
@@ -157,9 +245,13 @@ const ChangeInfomations = ({ customerName, customerPhone, customerEmail }) => {
     </div>
   );
 };
-ChangeInfomations.propTypes = {
-  customerName: PropTypes.string,
-  customerPhone: PropTypes.string,
-  customerEmail: PropTypes.string,
-};
+
+// ChangeInfomations.propTypes = {
+//   customerName: PropTypes.string,
+//   customerPhone: PropTypes.string,
+//   customerEmail: PropTypes.string,
+//   customerGender: PropTypes.string,
+//   customerBirthday: PropTypes.string,
+// };
+
 export default ChangeInfomations;

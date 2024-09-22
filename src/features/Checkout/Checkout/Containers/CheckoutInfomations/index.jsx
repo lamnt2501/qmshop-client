@@ -48,7 +48,7 @@ const CheckoutInfomations = () => {
     //   setSnackbarSeverity(ALERT_ERROR);
     //   setOpenSnackbar(true);
     // }
-  }, [vnPayResult]);
+  }, [navigate,orderPaymentMethod.name,orderPaymentMethod.provider,vnPayResult]);
 
   const handleOrder = (e) => {
     e.preventDefault();
@@ -102,7 +102,7 @@ const CheckoutInfomations = () => {
         <PaymentMethod />
         <div className="my-4">
           <Button isFull black afterAnimation onClick={(e) => handleOrder(e)}>
-            Hoàn tất đơn hàng
+            Xác nhận thanh toán
           </Button>
         </div>
       </div>

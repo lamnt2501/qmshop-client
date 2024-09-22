@@ -17,12 +17,15 @@ const splitDateTime = (datetimeString) => {
 
   // Kiểm tra AM hay PM và chuyển đổi sang định dạng 12 giờ
   const period = hour >= 12 ? "PM" : "AM";
-  hour = hour % 12 || 12; // Chuyển 0 thành 12 cho thời điểm nửa đêm
+  // hour = hour % 12 || 12; // Chuyển 0 thành 12 cho thời điểm nửa đêm
 
   // Đảm bảo giờ có 2 chữ số
   hour = hour.toString().padStart(2, "0");
 
-  return `${day} tháng ${month} năm ${year} lúc ${hour}:${minute}:${second} ${period}`;
+  // const timeStr = `${day} tháng ${month} năm ${year} lúc ${hour}:${minute}:${second} ${period}`;
+  const timeStr = `${day}-${month}-${year} lúc ${hour}:${minute}:${second}`;
+
+  return timeStr;
 };
 
-export default splitDateTime
+export default splitDateTime;

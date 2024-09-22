@@ -63,7 +63,6 @@ const CartPayment = () => {
           // chuyển đổi số lượng về 0 để qua bước cập nhật
           return { ...cartItem, quantity: 0 };
         });
-      // console.log(cartItemUpdate);
       token
         ? dispatch(updateCartItems(cartItemUpdate))
         : dispatch(removeCartItems(cartItemUpdate));

@@ -1,10 +1,12 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
-function MenuItem({ onClick, index, isActive, item }) {
+function MenuItem({ onClick, isActive, item, path }) {
   return (
-    <div
-      onClick={() => onClick(index)}
+    <NavLink
+      to={path}
+      onClick={onClick}
       className={clsx(
         "basis-1/3 flex items-center gap-2 font-light hover:text-red-500 cursor-pointer transition duration-200 hover:bg-gray-100 py-1",
         { "text-red-500 bg-gray-100": isActive }
@@ -12,7 +14,7 @@ function MenuItem({ onClick, index, isActive, item }) {
     >
       <div className="basis-7">{item.icon}</div>
       <h5 className="">{item.name}</h5>
-    </div>
+    </NavLink>
   );
 }
 MenuItem.propTypes = {
@@ -20,5 +22,6 @@ MenuItem.propTypes = {
   index: PropTypes.number,
   isActive: PropTypes.bool,
   item: PropTypes.object,
+  path: PropTypes.string,
 };
 export default MenuItem;
