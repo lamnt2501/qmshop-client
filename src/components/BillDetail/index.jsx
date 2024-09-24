@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchOrderById,
   selectOrderItem,
-  selectOrderStatus,
+  selectOrderStatusItem,
   setOrder,
 } from "../../app/reducers";
-import { Container, Loading, CustomLink } from "..";
+import { Container, Loading } from "..";
 import {
   FETCH_LOADING,
   FETCH_SUCCEEDED,
@@ -36,13 +36,13 @@ const BillDetail = ({ orderId, orderItem }) => {
   const infos = [
     { name: "Mã số doanh nghiệp", info: LEGAL_REGISTRATION_NO },
     { name: "Email", info: SHOP_EMAIL },
-    { name: "Trang web", info: SHOP_WEBSITE, url: "/" },
+    { name: "Trang web", info: SHOP_WEBSITE, url: "https://qm-shop.netlify.app/home" },
     { name: "Số điện thoại", info: SHOP_PHONE },
   ];
 
   const dispatch = useDispatch();
   const order = useSelector(selectOrderItem);
-  const orderStatus = useSelector(selectOrderStatus);
+  const orderStatus = useSelector(selectOrderStatusItem);
 
   const statusColor = getColorByStatus("payment", order.paymentStatus);
 
@@ -78,9 +78,9 @@ const BillDetail = ({ orderId, orderItem }) => {
                 <div className="flex gap-1" key={name}>
                   <span>{name}:</span>
                   {url ? (
-                    <CustomLink className={"text-blue-500 font-medium"}>
+                    <a href={url} className={"text-blue-500 font-medium hover:text-red-600  transition duration-300"}>
                       {info}
-                    </CustomLink>
+                    </a>
                   ) : (
                     <span className="font-medium">{info}:</span>
                   )}
