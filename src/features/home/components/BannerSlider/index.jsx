@@ -7,7 +7,7 @@ const BannerSlider = ({ data }) => {
   const { image, name, title, titleTrending } = data;
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative overflow-hidden">
       <div className=" w-full h-full bottom-0 top-0 left-0 right-0">
         <Image data={{ name: name, image: image }} />
       </div>
