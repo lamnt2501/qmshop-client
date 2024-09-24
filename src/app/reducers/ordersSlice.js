@@ -34,6 +34,7 @@ export const ordersSlice = createSlice({
     listOrder: [],
     order: {},
     status: FETCH_IDLE,
+    statusItem: FETCH_IDLE,
     error: null,
   },
 
@@ -65,14 +66,14 @@ export const ordersSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(fetchOrderById.pending, (state) => {
-        state.status = FETCH_LOADING;
+        state.statusItem = FETCH_LOADING;
       })
       .addCase(fetchOrderById.fulfilled, (state, action) => {
-        state.status = FETCH_SUCCEEDED;
+        state.statusItem = FETCH_SUCCEEDED;
         state.order = action.payload;
       })
       .addCase(fetchOrderById.rejected, (state, action) => {
-        state.status = FETCH_FAILED;
+        state.statusItem = FETCH_FAILED;
         state.error = action.error.message;
       });
   },
@@ -84,6 +85,7 @@ export const { setOrder, resetOrders } = ordersSlice.actions;
 export const selectListOrder = (state) => state.orders.listOrder;
 export const selectOrderItem = (state) => state.orders.order;
 export const selectOrderStatus = (state) => state.orders.status;
+export const selectOrderStatusItem = (state) => state.orders.statusItem;
 export const selectOrdersError = (state) => state.orders.error;
 
 export default ordersSlice.reducer;

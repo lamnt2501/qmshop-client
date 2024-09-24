@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import {
   fetchOrderById,
   selectOrderItem,
-  selectOrderStatus,
+  selectOrderStatusItem,
 } from "../../../../../app/reducers";
 import { BillDetail, Container } from "../../../../../components";
 
@@ -17,7 +17,7 @@ const OrderDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const order = useSelector(selectOrderItem);
-  const status = useSelector(selectOrderStatus);
+  const status = useSelector(selectOrderStatusItem);
 
   const [trackings, setTrackings] = useState([]);
 
@@ -40,8 +40,7 @@ const OrderDetail = () => {
     <div>
       {status === FETCH_SUCCEEDED && (
         <>
-          {order.tracking &&
-          order.tracking[order.tracking.length - 1].status === "CANCEL" ? (
+          {order && order.status === "CANCEL" ? (
             <Container>
               <div className="text-center bg-red-100 flex justify-center items-stretch h-20">
                 <span className="self-center text-2xl font-medium text-red-500">

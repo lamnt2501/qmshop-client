@@ -16,7 +16,7 @@ const splitDateTime = (datetimeString) => {
   second = Math.round(parseFloat(second));
 
   // Kiểm tra AM hay PM và chuyển đổi sang định dạng 12 giờ
-  const period = hour >= 12 ? "PM" : "AM";
+  // const period = hour >= 12 ? "PM" : "AM";
   // hour = hour % 12 || 12; // Chuyển 0 thành 12 cho thời điểm nửa đêm
 
   // Đảm bảo giờ có 2 chữ số
