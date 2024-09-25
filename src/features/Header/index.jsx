@@ -16,7 +16,7 @@ import { FiUser } from "react-icons/fi";
 import HeaderIcons from "./components/HeaderIcons";
 import clsx from "clsx";
 import useScrollDirection from "../../hooks/useScrollDirection";
-import { Avatar } from "@mui/material";
+import { Avatar, Badge } from "@mui/material";
 import { avataImage } from "../../config";
 
 const Header = () => {
@@ -99,15 +99,21 @@ const Header = () => {
               <FaSearch />
             </HeaderIcons>
 
-            <HeaderIcons url={"/carts"} className={"relative"}>
+            {/* <HeaderIcons url={"/carts"} className={"relative"}>
               <div
                 className={
                   "absolute top-0 right-0 bg-gray-800 text-white p-1 rounded-full text-[10px] leading-3 translate-x-2 -translate-y-3 opacity-70"
                 }
               >
-                {totalCartItem}
+                {totalCartItem === 0 ? undefined : totalCartItem}
               </div>
               <FaShoppingCart />
+            </HeaderIcons> */}
+
+            <HeaderIcons url={"/carts"} className={"relative"}>
+              <Badge badgeContent={totalCartItem} color="info">
+                <FaShoppingCart />
+              </Badge>
             </HeaderIcons>
 
             <HeaderIcons>
