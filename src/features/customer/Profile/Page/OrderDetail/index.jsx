@@ -8,10 +8,11 @@ import {
 } from "../../../../../app/reducers";
 import { BillDetail, Container } from "../../../../../components";
 
-import { FETCH_SUCCEEDED } from "../../../../../config";
+import { FETCH_SUCCEEDED, ORDER_STATUS } from "../../../../../config";
 import { getColorByStatus } from "../../../../../utils";
 import StepOrder from "../../container/StepOrder";
 import StepOrderDetail from "../../container/StepOrderDetail";
+import CancelOrder from "../../container/CancelOrder";
 
 const OrderDetail = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const OrderDetail = () => {
           )}
           <StepOrderDetail order={order} trackings={trackings} />
           <BillDetail orderItem={order} />
+          {order.status === ORDER_STATUS[0] && <CancelOrder orderId={order.orderId}/>}
         </>
       )}
     </div>

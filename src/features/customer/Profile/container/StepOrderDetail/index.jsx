@@ -96,6 +96,7 @@ const StepOrderDetail = ({ order, trackings }) => {
           ))}
         </Stepper>
       </div>
+
     </Container>
   );
 };

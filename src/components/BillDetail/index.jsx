@@ -45,7 +45,7 @@ const BillDetail = ({ orderId, orderItem }) => {
   const orderStatus = useSelector(selectOrderStatusItem);
 
   const statusColor = getColorByStatus("payment", order.paymentStatus);
-
+  
   useEffect(() => {
     if (orderId) {
       dispatch(fetchOrderById(orderId));

@@ -15,7 +15,6 @@ import {
 import { translateLanguage } from "../../../../../utils";
 
 const StepOrder = ({ order, trackings }) => {
-  
   return (
     <Stepper
       size="lg"
