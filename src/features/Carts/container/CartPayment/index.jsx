@@ -54,6 +54,9 @@ const CartPayment = () => {
   };
   const handleDeleteCartItems = () => {
     if (orderListItem.length > 0) {
+      setOverlay(false);
+      setDeleteItems(false);
+      
       const cartItemUpdate = cartListItem
         .filter((cartItem) =>
           // Lọc ra các item có trong list order
