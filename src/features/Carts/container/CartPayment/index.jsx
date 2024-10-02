@@ -48,7 +48,7 @@ const CartPayment = () => {
       setDeleteItems(true);
     }
   };
-  const handleCancelDeleteItems = () => {
+  const handleCloseOverlay = () => {
     setOverlay(false);
     setDeleteItems(false);
   };
@@ -56,7 +56,7 @@ const CartPayment = () => {
     if (orderListItem.length > 0) {
       setOverlay(false);
       setDeleteItems(false);
-      
+
       const cartItemUpdate = cartListItem
         .filter((cartItem) =>
           // Lọc ra các item có trong list order
@@ -81,7 +81,7 @@ const CartPayment = () => {
 
   return (
     <>
-      <Overlay isOverlay={overlay} onClick={() => setOverlay(false)}>
+      <Overlay isOverlay={overlay} onClick={() => handleCloseOverlay()}>
         {deleteItems && (
           <PopupMessage
             message="Bạn có muốn xóa các sản phẩm đã chọn"
@@ -89,7 +89,7 @@ const CartPayment = () => {
             cancelName="Giữ lại"
             receive={overlay}
             handleReceive={() => handleDeleteCartItems()}
-            handleCancel={() => handleCancelDeleteItems()}
+            handleCancel={() => handleCloseOverlay()}
           />
         )}
 
