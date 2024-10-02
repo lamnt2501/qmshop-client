@@ -78,7 +78,7 @@ export const LEGAL_REGISTRATION_NO = "987654";
 
 export const SHOP_EMAIL = "qmstore@gmail.com";
 export const SHOP_PHONE = "0912345678";
-export const SHOP_WEBSITE = "www.qmstore.com.vn";
+export const SHOP_WEBSITE = "https://qm-shop.netlify.app/home";
 
 // Giới tính
 export const VN_GENDERS = ["Nam", "Nữ"];

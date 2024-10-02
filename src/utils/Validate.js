@@ -136,12 +136,14 @@ validator.isPassword = function (selector, value, customMesage) {
   return {
     selector,
     test: () => {
+      // const re =
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
       const re =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/;
       return re.test(value)
         ? undefined
         : customMesage ||
-            "Mật khẩu phải có tối thiểu 8 ký tự và bảo gồm chữ thường, chữ hoa, số và ký tự đặc biệt";
+            "Mật khẩu phải có tối thiểu 8 ký tự bảo gồm chữ thường, chữ hoa, số và ký tự đặc biệt";
     },
   };
 };

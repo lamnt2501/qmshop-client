@@ -6,7 +6,6 @@ import {
   StepIndicator,
   stepIndicatorClasses,
   Stepper,
-  Typography,
   typographyClasses,
 } from "@mui/joy";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
@@ -97,6 +96,7 @@ const StepOrderDetail = ({ order, trackings }) => {
           ))}
         </Stepper>
       </div>
+
     </Container>
   );
 };

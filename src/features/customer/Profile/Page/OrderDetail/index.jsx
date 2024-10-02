@@ -4,20 +4,21 @@ import { useParams } from "react-router";
 import {
   fetchOrderById,
   selectOrderItem,
-  selectOrderStatus,
+  selectOrderStatusItem,
 } from "../../../../../app/reducers";
 import { BillDetail, Container } from "../../../../../components";
 
-import { FETCH_SUCCEEDED } from "../../../../../config";
+import { FETCH_SUCCEEDED, ORDER_STATUS } from "../../../../../config";
 import { getColorByStatus } from "../../../../../utils";
 import StepOrder from "../../container/StepOrder";
 import StepOrderDetail from "../../container/StepOrderDetail";
+import CancelOrder from "../../container/CancelOrder";
 
 const OrderDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const order = useSelector(selectOrderItem);
-  const status = useSelector(selectOrderStatus);
+  const status = useSelector(selectOrderStatusItem);
 
   const [trackings, setTrackings] = useState([]);
 
@@ -40,8 +41,7 @@ const OrderDetail = () => {
     <div>
       {status === FETCH_SUCCEEDED && (
         <>
-          {order.tracking &&
-          order.tracking[order.tracking.length - 1].status === "CANCEL" ? (
+          {order && order.status === "CANCEL" ? (
             <Container>
               <div className="text-center bg-red-100 flex justify-center items-stretch h-20">
                 <span className="self-center text-2xl font-medium text-red-500">
@@ -54,6 +54,7 @@ const OrderDetail = () => {
           )}
           <StepOrderDetail order={order} trackings={trackings} />
           <BillDetail orderItem={order} />
+          {order.status === ORDER_STATUS[0] && <CancelOrder orderId={order.orderId}/>}
         </>
       )}
     </div>

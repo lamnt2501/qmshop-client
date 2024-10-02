@@ -194,7 +194,7 @@ const Register = () => {
             <div className="mt-6 w-full">
               <DateTime value={birth} setValue={handleSetBirthDay} />
             </div>
-            <div className="w-full mt-6">
+            <div className="w-full mt-12">
               <FormControl>
                 <FormLabel>Giới tính</FormLabel>
                 <RadioGroup

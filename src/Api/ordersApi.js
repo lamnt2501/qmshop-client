@@ -15,9 +15,9 @@ const ordersApi = {
     const url = baseUrl;
     return axiosClient.post(url, data);
   },
-  update(orders) {
+  update(data) {
     const url = `${baseUrl}`;
-    return axiosClient.put(url, orders);
+    return axiosClient.patch(url, data);
   },
   remove(id) {
     const url = `${baseUrl}/${id}`;

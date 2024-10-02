@@ -67,24 +67,20 @@ const CartItem = ({ cartItem }) => {
         <Image data={{ image: imageUrl, name: name }} />
       </div>
 
-      <div className="col-span-3 justify-self-start">
+      <div className="col-span-3 justify-self-start space-y-1 self-start">
         <Link
-          className="text-black hover:text-blue-800 transition"
+          className="text-black hover:text-blue-800 transition "
           to={`/products/${slug}`}
         >
           <div>{name}</div>
         </Link>
+        <div>
+          <div>Màu sắc: {color}</div>
+          <div>Kích thước: {size}</div>
+        </div>
       </div>
 
-      <div className="col-span-1 justify-self-center text-center">
-        <div>{color}</div>
-      </div>
-
-      <div className="col-span-1 justify-self-center text-center">
-        <div>{size}</div>
-      </div>
-
-      <div className="col-span-1 justify-self-start">
+      <div className="col-span-2 justify-self-start">
         <span>{priceConvert(price)}</span>
       </div>
 
@@ -96,7 +92,7 @@ const CartItem = ({ cartItem }) => {
         />
       </div>
 
-      <div className="col-span-1 justify-self-end">
+      <div className="col-span-2 justify-self-end">
         <span>{priceConvert(price * quantity)}</span>
       </div>
 

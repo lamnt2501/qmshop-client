@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAuthToken, logout, fetchCustomerInfomations, selectCustomerAvata } from "../../app/reducers";
+import {
+  selectAuthToken,
+  logout,
+  fetchCustomerInfomations,
+  selectCustomerAvata,
+  selectCartsItem,
+} from "../../app/reducers";
 
 import { FaSearch, FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import { Overlay, PopupMessage, Logo } from "../../components";
@@ -10,21 +16,33 @@ import { FiUser } from "react-icons/fi";
 import HeaderIcons from "./components/HeaderIcons";
 import clsx from "clsx";
 import useScrollDirection from "../../hooks/useScrollDirection";
-import { Avatar } from "@mui/material";
+import { Avatar, Badge } from "@mui/material";
 import { avataImage } from "../../config";
 
 const Header = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectAuthToken);
+  const cartItem = useSelector(selectCartsItem);
   const [overlay, setOverlay] = useState(false);
+  const [totalCartItem, setTotalCartItem] = useState(0);
 
-  const customerAvata = useSelector(selectCustomerAvata)
+  const customerAvata = useSelector(selectCustomerAvata);
 
   useEffect(() => {
-    if(token){
-      dispatch(fetchCustomerInfomations())
+    if (cartItem.length > 0) {
+      const newTotalCartItem = cartItem.reduce(
+        (accumulator, { quantity }) => accumulator + quantity,
+        0
+      );
+      setTotalCartItem(newTotalCartItem);
     }
-  }, [token,dispatch])
+  }, [cartItem]);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchCustomerInfomations());
+    }
+  }, [token, dispatch]);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -76,13 +94,26 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="flex items-center">
-            <HeaderIcons>
+          <div className="flex items-center gap-4">
+            <HeaderIcons cla>
               <FaSearch />
             </HeaderIcons>
 
-            <HeaderIcons url={"/carts"}>
+            {/* <HeaderIcons url={"/carts"} className={"relative"}>
+              <div
+                className={
+                  "absolute top-0 right-0 bg-gray-800 text-white p-1 rounded-full text-[10px] leading-3 translate-x-2 -translate-y-3 opacity-70"
+                }
+              >
+                {totalCartItem === 0 ? undefined : totalCartItem}
+              </div>
               <FaShoppingCart />
+            </HeaderIcons> */}
+
+            <HeaderIcons url={"/carts"} className={"relative"}>
+              <Badge badgeContent={totalCartItem} color="info">
+                <FaShoppingCart />
+              </Badge>
             </HeaderIcons>
 
             <HeaderIcons>
@@ -96,7 +127,10 @@ const Header = () => {
                 </Dropdow>
               ) : (
                 <Dropdow listPage={authenLisPageIsLogin} itemRight>
-                  <Avatar alt={avataImage.name} src={customerAvata ?? avataImage.url}/>
+                  <Avatar
+                    alt={avataImage.name}
+                    src={customerAvata ?? avataImage.url}
+                  />
                   {/* <FiUser /> */}
                 </Dropdow>
               )}

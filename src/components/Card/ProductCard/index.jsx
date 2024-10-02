@@ -61,17 +61,17 @@ const ProductCard = ({ data, padding }) => {
   return (
     <CustomBox className={clsx("card", { "px-4": padding })}>
       <div className="cardImage block relative z-1 w-full aspect-square cardShadow rounded-md overflow-hidden">
-        {discount && (
-          <div className="absolute top-1 right-1 bg-red-600 text-white">
-            <span>-{discount.value}%</span>
-          </div>
-        )}
         <LinkInSlide
           // Sự kiện hover
           url={`/products/${slug}`}
           onMouseOver={() => handleOnMouseOver()}
           onMouseOut={() => handleOnMouseOut()}
         >
+          {discount && (
+            <div className="absolute top-1 right-1 bg-red-600 text-white z-10 rounded-md px-2 cursor-pointer">
+              <span>-{discount.value}%</span>
+            </div>
+          )}
           <TransitionGroup className={"w-full h-full"}>
             <CSSTransition
               key={imageSelector.url}
@@ -124,7 +124,9 @@ const ProductCard = ({ data, padding }) => {
         <div className="flex gap-1 items-center">
           {discount ? (
             <>
-              <span className="text-gray-500 line-through">{priceConvert(options[0].price)}</span>
+              <span className="text-gray-500 line-through">
+                {priceConvert(options[0].price)}
+              </span>
               <span className="text-red-600 text-xl">
                 {priceConvert(
                   options[0].price - (options[0].price * discount.value) / 100

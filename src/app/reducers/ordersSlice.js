@@ -26,6 +26,14 @@ export const fetchOrderById = createAsyncThunk(
   }
 );
 
+export const cancelOrder = createAsyncThunk(
+  `${baseName}/cancelOrder`,
+  async (data) => {
+    const response = await ordersApi.update(data);
+    return response;
+  }
+);
+
 export const ordersSlice = createSlice({
   name: baseName,
 
@@ -34,6 +42,8 @@ export const ordersSlice = createSlice({
     listOrder: [],
     order: {},
     status: FETCH_IDLE,
+    statusItem: FETCH_IDLE,
+    updateStatus: FETCH_IDLE,
     error: null,
   },
 
@@ -46,6 +56,9 @@ export const ordersSlice = createSlice({
 
       state.status = FETCH_IDLE;
       state.error = null;
+    },
+    resetOrderUpdateStatus: (state) => {
+      state.updateStatus = FETCH_IDLE;
     },
   },
 
@@ -65,25 +78,39 @@ export const ordersSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(fetchOrderById.pending, (state) => {
-        state.status = FETCH_LOADING;
+        state.statusItem = FETCH_LOADING;
       })
       .addCase(fetchOrderById.fulfilled, (state, action) => {
-        state.status = FETCH_SUCCEEDED;
+        state.statusItem = FETCH_SUCCEEDED;
         state.order = action.payload;
       })
       .addCase(fetchOrderById.rejected, (state, action) => {
-        state.status = FETCH_FAILED;
+        state.statusItem = FETCH_FAILED;
+        state.error = action.error.message;
+      })
+      .addCase(cancelOrder.pending, (state) => {
+        state.updateStatus = FETCH_LOADING;
+      })
+      .addCase(cancelOrder.fulfilled, (state, action) => {
+        state.updateStatus = FETCH_SUCCEEDED;
+        state.order = action.payload;
+      })
+      .addCase(cancelOrder.rejected, (state, action) => {
+        state.updateStatus = FETCH_FAILED;
         state.error = action.error.message;
       });
   },
 });
 
-export const { setOrder, resetOrders } = ordersSlice.actions;
+export const { setOrder, resetOrders, resetOrderUpdateStatus } =
+  ordersSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectListOrder = (state) => state.orders.listOrder;
 export const selectOrderItem = (state) => state.orders.order;
 export const selectOrderStatus = (state) => state.orders.status;
+export const selectOrderStatusItem = (state) => state.orders.statusItem;
+export const selectOrderUpdateStatus = (state) => state.orders.updateStatus;
 export const selectOrdersError = (state) => state.orders.error;
 
 export default ordersSlice.reducer;

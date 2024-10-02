@@ -23,8 +23,11 @@ import {
 import { useEffect } from "react";
 import MenuItem from "./components/MenuItem";
 import { Outlet, useLocation } from "react-router";
+import useTitle from "../../../hooks/useTitle";
 
 const Profile = () => {
+  useTitle("Hồ sơ");
+
   const dispatch = useDispatch();
 
   // get path

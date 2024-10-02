@@ -7,7 +7,7 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import {
   BannerHeadPage,
   //  Button
-  BillDetail
+  BillDetail,
 } from "../../../components";
 import useTitle from "../../../hooks/useTitle";
 const CheckoutResults = () => {
@@ -69,7 +69,9 @@ const CheckoutResults = () => {
               <span className="text-4xl">Đang chờ thanh toán</span>
             </div>
           </BannerHeadPage>
-          <BillDetail orderId={orderid} />
+          <div className="my-10">
+            <BillDetail orderId={orderid} />
+          </div>
         </>
       )}
       {vnp_ResponseCode === "00" && (
@@ -82,7 +84,9 @@ const CheckoutResults = () => {
               <span className="text-4xl">Giao dịch thành công</span>
             </div>
           </BannerHeadPage>
-          <BillDetail orderId={vnp_TxnRef} />
+          <div className="my-10">
+            <BillDetail orderId={vnp_TxnRef} />
+          </div>
         </>
       )}
       {vnp_ResponseCode === "11" && (
