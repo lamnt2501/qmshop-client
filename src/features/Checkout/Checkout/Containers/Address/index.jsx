@@ -1,5 +1,5 @@
 import { useState } from "react";
-import NewAddress from "../NewAddress";
+import { NewAddress } from "../../../../../components";
 import ChoiceAddress from "../../Components/ChoiceAddress";
 import OldAddress from "../OldAddress";
 const Address = () => {
