@@ -13,7 +13,7 @@ export { default as Overlay } from "./Overlay";
 export { default as Popover } from "./Popover";
 export { default as InputQuantity } from "./InputQuantity";
 export { default as BannerHeadPage } from "./BannerHeadPage";
-export { default as PopupMessage } from "./PopupMessage";
+export { default as Popup } from "./Popup";
 export { default as Logo } from "./Logo";
 export { default as Container } from "./Container";
 export { default as CustomSnackbar } from "./CustomSnackbar";
@@ -23,6 +23,8 @@ export { default as ScrollToTopBtn } from "./ScrollToTopBtn";
 export { default as CustomBox } from "./CustomBox";
 export { default as BillDetail } from "./BillDetail";
 export { default as ProductBillItem } from "./ProductBillItem";
+export { default as NewAddress } from "./NewAddress";
+export { default as Options } from "./Options";
 
 
 export { default as NextArrow } from "./Sliders/DirectionButton/NextArrow";
