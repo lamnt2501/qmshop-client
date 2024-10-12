@@ -5,7 +5,10 @@ import PaymentMethod from "../PaymentMethod";
 import { Button, CustomSnackbar } from "../../../../../components";
 import {
   addOrders,
-  selectCheckoutAddress,
+  selectAddressCityName,
+  selectAddressDistrictName,
+  selectAddressSpecificAddress,
+  selectAddressWardName,
   selectCheckoutAddressId,
   selectCheckoutFullName,
   selectCheckoutItems,
@@ -22,7 +25,12 @@ const CheckoutInfomations = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const orderItem = useSelector(selectCheckoutItems);
-  const orderAddress = useSelector(selectCheckoutAddress);
+
+  const city = useSelector(selectAddressCityName);
+  const district = useSelector(selectAddressDistrictName);
+  const ward = useSelector(selectAddressWardName);
+  const specificAddress = useSelector(selectAddressSpecificAddress);
+
   const orderPaymentMethod = useSelector(selectCheckoutPaymentMethod);
   const orderFullName = useSelector(selectCheckoutFullName);
   const orderPhoneNumber = useSelector(selectCheckoutPhoneNumber);
@@ -48,7 +56,12 @@ const CheckoutInfomations = () => {
     //   setSnackbarSeverity(ALERT_ERROR);
     //   setOpenSnackbar(true);
     // }
-  }, [navigate,orderPaymentMethod.name,orderPaymentMethod.provider,vnPayResult]);
+  }, [
+    navigate,
+    orderPaymentMethod.name,
+    orderPaymentMethod.provider,
+    vnPayResult,
+  ]);
 
   const handleOrder = (e) => {
     e.preventDefault();
@@ -59,10 +72,7 @@ const CheckoutInfomations = () => {
 
     // Kiểm tra điều kiện có sử dụng addressId hay không
     const isAddressComplete =
-      orderAddress.city !== "" &&
-      orderAddress.district !== "" &&
-      orderAddress.ward !== "" &&
-      orderAddress.specificAddress !== "";
+      city !== "" && district !== "" && ward !== "" && specificAddress !== "";
 
     if (
       isOrderValid &&
@@ -75,7 +85,7 @@ const CheckoutInfomations = () => {
         receiverName: orderFullName,
         phoneNumber: orderPhoneNumber,
         ...(isAddressComplete
-          ? { address: orderAddress }
+          ? { address: { city, district, ward, specificAddress } }
           : { addressId: orderAddressId }),
       };
       dispatch(addOrders(order));

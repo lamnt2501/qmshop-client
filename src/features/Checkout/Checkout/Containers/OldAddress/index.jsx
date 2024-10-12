@@ -30,7 +30,7 @@ const OldAddress = () => {
         ? dispatch(setAddressId(customerAddresses[0].id))
         : dispatch(setAddressId(0));
     }
-  }, [addressStatus]);
+  }, [dispatch, addressStatus]);
 
   const handleSetAddress = (event) => {
     dispatch(setAddressId(event.target.value));

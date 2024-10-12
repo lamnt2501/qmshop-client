@@ -11,14 +11,14 @@ import {
   selectAddressListDistrict,
   selectAddressListWard,
   selectAddressWard,
-  setCheckoutCity,
-  setCheckoutDistrict,
-  setCheckoutWard,
   setSelectCity,
   setSelectDistrict,
   setSelectWard,
-  selectCheckoutAddress,
-  setCheckoutSpecificAddress,
+  setCityName,
+  setDistrictName,
+  setWardName,
+  selectAddressSpecificAddress,
+  setSpecificAddress,
 } from "../../app/reducers";
 import { Options } from "../";
 import { Input } from "..";
@@ -34,9 +34,7 @@ const NewAddress = () => {
   const selectDistrict = useSelector(selectAddressDistrict);
   const selectWard = useSelector(selectAddressWard);
 
-  // const fetchStatus = useSelector(selectAddressListStatus);
-
-  const orderAddress = useSelector(selectCheckoutAddress);
+  const specificAddress = useSelector(selectAddressSpecificAddress);
 
   useEffect(() => {
     dispatch(fetchCity());
@@ -61,10 +59,8 @@ const NewAddress = () => {
       const selectedOption = listCity.find((option) => option.id === cityId);
       const cityName = selectedOption ? selectedOption.name : "";
 
-      console.log(cityName);
-
       dispatch(setSelectCity(cityId));
-      dispatch(setCheckoutCity(cityName));
+      dispatch(setCityName(cityName));
     },
     [dispatch, listCity]
   );
@@ -78,7 +74,7 @@ const NewAddress = () => {
       const districtName = selectedOption ? selectedOption.name : "";
 
       dispatch(setSelectDistrict(districtId));
-      dispatch(setCheckoutDistrict(districtName));
+      dispatch(setDistrictName(districtName));
     },
     [dispatch, listDistrict]
   );
@@ -90,7 +86,7 @@ const NewAddress = () => {
       const wardName = selectedOption ? selectedOption.name : "";
 
       dispatch(setSelectWard(wardId));
-      dispatch(setCheckoutWard(wardName));
+      dispatch(setWardName(wardName));
     },
     [dispatch, listWard]
   );
@@ -126,8 +122,8 @@ const NewAddress = () => {
       </Options>
       <div>
         <Input
-          value={orderAddress.specificAddress}
-          onChange={(e) => dispatch(setCheckoutSpecificAddress(e.target.value))}
+          value={specificAddress}
+          onChange={(e) => dispatch(setSpecificAddress(e.target.value))}
         >
           Chi tiết địa chỉ giao hàng
         </Input>

@@ -55,8 +55,15 @@ export const addressListSlice = createSlice({
     listWard: [],
 
     selectCity: "",
+    cityName: "",
+
     selectDistrict: "",
+    districtName: "",
+
     selectWard: "",
+    wardName: "",
+
+    specificAddress: "",
 
     status: FETCH_IDLE,
     error: null,
@@ -74,10 +81,34 @@ export const addressListSlice = createSlice({
       state.selectWard = action.payload;
     },
 
+    setCityName: (state, action) => {
+      state.cityName = action.payload;
+    },
+    setDistrictName: (state, action) => {
+      state.districtName = action.payload;
+    },
+    setWardName: (state, action) => {
+      state.wardName = action.payload;
+    },
+    setSpecificAddress: (state, action) => {
+      state.specificAddress = action.payload;
+    },
+
     resetAddressList: (state) => {
       state.listCity = [];
       state.listDistrict = [];
       state.listWard = [];
+
+      state.selectCity = "";
+      state.cityName = "";
+
+      state.selectDistrict = "";
+      state.districtName = "";
+
+      state.selectWard = "";
+      state.wardName = "";
+
+      state.specificAddress = "";
 
       state.status = FETCH_IDLE;
       state.error = null;
@@ -137,6 +168,10 @@ export const {
   setSelectDistrict,
   setSelectWard,
   resetListWard,
+  setCityName,
+  setDistrictName,
+  setWardName,
+  setSpecificAddress,
 } = addressListSlice.actions;
 
 export const selectAddressListCity = (state) => state.addressList.listCity;
@@ -148,6 +183,13 @@ export const selectAddressCity = (state) => state.addressList.selectCity;
 export const selectAddressDistrict = (state) =>
   state.addressList.selectDistrict;
 export const selectAddressWard = (state) => state.addressList.selectWard;
+
+export const selectAddressCityName = (state) => state.addressList.cityName;
+export const selectAddressDistrictName = (state) =>
+  state.addressList.districtName;
+export const selectAddressWardName = (state) => state.addressList.wardName;
+export const selectAddressSpecificAddress = (state) =>
+  state.addressList.specificAddress;
 
 export const selectAddressListStatus = (state) => state.addressList.status;
 export const selectAddressListError = (state) => state.addressList.error;
