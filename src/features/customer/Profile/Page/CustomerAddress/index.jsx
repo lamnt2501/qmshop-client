@@ -54,7 +54,9 @@ const CustomerAddress = () => {
     setSelectorAddressId(addressId);
   };
 
-  const handleDeleteAddress = () => {};
+  const handleDeleteAddress = () => {
+    dispatch()
+  };
 
   return (
     <>
@@ -84,7 +86,12 @@ const CustomerAddress = () => {
       <Container className={"space-y-4"}>
         <CustomBox className={"flex justify-between px-8 py-4 items-center"}>
           <span className="text-2xl font-light">Địa chỉ của tôi</span>
-          <Button variant="outlined" color="success" startIcon={<AddIcon />}>
+          <Button
+            variant="outlined"
+            color="success"
+            onClick={() => handleOpenOverlay("add")}
+            startIcon={<AddIcon />}
+          >
             Thêm địa chỉ mới
           </Button>
         </CustomBox>

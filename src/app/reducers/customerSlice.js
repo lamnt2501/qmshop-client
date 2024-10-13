@@ -27,6 +27,24 @@ export const fetchCustomerAddresses = createAsyncThunk(
   }
 );
 
+export const addNewCustomerAddresses = createAsyncThunk(
+  `${baseName}/addNewCustomerAddresses`,
+  async (newAddress) => {
+    const response = await customerAddressesApi.addNewAddress(newAddress);
+    return response;
+  }
+);
+
+export const updateCustomerAddresses = createAsyncThunk(
+  `${baseName}/updateNewCustomerAddresses`,
+  async ({id, newAddress}) => {
+    console.log(newAddress);
+    
+    const response = await customerAddressesApi.updateAddress(id, newAddress);
+    return response;
+  }
+);
+
 export const updateInfomations = createAsyncThunk(
   `${baseName}/updateInfomations`,
   async (newData) => {
@@ -63,6 +81,8 @@ export const customerSlice = createSlice({
     addressStatus: FETCH_IDLE,
     infoStatus: FETCH_IDLE,
     updateStatus: FETCH_IDLE,
+    addAddressStatus: FETCH_IDLE,
+    updateAddressStatus: FETCH_IDLE,
     changePasswordStatus: FETCH_IDLE,
 
     error: null,
@@ -90,14 +110,15 @@ export const customerSlice = createSlice({
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.phone = action.payload.phone;
-        state.birthday = action.payload.birthday
-        state.avtUrl = action.payload.avtUrl
-        state.gender = action.payload.gender
+        state.birthday = action.payload.birthday;
+        state.avtUrl = action.payload.avtUrl;
+        state.gender = action.payload.gender;
       })
       .addCase(fetchCustomerInfomations.rejected, (state, action) => {
         state.infoStatus = FETCH_FAILED;
         state.error = action.error.message;
       })
+
       .addCase(fetchCustomerAddresses.pending, (state) => {
         state.addressStatus = FETCH_LOADING;
       })
@@ -109,6 +130,7 @@ export const customerSlice = createSlice({
         state.addressStatus = FETCH_FAILED;
         state.error = action.error.message;
       })
+
       .addCase(updateInfomations.pending, (state) => {
         state.updateStatus = FETCH_LOADING;
       })
@@ -120,6 +142,45 @@ export const customerSlice = createSlice({
         state.updateStatus = FETCH_FAILED;
         state.error = action.error.message;
       })
+
+      .addCase(addNewCustomerAddresses.pending, (state) => {
+        state.addAddressStatus = FETCH_LOADING;
+      })
+      .addCase(addNewCustomerAddresses.fulfilled, (state, action) => {
+        state.addAddressStatus = FETCH_SUCCEEDED;
+        state.addresses.push(action.payload);
+      })
+      .addCase(addNewCustomerAddresses.rejected, (state, action) => {
+        state.addAddressStatus = FETCH_FAILED;
+        state.error = action.error.message;
+      })
+
+      .addCase(updateCustomerAddresses.pending, (state) => {
+        state.updateAddressStatus = FETCH_LOADING;
+      })
+      .addCase(updateCustomerAddresses.fulfilled, (state, action) => {
+        state.updateAddressStatus = FETCH_SUCCEEDED;
+        const index = state.addresses.findIndex(
+          (address) => address.id === action.payload.id
+        );
+
+        console.log(index);
+        
+
+        if (index !== -1) {
+          // Tạo một mảng mới với phần tử được thay thế
+          state.addresses = [
+            ...state.addresses.slice(0, index),
+            action.payload,
+            ...state.addresses.slice(index + 1),
+          ];
+        }
+      })
+      .addCase(updateCustomerAddresses.rejected, (state, action) => {
+        state.updateAddressStatus = FETCH_FAILED;
+        state.error = action.error.message;
+      })
+
       .addCase(changePassword.pending, (state) => {
         state.changePasswordStatus = FETCH_LOADING;
       })
@@ -145,12 +206,18 @@ export const selectCustomerGender = (state) => state.customer.gender;
 export const selectCustomerBirthday = (state) => state.customer.birthday;
 export const selectCustomerAvata = (state) => state.customer.avtUrl;
 
-
 export const selectCustomerAddresses = (state) => state.customer.addresses;
 
 export const selectCustomerStatus = (state) => state.customer.infoStatus;
 export const selectCustomerAddressStatus = (state) =>
   state.customer.addressStatus;
+
+export const selectCustomerAddNewAddressStatus = (state) =>
+  state.customer.addAddressStatus;
+
+export const selectCustomerUpdateAddressStatus = (state) =>
+  state.customer.updateAddressStatus;
+
 export const selectCustomerError = (state) => state.customer.error;
 
 export const selectCustomerUpdateStatus = (state) =>
