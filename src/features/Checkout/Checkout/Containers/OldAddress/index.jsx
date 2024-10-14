@@ -22,7 +22,7 @@ const OldAddress = () => {
       dispatch(fetchCustomerAddresses());
       // dispatch(setAddressId(customerAddresses[0].id ?? 0))
     }
-  }, []);
+  }, [dispatch, token]);
 
   useEffect(() => {
     if (addressStatus === FETCH_SUCCEEDED) {
@@ -30,7 +30,7 @@ const OldAddress = () => {
         ? dispatch(setAddressId(customerAddresses[0].id))
         : dispatch(setAddressId(0));
     }
-  }, [addressStatus]);
+  }, [dispatch, addressStatus]);
 
   const handleSetAddress = (event) => {
     dispatch(setAddressId(event.target.value));

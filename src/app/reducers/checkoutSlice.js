@@ -42,12 +42,6 @@ export const checkoutSlice = createSlice({
   initialState: {
     items: [],
     addressId: 0,
-    address: {
-      city: "",
-      district: "",
-      ward: "",
-      specificAddress: "",
-    },
 
     paymentMethod: {
       name: COD,
@@ -85,9 +79,6 @@ export const checkoutSlice = createSlice({
     setAddressId: (state, action) => {
       state.addressId = action.payload;
     },
-    setCheckoutAddress: (state, action) => {
-      state.address = action.payload;
-    },
     setPaymentMethod: (state, action) => {
       state.paymentMethod = action.payload;
     },
@@ -96,18 +87,6 @@ export const checkoutSlice = createSlice({
     },
     setFullName: (state, action) => {
       state.fullName = action.payload;
-    },
-    setCheckoutCity: (state, action) => {
-      state.address.city = action.payload;
-    },
-    setCheckoutDistrict: (state, action) => {
-      state.address.district = action.payload;
-    },
-    setCheckoutWard: (state, action) => {
-      state.address.ward = action.payload;
-    },
-    setCheckoutSpecificAddress: (state, action) => {
-      state.address.specificAddress = action.payload;
     },
 
     handleMutateCheckoutItems: (state, action) => {
@@ -213,10 +192,6 @@ export const {
   setCheckoutQuantity,
   removeCheckoutItem,
   setPhoneNumber,
-  setCheckoutCity,
-  setCheckoutDistrict,
-  setCheckoutWard,
-  setCheckoutSpecificAddress,
   setFullName,
   resetCheckoutItem,
   resetCheckout,
@@ -224,7 +199,6 @@ export const {
 
 // đẩy các dữ liệu ra ngoài
 export const selectCheckoutItems = (state) => state.checkout.items;
-export const selectCheckoutAddress = (state) => state.checkout.address;
 export const selectCheckoutAddressId = (state) => state.checkout.addressId;
 export const selectCheckoutPhoneNumber = (state) => state.checkout.phoneNumber;
 export const selectCheckoutFullName = (state) => state.checkout.fullName;

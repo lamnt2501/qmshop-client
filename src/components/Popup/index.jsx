@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { Button } from "../";
-const PopupMessage = (prop) => {
+const Popup = (prop) => {
   const {
     receive,
-    message,
+    children,
     receiveName,
     cancelName,
     handleReceive,
@@ -20,7 +20,7 @@ const PopupMessage = (prop) => {
         }
       )}
     >
-      <div className="text-2xl p-4">{message}</div>
+      <div className="text-2xl p-4">{children}</div>
       <div className="flex gap-1 items-stretch justify-around ">
         {receiveName && (
           <Button black isFull onClick={handleReceive}>
@@ -37,4 +37,4 @@ const PopupMessage = (prop) => {
   );
 };
 
-export default PopupMessage;
+export default Popup;

@@ -9,7 +9,7 @@ import {
 } from "../../app/reducers";
 
 import { FaSearch, FaRegHeart, FaShoppingCart } from "react-icons/fa";
-import { Overlay, PopupMessage, Logo } from "../../components";
+import { Overlay, Popup, Logo } from "../../components";
 import Navbar from "./containers/Navbar";
 import Dropdow from "./components/Dropdow";
 import { FiUser } from "react-icons/fi";
@@ -65,14 +65,15 @@ const Header = () => {
   return (
     <>
       <Overlay isOverlay={overlay} onClick={() => setOverlay(false)}>
-        <PopupMessage
-          message={"Xác nhận đăng xuất?"}
+        <Popup
           receiveName="Đăng xuất"
           cancelName="Hủy"
           receive={overlay}
           handleReceive={() => handleLogout()}
           handleCancel={() => handleCancel()}
-        />
+        >
+          Xác nhận đăng xuất?
+        </Popup>
       </Overlay>
 
       <header

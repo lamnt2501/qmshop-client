@@ -25,9 +25,23 @@ const Overlay = ({ isOverlay, onClick, children }) => {
       "z-50 visible opacity-100": isOverlay,
     }
   );
+
+  const handleClickOverlay = (e) => {
+    // Chặn sự kiện khi người dùng click vào bên trong children
+    if (onClick) onClick(e);
+  };
+
+  const handleClickInside = (e) => {
+    // Ngăn chặn sự kiện click từ children truyền lên overlay
+    e.stopPropagation();
+  };
+
   return (
-    <div className={className} onClick={onClick ? onClick : undefined}>
-      {children}
+    <div className={className} onClick={handleClickOverlay}>
+      {/* Đảm bảo mọi phần tử bên trong không kích hoạt sự kiện click của overlay */}
+      <div onClick={handleClickInside}>
+        {children}
+      </div>
     </div>
   );
 };

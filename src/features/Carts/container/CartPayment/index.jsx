@@ -11,11 +11,7 @@ import {
   updateCartItems,
 } from "../../../../app/reducers";
 import { priceConvert, totalPrice } from "../../../../utils";
-import {
-  Button as CustomButton,
-  Overlay,
-  PopupMessage,
-} from "../../../../components";
+import { Button as CustomButton, Overlay, Popup } from "../../../../components";
 import useSticky from "../../../../hooks/useSticky";
 import { Button } from "@mui/material";
 
@@ -48,12 +44,15 @@ const CartPayment = () => {
       setDeleteItems(true);
     }
   };
-  const handleCancelDeleteItems = () => {
+  const handleCloseOverlay = () => {
     setOverlay(false);
     setDeleteItems(false);
   };
   const handleDeleteCartItems = () => {
     if (orderListItem.length > 0) {
+      setOverlay(false);
+      setDeleteItems(false);
+
       const cartItemUpdate = cartListItem
         .filter((cartItem) =>
           // Lọc ra các item có trong list order
@@ -78,31 +77,33 @@ const CartPayment = () => {
 
   return (
     <>
-      <Overlay isOverlay={overlay} onClick={() => setOverlay(false)}>
+      <Overlay isOverlay={overlay} onClick={() => handleCloseOverlay()}>
         {deleteItems && (
-          <PopupMessage
-            message="Bạn có muốn xóa các sản phẩm đã chọn"
+          <Popup
             receiveName="Xóa"
             cancelName="Giữ lại"
             receive={overlay}
             handleReceive={() => handleDeleteCartItems()}
-            handleCancel={() => handleCancelDeleteItems()}
-          />
+            handleCancel={() => handleCloseOverlay()}
+          >
+            Bạn có muốn xóa các sản phẩm đã chọn
+          </Popup>
         )}
 
         {!deleteItems && !token && (
-          <PopupMessage
-            message="Vui lòng đăng nhập để thanh toán"
+          <Popup
             receiveName="Đăng nhập"
             cancelName="Hủy"
             receive={overlay}
             handleReceive={() => navigate("/login")}
             handleCancel={() => setOverlay(false)}
-          />
+          >
+            Vui lòng đăng nhập để thanh toán
+          </Popup>
         )}
 
         {!deleteItems && token && orderListItem.length === 0 && (
-          <PopupMessage message="Vui lòng chọn sản phẩm" receive={overlay} />
+          <Popup receive={overlay}>Vui lòng chọn sản phẩm</Popup>
         )}
       </Overlay>
       <div
