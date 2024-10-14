@@ -108,7 +108,7 @@ const ProductsList = ({ categoryId }) => {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {status === FETCH_LOADING ?? <Loading />}
+      {status === FETCH_LOADING && <Loading />}
       {allProducts.length > 0
         ? allProducts.map((product, index) => (
             <ProductCard data={product} key={index} />
