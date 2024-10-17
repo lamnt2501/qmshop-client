@@ -20,8 +20,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("vuan201@gmail.com");
-  const [password, setPassword] = useState("Phagame@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const token = useSelector(selectAuthToken);
   const status = useSelector(selectAuthStatus);
