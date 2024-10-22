@@ -16,6 +16,7 @@ import {
   customerSlice,
   ratingsSlice,
   ordersSlice,
+  searchSlice,
 } from "./reducers";
 
 export default configureStore({
@@ -35,5 +36,6 @@ export default configureStore({
     customer: customerSlice,
     ratings: ratingsSlice,
     orders: ordersSlice,
+    search: searchSlice,
   },
 });

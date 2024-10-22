@@ -13,6 +13,7 @@ export { default as AddressListSlice } from "./AddressListSlice";
 export { default as customerSlice } from "./customerSlice";
 export { default as ratingsSlice } from "./ratingsSlice";
 export { default as ordersSlice } from "./ordersSlice";
+export { default as searchSlice } from "./searchSlice";
 
 export * from "./categoriesSlice";
 export * from "./brandsSlice";
@@ -29,3 +30,4 @@ export * from "./AddressListSlice";
 export * from "./customerSlice";
 export * from "./ratingsSlice";
 export * from "./ordersSlice";
+export * from "./searchSlice";
