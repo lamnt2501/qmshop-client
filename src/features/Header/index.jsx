@@ -129,7 +129,7 @@ const Header = () => {
                 <Dropdow listPage={authenLisPageIsLogin} itemRight>
                   <Avatar
                     alt={avataImage.name}
-                    src={customerAvata ?? avataImage.url}
+                    src={customerAvata }
                   />
                   {/* <FiUser /> */}
                 </Dropdow>
