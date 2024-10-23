@@ -6,7 +6,7 @@ const axiosClient = axios.create({
   // baseURL: "http://localhost:8080/api/v1",
   // baseURL: "http://localhost:80/api/v1",
   baseURL: import.meta.env.VITE_BASE_API_URL, // Lấy URL từ biến môi trường
-  timeout: 3000,
+  // timeout: 3000,
 });
 
 // Thêm một bộ đón chặn request

@@ -35,7 +35,7 @@ const Search = () => {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Movie"
+          label="Tìm kiếm"
           onChange={(e) => setName(e.target.value)}
         />
       )}
