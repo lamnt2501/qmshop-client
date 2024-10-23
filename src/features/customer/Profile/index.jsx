@@ -1,6 +1,5 @@
 import { Avatar } from "@mui/material";
 import { Container } from "../../../components";
-import { avataImage } from "../../../config";
 import { useDispatch, useSelector } from "react-redux";
 import GradingIcon from "@mui/icons-material/Grading";
 import HomeIcon from "@mui/icons-material/Home";
@@ -73,7 +72,7 @@ const Profile = () => {
                 <Avatar
                   sx={{ width: "100%", height: "100%" }}
                   alt={"avata"}
-                  src={customerAvata ?? avataImage.url}
+                  src={customerAvata ?? ""}
                 />
               </div>
 
@@ -102,6 +101,7 @@ const Profile = () => {
             <div className="basis-5/6">
               <Outlet
                 context={{
+                  customerAvata,
                   customerName,
                   customerPhone,
                   customerEmail,

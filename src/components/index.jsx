@@ -7,7 +7,6 @@ export { default as Image } from "./Image";
 export { default as Input } from "./Input";
 export { default as Loading } from "./Loading";
 export { default as CustomLink } from "./CustomLink";
-export { default as Search } from "./Search";
 export { default as Sliders } from "./Sliders/Sliders";
 export { default as Overlay } from "./Overlay";
 export { default as Popover } from "./Popover";

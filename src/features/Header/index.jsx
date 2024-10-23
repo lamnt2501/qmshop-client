@@ -8,9 +8,10 @@ import {
   selectCartsItem,
 } from "../../app/reducers";
 
-import { FaSearch, FaRegHeart, FaShoppingCart } from "react-icons/fa";
+import {  FaShoppingCart } from "react-icons/fa";
 import { Overlay, Popup, Logo } from "../../components";
 import Navbar from "./containers/Navbar";
+import Search from "./containers/Search";
 import Dropdow from "./components/Dropdow";
 import { FiUser } from "react-icons/fi";
 import HeaderIcons from "./components/HeaderIcons";
@@ -79,13 +80,13 @@ const Header = () => {
       <header
         className={clsx(
           "sticky top-0 left-0 w-full p-4 border-b-1 border-line-border z-20",
-          "bg-white text-black text-center ",
+          "bg-white text-black ",
           "transition-transform duration-300",
           `${useScrollDirection() ? "-translate-y-full" : "translate-y-0"}`
         )}
       >
         <div className={"flex items-center space-x-2 justify-between max-h-14"}>
-          <div className="flex self-center max-h-14">
+          <div className="flex self-center max-h-14 basis-1/3">
             <div className="basis-52 self-center">
               <Logo />
             </div>
@@ -96,9 +97,7 @@ const Header = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <HeaderIcons cla>
-              <FaSearch />
-            </HeaderIcons>
+            <Search />
 
             {/* <HeaderIcons url={"/carts"} className={"relative"}>
               <div
@@ -117,9 +116,9 @@ const Header = () => {
               </Badge>
             </HeaderIcons>
 
-            <HeaderIcons>
+            {/* <HeaderIcons>
               <FaRegHeart />
-            </HeaderIcons>
+            </HeaderIcons> */}
 
             <HeaderIcons isLink={false}>
               {token === null ? (
@@ -130,7 +129,7 @@ const Header = () => {
                 <Dropdow listPage={authenLisPageIsLogin} itemRight>
                   <Avatar
                     alt={avataImage.name}
-                    src={customerAvata ?? avataImage.url}
+                    src={customerAvata }
                   />
                   {/* <FiUser /> */}
                 </Dropdow>

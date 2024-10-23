@@ -106,7 +106,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="navbar flex justify-left">
+    <nav className="navbar flex justify-left text-center">
       {/* <div className={navItem}>
         <NavLink to={"/"}>Trang chủ</NavLink>
       </div> */}
