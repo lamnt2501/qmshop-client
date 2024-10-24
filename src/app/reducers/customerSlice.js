@@ -37,9 +37,9 @@ export const addNewCustomerAddresses = createAsyncThunk(
 
 export const updateCustomerAddresses = createAsyncThunk(
   `${baseName}/updateNewCustomerAddresses`,
-  async ({id, newAddress}) => {
+  async ({ id, newAddress }) => {
     console.log(newAddress);
-    
+
     const response = await customerAddressesApi.updateAddress(id, newAddress);
     return response;
   }
@@ -49,6 +49,14 @@ export const updateInfomations = createAsyncThunk(
   `${baseName}/updateInfomations`,
   async (newData) => {
     const response = await customerApi.updateInfomations(newData);
+    return response;
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  `${baseName}/updateAvatar`,
+  async (newAvatar) => {
+    const response = await customerApi.updateAvatar(newAvatar);
     return response;
   }
 );
@@ -84,6 +92,7 @@ export const customerSlice = createSlice({
     addAddressStatus: FETCH_IDLE,
     updateAddressStatus: FETCH_IDLE,
     changePasswordStatus: FETCH_IDLE,
+    updateAvatarStatus: FETCH_IDLE,
 
     error: null,
   },
@@ -95,6 +104,9 @@ export const customerSlice = createSlice({
     resetChangePasswordStatus: (state) => {
       state.changePasswordResult = {};
       state.changePasswordStatus = FETCH_IDLE;
+    },
+    resetUpdateAvatarStatus: (state) => {
+      state.updateAvatarStatus = FETCH_IDLE;
     },
   },
 
@@ -164,9 +176,6 @@ export const customerSlice = createSlice({
           (address) => address.id === action.payload.id
         );
 
-        console.log(index);
-        
-
         if (index !== -1) {
           // Tạo một mảng mới với phần tử được thay thế
           state.addresses = [
@@ -179,6 +188,18 @@ export const customerSlice = createSlice({
       .addCase(updateCustomerAddresses.rejected, (state, action) => {
         state.updateAddressStatus = FETCH_FAILED;
         state.error = action.error.message;
+      })
+
+      .addCase(updateAvatar.pending, (state) => {
+        state.updateAvatarStatus = FETCH_LOADING;
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.updateAvatarStatus = FETCH_SUCCEEDED;
+        state.avtUrl = action.payload;
+      })
+      .addCase(updateAvatar.rejected, (state, action) => {
+        state.updateAvatarStatus = FETCH_FAILED;
+        state.error = action.error;
       })
 
       .addCase(changePassword.pending, (state) => {
@@ -195,8 +216,11 @@ export const customerSlice = createSlice({
   },
 });
 
-export const { resetUpdateStatus, resetChangePasswordStatus } =
-  customerSlice.actions;
+export const {
+  resetUpdateStatus,
+  resetChangePasswordStatus,
+  resetUpdateAvatarStatus,
+} = customerSlice.actions;
 
 // đẩy các dữ liệu ra ngoài
 export const selectCustomerName = (state) => state.customer.name;
@@ -229,5 +253,7 @@ export const selectCustomerChangePasswordStatus = (state) =>
   state.customer.changePasswordStatus;
 export const selectCustomerChangePasswordResult = (state) =>
   state.customer.changePasswordResult;
+export const selectCustomerUpdateAvatar = (state) =>
+  state.customer.updateAvatarStatus;
 
 export default customerSlice.reducer;

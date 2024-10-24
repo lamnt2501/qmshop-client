@@ -18,6 +18,11 @@ const customerApi = {
     return axiosClient.put(url, newData);
   },
 
+  updateAvatar(newAvatar) {
+    const url = `${baseUrl}/avatar`;
+    return axiosClient.put(url, newAvatar);
+  },
+
   getAddresses() {
     const url = baseUrl + customerAddresses;
     return axiosClient.get(url);

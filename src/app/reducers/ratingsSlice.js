@@ -32,7 +32,7 @@ export const ratingsSlice = createSlice({
 
   // các giá trị ban đầu
   initialState: {
-    ratings: [],
+    ratings: {},
     status: FETCH_IDLE,
     error: null,
   },

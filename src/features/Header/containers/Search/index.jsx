@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   searchProductsByName,
   selectSearchResult,
-  // selectSearchStatus,
 } from "../../../../app/reducers";
-import { Autocomplete, TextField } from "@mui/material";
 import { useNavigate } from "react-router";
+import { Autocomplete, TextField } from "@mui/material";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -27,15 +26,19 @@ const Search = () => {
 
   return (
     <Autocomplete
-      disablePortal
+      fullWidth
+      freeSolo
+      disableClearable
+      placeholder={"Tìm kiếm"}
       onChange={(e, newValue) => handleOnChange(e, newValue)}
       options={products}
       getOptionLabel={(option) => option.name}
-      sx={{ width: 200 }}
+      // sx={{ width: 200 }}
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Movie"
+          label="Tìm kiếm"
+          variant="filled"
           onChange={(e) => setName(e.target.value)}
         />
       )}
