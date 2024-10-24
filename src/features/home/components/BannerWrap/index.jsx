@@ -4,7 +4,7 @@ import "./BannerWrap.css";
 
 const BannerWrap = (prop) => {
   const { top, bottom } = prop;
-  const { image, name, title, description } = prop.data;
+  const { image, name, title, description, slug } = prop.data;
 
   const childrenClass = clsx("text-white text-left place-self-center", {
     "md:justify-self-start md:self-start": top,
@@ -26,7 +26,7 @@ const BannerWrap = (prop) => {
           ) : undefined}
           <CustomLink
             textLight
-            url="/collections"
+            url={`/collections/${slug}`}
             bottomLine
             textDark
             iconEndText
