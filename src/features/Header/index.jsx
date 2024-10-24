@@ -8,7 +8,7 @@ import {
   selectCartsItem,
 } from "../../app/reducers";
 
-import {  FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { Overlay, Popup, Logo } from "../../components";
 import Navbar from "./containers/Navbar";
 import Search from "./containers/Search";
@@ -95,10 +95,11 @@ const Header = () => {
               <Navbar />
             </div>
           </div>
-
-          <div className="flex items-center gap-4">
+          <div className="basis-1/3">
             <Search />
+          </div>
 
+          <div className="flex items-center gap-4 basis-1/3 justify-end">
             {/* <HeaderIcons url={"/carts"} className={"relative"}>
               <div
                 className={
@@ -127,10 +128,7 @@ const Header = () => {
                 </Dropdow>
               ) : (
                 <Dropdow listPage={authenLisPageIsLogin} itemRight>
-                  <Avatar
-                    alt={avataImage.name}
-                    src={customerAvata }
-                  />
+                  <Avatar alt={avataImage.name} src={customerAvata} />
                   {/* <FiUser /> */}
                 </Dropdow>
               )}
