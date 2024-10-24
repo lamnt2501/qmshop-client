@@ -8,7 +8,8 @@ const CheckoutBillPreview = () => {
   const listOrderItem = useSelector(selectCheckoutItems);
 
   const tempPrice = totalPrice(listOrderItem);
-  const [discount, setDiscount] = useState({ name: "", discount: 100000 });
+  const discount = { name: "", discount: 0 }
+  // const [discount, setDiscount] = useState({ name: "", discount: 0 });
   const [shippingFee, setShippingFee] = useState(0);
 
   useEffect(() => {
