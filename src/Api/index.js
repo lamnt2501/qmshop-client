@@ -10,3 +10,4 @@ export { default as addressListApi } from "./addressListApi";
 export { default as customerApi } from "./customerApi";
 export { default as customerAddressesApi } from "./customerAddressesApi";
 export { default as ratingsApi } from "./ratingsApi";
+export { default as discountApi } from "./discountApi";

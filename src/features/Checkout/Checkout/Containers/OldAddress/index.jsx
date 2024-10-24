@@ -52,23 +52,6 @@ const OldAddress = () => {
             </Option>
           ))}
       </Select>
-      {/* <select
-        className="p-4 border border-slate-600 w-full rounded-md"
-        name="oldAddress"
-        id="oldAddress"
-        value={AddressId}
-        onChange={handleSetAddress}
-      >
-        {customerAddresses.length > 0 ? (
-          customerAddresses.map((address) => (
-            <option key={address.id} value={address.id}>
-              {address.specificAddress}
-            </option>
-          ))
-        ) : (
-          <option>Bạn chưa có địa chỉ đã lưu</option>
-        )}
-      </select> */}
     </div>
   );
 };

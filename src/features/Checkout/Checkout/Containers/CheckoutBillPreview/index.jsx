@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCheckoutItems } from "../../../../../app/reducers";
 import { priceConvert, totalPrice } from "../../../../../utils";
@@ -10,6 +10,12 @@ const CheckoutBillPreview = () => {
   const tempPrice = totalPrice(listOrderItem);
   const [discount, setDiscount] = useState({ name: "", discount: 100000 });
   const [shippingFee, setShippingFee] = useState(0);
+
+  useEffect(() => {
+    if (tempPrice > 1200000) setShippingFee(0);
+    else setShippingFee(30000);
+  }, [tempPrice]);
+
   return (
     <div className="my-4">
       <h3 className="text-3xl">Danh sách sản phẩm</h3>

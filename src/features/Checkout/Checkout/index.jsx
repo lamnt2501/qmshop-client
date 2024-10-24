@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import CheckoutInfomations from "./Containers/CheckoutInfomations";
-import CheckoutBillPreview from "./Containers/CheckoutBillPreview";
 import { Container } from "@mui/material";
 import CheckoutInfomationsHeader from "./Components/CheckoutInfomationsHeader";
 import { useDispatch } from "react-redux";
@@ -19,15 +18,10 @@ const Checkout = () => {
 
   return (
     <div className="my-8">
-      <Container>
-        <CheckoutInfomationsHeader />
-        <div className="grid grid-cols-4 lg:grid-cols-8 space-x-4">
-          <div className="col-span-4">
-            <CheckoutInfomations />
-          </div>
-          <div className="col-span-4">
-            <CheckoutBillPreview />
-          </div>
+      <Container className="flex justify-center">
+        <div className="w-1/2">
+          <CheckoutInfomationsHeader />
+          <CheckoutInfomations />
         </div>
       </Container>
     </div>

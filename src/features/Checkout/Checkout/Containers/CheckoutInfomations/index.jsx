@@ -22,6 +22,7 @@ import { useNavigate } from "react-router";
 import { Button } from "@mui/material";
 import OldAddress from "../OldAddress";
 import ChoiceAddress from "../../Components/ChoiceAddress";
+import CheckoutBillPreview from "../CheckoutBillPreview";
 
 const CheckoutInfomations = () => {
   const dispatch = useDispatch();
@@ -131,6 +132,7 @@ const CheckoutInfomations = () => {
         </div>
         {newAddress ? <NewAddress /> : <OldAddress />}
         <CheckoutForm />
+        <CheckoutBillPreview/>
         <h3 className="text-3xl">Phương thức thanh toán</h3>
         <PaymentMethod />
         <div className="my-4">
