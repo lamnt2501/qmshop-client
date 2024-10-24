@@ -5,22 +5,24 @@ import Rating from "../Ratings";
 import {
   fetchRatings,
   selectRatings,
-  // selectRatingsStatus,
+  selectRatingsStatus,
 } from "../../../../app/reducers";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
+import { FETCH_SUCCEEDED } from "../../../../config";
 const ProductDescription = ({ data }) => {
-  const { id, name, description, brand, categories, options } = data;
+  const { id, name, description, brand, categories, options, avgRatings } =
+    data;
 
   const dispatch = useDispatch();
   const ratings = useSelector(selectRatings);
-  // const ratingStatus = useSelector(selectRatingsStatus);
+  const ratingStatus = useSelector(selectRatingsStatus);
 
   useEffect(() => {
     if (id) {
       dispatch(fetchRatings(id));
     }
-  }, []);
+  }, [dispatch, id]);
 
   // Lấy ra các giá trị duy nhất của size và màu và sau đó chuyển nó thành một chuỗi được cách nhau bởi dấu ,
   const color = Object.keys(Object.groupBy(options, ({ color }) => color));
@@ -61,8 +63,9 @@ const ProductDescription = ({ data }) => {
         dangerouslySetInnerHTML={{ __html: description.replace(/<script/, "") }}
       ></div>
 
-      <Title>đánh giá sản phẩm</Title>
-      <Rating ratings={ratings} />
+      {ratingStatus === FETCH_SUCCEEDED && (
+        <Rating ratings={ratings} avgRatings={avgRatings} />
+      )}
     </div>
   );
 };
