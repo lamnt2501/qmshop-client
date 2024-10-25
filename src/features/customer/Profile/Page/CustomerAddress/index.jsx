@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import AddressBox from "../../container/AddressBox";
 import { useDispatch } from "react-redux";
-import { resetAddressList } from "../../../../../app/reducers";
+import { deleteCustomerAddresses, resetAddressList } from "../../../../../app/reducers";
 const CustomerAddress = () => {
   const dispatch = useDispatch();
   const { listAddress } = useOutletContext();
@@ -55,7 +55,8 @@ const CustomerAddress = () => {
   };
 
   const handleDeleteAddress = () => {
-    dispatch()
+    dispatch(deleteCustomerAddresses(selectorAddressId))
+    handleCloseOverlay()
   };
 
   return (

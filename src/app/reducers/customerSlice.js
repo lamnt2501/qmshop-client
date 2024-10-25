@@ -36,11 +36,17 @@ export const addNewCustomerAddresses = createAsyncThunk(
 );
 
 export const updateCustomerAddresses = createAsyncThunk(
-  `${baseName}/updateNewCustomerAddresses`,
+  `${baseName}/updateCustomerAddresses`,
   async ({ id, newAddress }) => {
-    console.log(newAddress);
-
     const response = await customerAddressesApi.updateAddress(id, newAddress);
+    return response;
+  }
+);
+
+export const deleteCustomerAddresses = createAsyncThunk(
+  `${baseName}/deleteCustomerAddresses`,
+  async (id) => {
+    const response = await customerApi.deleteAddress(id);
     return response;
   }
 );
@@ -93,6 +99,7 @@ export const customerSlice = createSlice({
     updateAddressStatus: FETCH_IDLE,
     changePasswordStatus: FETCH_IDLE,
     updateAvatarStatus: FETCH_IDLE,
+    deleteAddressStatus: FETCH_IDLE,
 
     error: null,
   },
@@ -202,6 +209,20 @@ export const customerSlice = createSlice({
         state.error = action.error;
       })
 
+      .addCase(deleteCustomerAddresses.pending, (state) => {
+        state.deleteAddressStatus = FETCH_LOADING;
+      })
+      .addCase(deleteCustomerAddresses.fulfilled, (state, action) => {
+        state.deleteAddressStatus = FETCH_SUCCEEDED;
+        console.log(action.payload);
+
+        // state.avtUrl = action.payload;
+      })
+      .addCase(deleteCustomerAddresses.rejected, (state, action) => {
+        state.deleteAddressStatus = FETCH_FAILED;
+        state.error = action.error;
+      })
+
       .addCase(changePassword.pending, (state) => {
         state.changePasswordStatus = FETCH_LOADING;
       })
@@ -241,6 +262,9 @@ export const selectCustomerAddNewAddressStatus = (state) =>
 
 export const selectCustomerUpdateAddressStatus = (state) =>
   state.customer.updateAddressStatus;
+
+export const selectCustomerDeleteAddressStatus = (state) =>
+  state.customer.deleteAddressStatus;
 
 export const selectCustomerError = (state) => state.customer.error;
 

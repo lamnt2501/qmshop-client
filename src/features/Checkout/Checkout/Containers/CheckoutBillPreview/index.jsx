@@ -47,7 +47,7 @@ const CheckoutBillPreview = () => {
         <div>{priceConvert(tempPrice)}</div>
       </div>
       <div className="flex justify-between text-lg">
-        <div>Mã giảm giá</div>
+        <div>giảm giá</div>
         <div>{priceConvert(-discount.discount)}</div>
       </div>
       <div className="flex justify-between text-lg">
