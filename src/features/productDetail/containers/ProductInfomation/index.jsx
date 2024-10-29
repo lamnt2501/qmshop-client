@@ -38,7 +38,7 @@ import {
 import { priceConvert } from "../../../../utils";
 
 const ProductInfomation = ({ data }) => {
-  const { name, options, images, slug } = data;
+  const { name, options, images, slug, discount  } = data;
 
   const [quantity, setQuantity] = useState(1);
 
@@ -72,7 +72,7 @@ const ProductInfomation = ({ data }) => {
 
     // chỉnh sửa quantity sau khi re-render
     if (quantity > selectOption.quantity) setQuantity(selectOption.quantity);
-  }, [selectColor, selectSize]);
+  }, [dispatch, selectColor, selectSize, options, quantity, selectOption.quantity]);
 
   // kiểm tra các màu có tồn tại hay không khi chọn size
   const isColorValid = (color) => {
@@ -152,6 +152,7 @@ const ProductInfomation = ({ data }) => {
         size: selectOption.size,
         imageUrl: newImages[selectColor][0].url,
         quantity: quantity,
+        discount:discount
       })
     );
   };

@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import Address from "../Address";
 import CheckoutForm from "../CheckoutForm";
 import PaymentMethod from "../PaymentMethod";
-import { Button, CustomSnackbar } from "../../../../../components";
+import { CustomSnackbar, NewAddress } from "../../../../../components";
 import {
   addOrders,
   selectAddressCityName,
@@ -20,6 +19,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { ALERT_ERROR, ALERT_SUCCESS, COD, VN_PAY } from "../../../../../config";
 import { useNavigate } from "react-router";
+import { Button } from "@mui/material";
+import OldAddress from "../OldAddress";
+import ChoiceAddress from "../../Components/ChoiceAddress";
+import CheckoutBillPreview from "../CheckoutBillPreview";
 
 const CheckoutInfomations = () => {
   const dispatch = useDispatch();
@@ -42,6 +45,8 @@ const CheckoutInfomations = () => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState(ALERT_SUCCESS);
 
+  const [newAddress, setNewAddress] = useState(false);
+
   useEffect(() => {
     if (orderPaymentMethod.provider === VN_PAY && vnPayResult.PaymentUrl) {
       window.location.href = vnPayResult.PaymentUrl;
@@ -63,28 +68,33 @@ const CheckoutInfomations = () => {
     vnPayResult,
   ]);
 
-  const handleOrder = (e) => {
-    e.preventDefault();
-
+  const getActive = () => {
     // Kiểm tra điều kiện chung
     const isOrderValid =
       orderItem.length > 0 && orderFullName !== "" && orderPhoneNumber !== "";
 
     // Kiểm tra điều kiện có sử dụng addressId hay không
-    const isAddressComplete =
+    const isNewAddressComplete =
       city !== "" && district !== "" && ward !== "" && specificAddress !== "";
 
-    if (
-      isOrderValid &&
-      (isAddressComplete || orderAddressId !== 0 || orderAddressId !== "0")
-    ) {
+    const isAddressComplete = newAddress
+      ? isNewAddressComplete
+      : orderAddressId !== 0 || orderAddressId !== "0";
+
+    return isOrderValid && isAddressComplete;
+  };
+
+  const handleOrder = (e) => {
+    e.preventDefault();
+    const valid = getActive();
+    if (valid) {
       const order = {
         items: orderItem,
         paymentMethod: orderPaymentMethod,
         voucher: orderVoucher,
         receiverName: orderFullName,
         phoneNumber: orderPhoneNumber,
-        ...(isAddressComplete
+        ...(newAddress
           ? { address: { city, district, ward, specificAddress } }
           : { addressId: orderAddressId }),
       };
@@ -106,12 +116,32 @@ const CheckoutInfomations = () => {
       <div className="my-4">{/* <CheckoutInfomationsHeader /> */}</div>
       <div className="my-4 flex flex-col gap-4">
         <h3 className="text-3xl">Thông tin giao hàng</h3>
-        <Address />
+        <div className="flex gap-4 justify-center text-center text-2xl">
+          <ChoiceAddress
+            active={!newAddress}
+            changeActive={() => setNewAddress(false)}
+          >
+            Sử dụng địa chỉ đã có
+          </ChoiceAddress>
+          <ChoiceAddress
+            active={newAddress}
+            changeActive={() => setNewAddress(true)}
+          >
+            Sử dụng địa chỉ mới
+          </ChoiceAddress>
+        </div>
+        {newAddress ? <NewAddress /> : <OldAddress />}
         <CheckoutForm />
+        <CheckoutBillPreview/>
         <h3 className="text-3xl">Phương thức thanh toán</h3>
         <PaymentMethod />
         <div className="my-4">
-          <Button isFull black afterAnimation onClick={(e) => handleOrder(e)}>
+          <Button
+            fullWidth
+            variant="contained"
+            disabled={!getActive()}
+            onClick={(e) => handleOrder(e)}
+          >
             Xác nhận thanh toán
           </Button>
         </div>

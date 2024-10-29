@@ -9,6 +9,7 @@ import {
   setAddressId,
 } from "../../../../../app/reducers";
 import { FETCH_SUCCEEDED } from "../../../../../config";
+import { Option, Select } from "@mui/joy";
 
 const OldAddress = () => {
   const dispatch = useDispatch();
@@ -30,31 +31,27 @@ const OldAddress = () => {
         ? dispatch(setAddressId(customerAddresses[0].id))
         : dispatch(setAddressId(0));
     }
-  }, [dispatch, addressStatus]);
+  }, [dispatch, addressStatus, customerAddresses]);
 
-  const handleSetAddress = (event) => {
-    dispatch(setAddressId(event.target.value));
+  const handleSetAddress = (event, newValue) => {
+    dispatch(setAddressId(newValue));
   };
 
   return (
     <div>
-      <select
-        className="p-4 border border-slate-600 w-full rounded-md"
-        name="oldAddress"
-        id="oldAddress"
+      <Select
+        placeholder={"Địa chỉ"}
         value={AddressId}
         onChange={handleSetAddress}
+        sx={{ minWidth: 200 }}
       >
-        {customerAddresses.length > 0 ? (
-          customerAddresses.map((address) => (
-            <option key={address.id} value={address.id}>
-              {address.specificAddress}
-            </option>
-          ))
-        ) : (
-          <option>Bạn chưa có địa chỉ đã lưu</option>
-        )}
-      </select>
+        {Array.isArray(customerAddresses) &&
+          customerAddresses.map(({ id, specificAddress }) => (
+            <Option key={id} value={id}>
+              {specificAddress}
+            </Option>
+          ))}
+      </Select>
     </div>
   );
 };
