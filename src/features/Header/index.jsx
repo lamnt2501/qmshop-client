@@ -36,7 +36,7 @@ const Header = () => {
         0
       );
       setTotalCartItem(newTotalCartItem);
-    }
+    } else setTotalCartItem(0);
   }, [cartItem]);
 
   useEffect(() => {
