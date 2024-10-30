@@ -7,20 +7,22 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchBrands,
   fetchCategories,
-  // selectBrandsError,
+  selectAuthToken,
   selectBrandsItem,
   selectBrandsStatus,
-  // selectCategoriesError,
   selectCategoriesItem,
   selectCategoriesStatus,
   setParamsCategory,
 } from "../../../../app/reducers";
 import { FETCH_SUCCEEDED } from "../../../../config";
+import TemporaryDrawer from "../TemporaryDrawer";
+import { Logout } from "@mui/icons-material";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const token = useSelector(selectAuthToken);
   // categories
   const categories = useSelector(selectCategoriesItem);
   const categoriesStatus = useSelector(selectCategoriesStatus);
@@ -92,6 +94,35 @@ const Navbar = () => {
     }
   }, [brandsStatus, categoriesStatus]);
 
+  const listForLoginUser = [
+    {
+      pageName: "Quản lý tài khoản",
+      onClick: () => {
+        navigate("/profile");
+      },
+    },
+    {
+      pageName: "Đăng xuất",
+      onClick: () => {
+        dispatch(Logout());
+      },
+    },
+  ];
+  const listForNotLoginUser = [
+    {
+      pageName: "Đăng nhập",
+      onClick: () => {
+        navigate("/login");
+      },
+    },
+    {
+      pageName: "Đăng ký",
+      onClick: () => {
+        navigate("/register");
+      },
+    },
+  ];
+
   // const listPage = [
   //   { pageName: "Home", url: "/" },
   //   { pageName: "Đăng nhập", url: "/login" },
@@ -106,27 +137,47 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="navbar flex justify-left text-center">
-      {/* <div className={navItem}>
+    <>
+      <div className="block lg:hidden">
+        <TemporaryDrawer
+          listPages={[
+            {
+              title: "Nhãn hàng",
+              listpage: listBrands,
+            },
+            {
+              title: "Các loại giày",
+              listpage: listCategories,
+            },
+            {
+              title: "Tài khoản",
+              listpage: token ? listForLoginUser : listForNotLoginUser,
+            },
+          ]}
+        />
+      </div>
+      <nav className="navbar hidden lg:flex justify-left text-center">
+        {/* <div className={navItem}>
         <NavLink to={"/"}>Trang chủ</NavLink>
       </div> */}
-      {/* <div className={navItem}>
+        {/* <div className={navItem}>
         <Dropdow listPage={listPage} itemLeft>
           Trang
         </Dropdow>
       </div> */}
-      <div className={navItem}>
-        <Dropdow listPage={listBrands} itemLeft>
-          Nhãn hàng
-        </Dropdow>
-      </div>
-      {/* ) : undefined} */}
-      <div className={navItem}>
-        <Dropdow listPage={listCategories} itemLeft>
-          Các loại giày
-        </Dropdow>
-      </div>
-    </nav>
+        <div className={navItem}>
+          <Dropdow listPage={listBrands} itemLeft>
+            Nhãn hàng
+          </Dropdow>
+        </div>
+        {/* ) : undefined} */}
+        <div className={navItem}>
+          <Dropdow listPage={listCategories} itemLeft>
+            Các loại giày
+          </Dropdow>
+        </div>
+      </nav>
+    </>
   );
 };
 
