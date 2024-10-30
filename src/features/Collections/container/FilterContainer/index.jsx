@@ -57,7 +57,7 @@ const FilterContainer = ({ isOpenFilter, onClick }) => {
         <div className="flex justify-between items-center w-full h-[54px] bg-slate-100 p-4">
           <div className="flex justify-normal items-center gap-2">
             <IoFilter />
-            <div>bộ lọ</div>
+            <div>bộ lọc</div>
           </div>
           <div></div>
           <div

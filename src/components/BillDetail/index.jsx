@@ -26,7 +26,7 @@ import {
 } from "../../utils";
 import ProductBillItem from "../ProductBillItem";
 
-const BillDetail = ({ orderId, orderItem }) => {
+const BillDetail = ({ orderId, orderItem, onClick }) => {
 
   // const breadcrumbList = [
   //   { url: "carts", name: "Giỏ hàng" },
@@ -55,7 +55,7 @@ const BillDetail = ({ orderId, orderItem }) => {
   }, [dispatch, orderId, orderItem]);
 
   return (
-    <Container>
+    <Container onClick={onClick}>
       {/* <CustomBreadcrumbs breadcrumbs={breadcrumbList}></CustomBreadcrumbs> */}
       {orderStatus === FETCH_LOADING && <Loading />}
       {orderStatus === FETCH_SUCCEEDED && (
@@ -176,5 +176,6 @@ const BillDetail = ({ orderId, orderItem }) => {
 BillDetail.propTypes = {
   orderId: PropTypes.any,
   orderItem: PropTypes.object,
+  onClick:PropTypes.func
 };
 export default BillDetail;

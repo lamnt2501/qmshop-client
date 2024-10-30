@@ -58,7 +58,7 @@ const ChangeAvata = () => {
         <div className="col-span-5 md:col-span-7">
           <div className=" my-10">
             <form
-              id="changeCustomerPassword"
+              id="changeAvatar"
               className="grid grid-cols-1 px-10 md:px-32 gap-4"
             >
               <div className="justify-self-center">

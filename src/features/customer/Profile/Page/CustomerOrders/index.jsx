@@ -34,9 +34,7 @@ const CustomerOrders = () => {
       <ul className="flex flex-col gap-4">
         {selected === 0 ? (
           listOrder.map((order, index) => (
-            <li key={index} className="list-none">
-              <OrderItem order={order} />
-            </li>
+            <OrderItem key={index} order={order} />
           ))
         ) : filterOrderItem[
             translateLanguage(
@@ -57,7 +55,9 @@ const CustomerOrders = () => {
             </li>
           ))
         ) : (
-          <CustomBox className="text-center p-4 my-10 text-2xl">Không có đơn hàng</CustomBox>
+          <CustomBox className="text-center p-4 my-10 text-2xl">
+            Không có đơn hàng
+          </CustomBox>
         )}
       </ul>
     </div>
