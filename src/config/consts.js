@@ -3,7 +3,7 @@ import CreditScoreIcon from "@mui/icons-material/CreditScore";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import DoDisturbAltIcon from "@mui/icons-material/DoDisturbAlt";
-
+import Inventory2Icon from "@mui/icons-material/Inventory2"
 // fetch status
 export const FETCH_IDLE = "idle";
 export const FETCH_LOADING = "loading";
@@ -28,6 +28,7 @@ export const COD = "COD";
 export const ORDER_STATUS = [
   "WAITING",
   "APPROVED",
+  "PACKING",
   "SHIPPING",
   "SUCCEEDED",
   "CANCEL",
@@ -44,6 +45,7 @@ export const VN_ORDER_STATUS = [
 export const STYLE_ORDER_STATUS = [
   { color: "bg-yellow-100", Icon: AccessTimeFilledIcon },
   { color: "bg-teal-100", Icon: CreditScoreIcon },
+  { color: "bg-teal-200", Icon: Inventory2Icon },
   { color: "bg-cyan-100", Icon: LocalShippingIcon },
   { color: "bg-green-100", Icon: CheckCircleOutlineIcon },
   { color: "bg-rose-100", Icon: DoDisturbAltIcon },
