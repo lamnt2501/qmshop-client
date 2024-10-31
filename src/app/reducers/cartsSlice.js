@@ -70,7 +70,7 @@ export const cartsSlice = createSlice({
       } else {
         state.cartItems.push(action.payload);
       }
-
+      state.status = FETCH_SUCCEEDED;
       localStorage.setItem("carts", JSON.stringify(state.cartItems ?? []));
     },
     removeCartItems: (state, action) => {
@@ -130,7 +130,10 @@ export const cartsSlice = createSlice({
       .addCase(updateCartItems.fulfilled, (state, action) => {
         state.status = FETCH_SUCCEEDED;
         state.cartItems = action.payload.items;
-        localStorage.setItem("carts", JSON.stringify(action.payload.items ?? []));
+        localStorage.setItem(
+          "carts",
+          JSON.stringify(action.payload.items ?? [])
+        );
       })
       .addCase(updateCartItems.rejected, (state, action) => {
         state.status = FETCH_FAILED;

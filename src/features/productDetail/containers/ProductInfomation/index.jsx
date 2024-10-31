@@ -28,7 +28,6 @@ import {
   CustomSnackbar,
   InputQuantity,
 } from "../../../../components";
-import { FaRegHeart } from "react-icons/fa";
 import {
   ALERT_ERROR,
   ALERT_SUCCESS,
@@ -240,17 +239,17 @@ const ProductInfomation = ({ data }) => {
       </div>
 
       <div className="mb-5 flex gap-1 items-stretch">
-        <div className="basis-11/12" onClick={() => handleAddToCart()}>
+        <div className="basis-full" onClick={() => handleAddToCart()}>
           <Button black afterAnimation isFull>
             Thêm vào giỏ hàng
           </Button>
         </div>
 
-        <div className="basis-1/12 flex justify-center items-center text-xl">
+        {/* <div className="basis-1/12 flex justify-center items-center text-xl">
           <Button white>
             <FaRegHeart />
           </Button>
-        </div>
+        </div> */}
       </div>
 
       <div className="mb-5">
