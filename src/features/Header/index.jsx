@@ -36,7 +36,7 @@ const Header = () => {
         0
       );
       setTotalCartItem(newTotalCartItem);
-    }
+    } else setTotalCartItem(0);
   }, [cartItem]);
 
   useEffect(() => {
@@ -85,21 +85,23 @@ const Header = () => {
           `${useScrollDirection() ? "-translate-y-full" : "translate-y-0"}`
         )}
       >
-        <div className={"flex items-center space-x-2 justify-between max-h-14"}>
-          <div className="flex self-center max-h-14 basis-1/3">
-            <div className="basis-52 self-center">
+        <div
+          className={"flex items-center space-x-2 justify-between  max-h-14"}
+        >
+          <div className="flex self-center max-h-14 lg:basis-1/2 basis-1/6">
+            <div className="basis-52 self-center hidden lg:block">
               <Logo />
             </div>
 
-            <div className="pl-8 self-center">
+            <div className="lg:pl-8 lg:self-center">
               <Navbar />
             </div>
           </div>
-          <div className="basis-1/3">
+          <div className="lg:hidden basis-full">
             <Search />
           </div>
-
-          <div className="flex items-center gap-4 basis-1/3 justify-end">
+          <div className="block lg:hidden basis-1/6 lg:basis-0"></div>
+          <div className="hidden lg:flex items-center gap-4 basis-1/3 justify-end ">
             {/* <HeaderIcons url={"/carts"} className={"relative"}>
               <div
                 className={
@@ -110,6 +112,9 @@ const Header = () => {
               </div>
               <FaShoppingCart />
             </HeaderIcons> */}
+            <div className="w-full hidden lg:block">
+              <Search />
+            </div>
 
             <HeaderIcons url={"/carts"} className={"relative"}>
               <Badge badgeContent={totalCartItem} color="info">

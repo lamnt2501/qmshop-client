@@ -35,6 +35,10 @@ const customerApi = {
     const url = `${customerAddresses}/${addressId}`;
     return axiosClient.put(url, newAddress);
   },
+  deleteAddress(addressId ) {
+    const url = `${customerAddresses}/${addressId}`;
+    return axiosClient.delete(url);
+  },
 };
 
 export default customerApi;

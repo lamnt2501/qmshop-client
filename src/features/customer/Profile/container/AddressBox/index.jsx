@@ -47,7 +47,7 @@ const AddressBox = ({
       dispatch(addNewCustomerAddresses(newAddress));
     } else if (isUpdateAddress && addressId) {
       dispatch(updateCustomerAddresses({ id: addressId, newAddress }));
-    }
+    } 
     handleCancel();
   };
 

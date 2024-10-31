@@ -25,13 +25,9 @@ const OrderItem = ({ order }) => {
         </div>
       </div>
       <Link to={`${order.orderId}`} className="my-4">
-        <ul>
-          {order.items.map((item, index) => (
-            <li key={index} className="list-none">
-              <ProductItem product={item} />
-            </li>
-          ))}
-        </ul>
+        {order.items.map((item, index) => (
+          <ProductItem key={index} product={item} />
+        ))}
       </Link>
       <div className="flex justify-between items-center my-4">
         <div>

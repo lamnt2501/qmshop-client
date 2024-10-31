@@ -15,6 +15,9 @@ import {
 import { translateLanguage } from "../../../../../utils";
 
 const StepOrder = ({ order, trackings }) => {
+
+  const newStyleOrderStatus = STYLE_ORDER_STATUS.filter((item) => item.color !== "bg-rose-100" )
+
   return (
     <Stepper
       size="lg"
@@ -47,7 +50,7 @@ const StepOrder = ({ order, trackings }) => {
         },
       }}
     >
-      {STYLE_ORDER_STATUS.map(({ Icon }, index) => (
+      {newStyleOrderStatus.map(({ Icon }, index) => (
         <Step
           key={index}
           orientation="vertical"
