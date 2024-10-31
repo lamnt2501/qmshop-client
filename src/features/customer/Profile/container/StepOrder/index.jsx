@@ -13,10 +13,11 @@ import {
   VN_ORDER_STATUS,
 } from "../../../../../config";
 import { translateLanguage } from "../../../../../utils";
-
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 const StepOrder = ({ order, trackings }) => {
-
-  const newStyleOrderStatus = STYLE_ORDER_STATUS.filter((item) => item.color !== "bg-rose-100" )
+  const newStyleOrderStatus = STYLE_ORDER_STATUS.filter(
+    (item) => item.color !== "bg-rose-100"
+  );
 
   return (
     <Stepper
@@ -62,7 +63,7 @@ const StepOrder = ({ order, trackings }) => {
               variant={index !== trackings.length - 1 ? "outlined" : "solid"}
               color={index > trackings.length - 1 ? "neutral" : "primary"}
             >
-              <Icon />
+              {Icon ? <Icon /> : <CheckCircleIcon />}
             </StepIndicator>
           }
         >
