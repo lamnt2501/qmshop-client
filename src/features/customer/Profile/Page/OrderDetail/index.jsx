@@ -48,7 +48,7 @@ const OrderDetail = () => {
       const newTrackings = order.tracking.map((track) => {
         const Icon = getColorByStatus("order", track.status);
         console.log(Icon);
-        if (Icon.Icon) return { ...track, Icon: Icon };
+        if (Icon && Icon.Icon) return { ...track, Icon: Icon };
         return  { ...track};
       });
       setTrackings(newTrackings);
