@@ -37,6 +37,7 @@ export const ORDER_STATUS = [
 export const VN_ORDER_STATUS = [
   "chờ duyệt",
   "đang chuẩn bị",
+  "đang đóng gói",
   "đang vận chuyển",
   "đã giao",
   "đã hủy",
