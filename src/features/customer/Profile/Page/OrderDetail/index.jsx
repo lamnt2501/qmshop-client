@@ -46,7 +46,9 @@ const OrderDetail = () => {
   useEffect(() => {
     if (status === FETCH_SUCCEEDED) {
       const newTrackings = order.tracking.map((track) => {
-        return { ...track, Icon: getColorByStatus("order", track.status).Icon };
+        const Icon = getColorByStatus("order", track.status).Icon;
+        console.log(Icon);
+        return { ...track, Icon: Icon };
       });
       setTrackings(newTrackings);
     }
